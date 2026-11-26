@@ -23,6 +23,7 @@ export interface Topic {
   site: string;
   title: string;
   url: string;
+  source_url?: string;
   author?: Author;
   category?: TopicCategory;
   tags?: string[];

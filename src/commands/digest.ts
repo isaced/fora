@@ -11,7 +11,6 @@ import type { Adapter } from "../core/adapter.ts";
 import { mapLimit } from "../core/async.ts";
 import { applyFields } from "../core/fields.ts";
 import { approxTokens, envelope } from "../core/envelope.ts";
-import { errorMessage } from "../core/error-format.ts";
 import type { DegradationInfo } from "../core/degradation.ts";
 import type { Post, Topic } from "../core/model.ts";
 import type { Site } from "../core/sites.ts";
@@ -21,7 +20,8 @@ import type { DigestGroup, DigestTopic } from "../output/human.ts";
 import { renderDigest } from "../output/human.ts";
 import { writeJson } from "../output/json.ts";
 import { createContext, type Ctx } from "./context.ts";
-import { fieldsArg, intOption, humanArg, jsonArg, parseFieldOption, resolveSince, sinceArg } from "./common.ts";
+import { assertCapability, fieldsArg, intOption, humanArg, jsonArg, parseFieldOption, resolveSince, sinceArg } from "./common.ts";
+import { reportSiteResults, siteFailure } from "./site-results.ts";
 
 /** Total in-flight digest requests across all sites and topics. */
 export const DIGEST_CONCURRENCY = 5;
@@ -34,8 +34,12 @@ export interface DigestFetchOptions {
   concurrency?: number;
 }
 
+interface FetchedDigestGroup extends DigestGroup {
+  failure?: ReturnType<typeof siteFailure>;
+}
+
 interface LoadedSite {
-  group: DigestGroup;
+  group: FetchedDigestGroup;
   site?: Site;
   adapter?: Adapter;
   topics: Topic[];
@@ -79,30 +83,15 @@ async function fetchDigestTopic(
 }
 
 /** Resolve sites, fetch hot lists, then fetch topic details with one shared pool. */
-export async function fetchDigestGroups(ctx: Ctx, options: DigestFetchOptions): Promise<DigestGroup[]> {
+export async function fetchDigestGroups(ctx: Ctx, options: DigestFetchOptions): Promise<FetchedDigestGroup[]> {
   const concurrency = options.concurrency ?? DIGEST_CONCURRENCY;
 
   const loaded: LoadedSite[] = await mapLimit(options.names, concurrency, async (name): Promise<LoadedSite> => {
-    const group: DigestGroup = { site: name, topics: [] };
-    let site: Site;
+    const group: FetchedDigestGroup = { site: name, topics: [] };
     try {
-      site = requireSite(ctx.sites, name);
-    } catch (error) {
-      group.error = errorMessage(error);
-      return { group, topics: [] };
-    }
-
-    const adapter = ctx.registry.get(site.engine);
-    if (!adapter) {
-      group.error = `unknown engine "${site.engine}"`;
-      return { group, topics: [] };
-    }
-    if (!adapter.capabilities.hot) {
-      group.error = `hot is not supported by ${site.engine}`;
-      return { group, topics: [] };
-    }
-
-    try {
+      const site = requireSite(ctx.sites, name);
+      const adapter = ctx.registry.require(site.engine);
+      assertCapability(adapter, "hot", "hot");
       const hot = await adapter.hot(site, { limit: options.perSite });
       const topics = hot.filter((topic) =>
         withinSince(topic.created_at, topic.last_activity_at, options.sinceMs),
@@ -110,7 +99,8 @@ export async function fetchDigestGroups(ctx: Ctx, options: DigestFetchOptions): 
       group.topics = new Array<DigestTopic>(topics.length);
       return { group, site, adapter, topics };
     } catch (error) {
-      group.error = errorMessage(error);
+      group.failure = siteFailure(name, error);
+      group.error = group.failure.message;
       return { group, topics: [] };
     }
   });
@@ -261,6 +251,7 @@ export const digestCommand = defineCommand({
       topReplies,
       sinceMs,
     });
+    const siteResults = reportSiteResults(fetched);
 
     const fitted = budget === undefined
       ? { groups: fetched, meta: undefined }
@@ -281,6 +272,7 @@ export const digestCommand = defineCommand({
           per_site: perSite,
           top_replies: topReplies,
           count: totalTopics,
+          ...siteResults,
           ...(fitted.meta ?? {}),
         }),
       );

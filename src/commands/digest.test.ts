@@ -1,6 +1,7 @@
 import { describe, expect, it } from "bun:test";
 import type { Adapter } from "../core/adapter.ts";
 import { approxTokens } from "../core/envelope.ts";
+import { AdapterRegistry } from "../core/registry.ts";
 import type { Topic, TopicDetail } from "../core/model.ts";
 import type { Site } from "../core/sites.ts";
 import type { Ctx } from "./context.ts";
@@ -90,6 +91,8 @@ function makeAdapter(engine: string, topics: Topic[], stats: Stats): Adapter {
 }
 
 function makeCtx(engines: Record<string, Adapter>, siteNames: string[]): Ctx {
+  const registry = new AdapterRegistry();
+  for (const adapter of Object.values(engines)) registry.register(adapter);
   const sites: Site[] = siteNames
     .filter((name) => name !== "missing")
     .map((name, index) => ({
@@ -99,7 +102,7 @@ function makeCtx(engines: Record<string, Adapter>, siteNames: string[]): Ctx {
     }));
   return {
     sites,
-    registry: { get: (engine: string) => engines[engine] },
+    registry,
   } as unknown as Ctx;
 }
 

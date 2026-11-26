@@ -174,6 +174,7 @@ export interface FixtureCase {
   label: string;
   adapter: Adapter;
   site: Site;
+  topicFixtureList?: "latest";
 }
 
 export function buildFixtureAdapters(): FixtureCase[] {
@@ -197,11 +198,13 @@ export function buildFixtureAdapters(): FixtureCase[] {
       label: "flarum",
       adapter: createFlarumAdapter(flarumFixtureHttp()),
       site: { name: "flarum-community", engine: "flarum", base_url: "https://discuss.flarum.org", source: "directory" },
+      topicFixtureList: "latest",
     },
     {
       label: "nodebb",
       adapter: createNodebbAdapter(nodebbFixtureHttp()),
       site: { name: "vivaldi-forum", engine: "nodebb", base_url: "https://forum.vivaldi.net", source: "directory" },
+      topicFixtureList: "latest",
     },
     {
       label: "discourse-rss",

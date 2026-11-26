@@ -176,8 +176,12 @@ fora show 1 3 5      # batch, one process and one pacing pool
 fora show 3 --excerpt --replies 5
 ```
 
-The cache lives in `$XDG_CACHE_HOME/fora/last-list.json` and is purely a
-convenience — deleting it never changes what any command means.
+The cache lives in `$XDG_CACHE_HOME/fora/last-list.json`. It supplies numeric
+references and can associate a recent item URL with its site when the URL
+and the configured feed live on different hosts.
+
+For Hacker News, `url` links to the discussion that `fora show` can open;
+`source_url` preserves the linked article when there is one.
 
 ### Exit codes
 
@@ -234,6 +238,10 @@ Agent-facing guarantees:
 
 - `meta.approx_tokens` estimates the payload cost before deeper reading.
 - `meta.degraded_sites` declares transport downgrades and lost capabilities.
+- Multi-site `hot`/`latest` and `digest` report `meta.succeeded_sites` and
+  `meta.failed_sites` (`site`, `code`, `message`). A successful empty site
+  still counts as success. If every site fails, stdout stays empty and the
+  JSON error on stderr includes `failed_sites`; the exit code is nonzero.
 - `digest` reports `per_site_tokens`, `budget`, `omitted_sites` and
   `omitted_topics`.
 - `show` declares `total_replies`, `fetched_replies` and `omitted_replies` so a

@@ -135,6 +135,7 @@ export function createFlarumAdapter(http: HttpClient = new HttpClient()): Adapte
 
   return {
     engine,
+    topicRefFromUrl: (url) => url.pathname.match(/\/d\/(\d+)/)?.[1],
     capabilities: { hot: true, latest: true, hotPeriods: false, topic: true, search: true, categories: true },
 
     async detect(candidate: SiteCandidate): Promise<boolean> {

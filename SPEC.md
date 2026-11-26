@@ -153,6 +153,7 @@ export interface Adapter {
   hot(site: Site, opts: ListOpts & { period?: Period }): Promise<Topic[]>
   latest(site: Site, opts: ListOpts): Promise<Topic[]>
   topic(site: Site, ref: string, page: number): Promise<TopicDetail>
+  topicRefFromUrl?(url: URL, site: Site): string | undefined
   search(site: Site, query: string, opts: ListOpts): Promise<Topic[]>
   categories(site: Site): Promise<Category[]>
 }
@@ -345,9 +346,12 @@ Behaviour notes:
   ephemerally without writing config (§6.2).
 - `--site all` (hot/latest only): query every configured site, output grouped
   by site in human mode; in `--json` mode a flat array with the `site` field
-  set. One site failing must not fail the whole command — report the failure
-  on stderr, exit 0 if at least one site succeeded. `--site a,b` queries an
-  ad-hoc subset with the same semantics.
+  set. `--site a,b` queries an ad-hoc subset with the same semantics.
+- Multi-site `hot`/`latest` and `digest` exit 0 if at least one site succeeded,
+  even if it returned no topics. JSON includes `meta.succeeded_sites` and
+  `meta.failed_sites` (`site`, `code`, `message`). If every site fails, stdout
+  stays empty and stderr carries the error with `failed_sites` in JSON mode.
+  A common error code and exit code are preserved; mixed failures exit 1.
 - Human output: compact table — index, title (truncated to terminal width),
   author, replies/views, relative time, category. `show` prints posts as
   `#<floor> @<user> · <relative time>` followed by wrapped plain text.
@@ -466,6 +470,7 @@ Some Discourse instances (notably linux.do) answer `/latest.json` and
   flight). Hot = same as Top. Latest = `/v0/newstories.json`.
 - Topic = item + comment tree from `kids`, flattened in order, depth-first,
   `--all-pages` ignored; cap comments at 200 with a truncation note.
+- `url` points to the HN discussion; `source_url` preserves the article link.
 - Search = Algolia `GET https://hn.algolia.com/api/v1/search?query=&tags=story`
 - Categories: unsupported.
 

@@ -75,6 +75,17 @@ for (const fixture of buildFixtureAdapters()) {
       }
     });
 
+    it("opens a listed topic by its URL when supported", async () => {
+      if (!adapter.capabilities.topic) return;
+      const [first] = fixture.topicFixtureList === "latest"
+        ? await adapter.latest(site, { limit: 1 })
+        : await firstTopics(fixture);
+      const ref = adapter.topicRefFromUrl?.(new URL(first!.url), site);
+      expect(ref).toBeTruthy();
+      const detail = await adapter.topic(site, ref!, 1);
+      expect(detail.id).toBe(first!.id);
+    });
+
     it("searches when supported", async () => {
       if (!adapter.capabilities.search) return;
       const topics = await adapter.search(site, "test", { limit: 3 });

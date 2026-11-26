@@ -13,6 +13,7 @@ export const TOPIC_FIELDS = [
   "site",
   "title",
   "url",
+  "source_url",
   "author",
   "category",
   "tags",

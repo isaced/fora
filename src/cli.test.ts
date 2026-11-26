@@ -1,12 +1,18 @@
 import { describe, expect, it } from "bun:test";
-import { rm } from "node:fs/promises";
+import { mkdir, mkdtemp, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 const cwd = new URL("..", import.meta.url).pathname;
 
-async function run(...args: string[]) {
+function run(...args: string[]) {
+  return runWithEnv(undefined, ...args);
+}
+
+async function runWithEnv(env: NodeJS.ProcessEnv | undefined, ...args: string[]) {
   const proc = Bun.spawn(["bun", "run", "src/cli.ts", ...args], {
     cwd,
+    env,
     stdout: "pipe",
     stderr: "pipe",
   });
@@ -18,13 +24,119 @@ async function run(...args: string[]) {
   return { out, err, code: proc.exitCode };
 }
 
+async function withSiteFixtures(
+  test: (runFixture: typeof run, origin: string, cachePath: string) => Promise<void>,
+  follow = "limited",
+) {
+  const home = await mkdtemp(join(tmpdir(), "fora-cli-test-"));
+  const feed = await Bun.file(new URL("./adapters/discourse-rss/fixtures/latest.xml", import.meta.url)).text();
+  const server = Bun.serve({
+    hostname: "127.0.0.1",
+    port: 0,
+    fetch(request) {
+      const url = new URL(request.url);
+      if (url.pathname.startsWith("/empty/")) return Response.json({ topic_list: { topics: [] } });
+      if (url.pathname.startsWith("/limited/")) return new Response(null, { status: 429 });
+      if (url.pathname === "/latest.rss") return new Response(feed.replaceAll("https://linux.do", url.origin));
+      return new Response(null, { status: 404 });
+    },
+  });
+  try {
+    const origin = server.url.origin;
+    await mkdir(join(home, "fora"));
+    await Bun.write(join(home, "fora", "config.yaml"), [
+      `follow: [${follow}]`,
+      "sites:",
+      "  - name: empty",
+      "    engine: discourse",
+      `    base_url: ${origin}/empty`,
+      "  - name: limited",
+      "    engine: discourse",
+      `    base_url: ${origin}/limited`,
+      "  - name: feed",
+      "    engine: discourse-rss",
+      `    base_url: ${origin}`,
+      "",
+    ].join("\n"));
+    const env = {
+      ...process.env, XDG_CONFIG_HOME: home, XDG_CACHE_HOME: home, NO_PROXY: "127.0.0.1", no_proxy: "127.0.0.1",
+    };
+    await test((...args) => runWithEnv(env, ...args), origin, join(home, "fora", "last-list.json"));
+  } finally {
+    server.stop(true);
+    await rm(home, { recursive: true, force: true });
+  }
+}
+
+describe("cross-site results and topic references", () => {
+  it("reports partial success even when the successful site has no topics", async () => {
+    await withSiteFixtures(async (runFixture) => {
+      const { out, err, code } = await runFixture("latest", "--site", "empty,limited,missing-site", "--json");
+      expect(code).toBe(0);
+      expect(err).toBe("");
+      const result = JSON.parse(out);
+      expect(result.data).toEqual([]);
+      expect(result.meta.succeeded_sites).toEqual(["empty"]);
+      expect(result.meta.failed_sites.map(({ site, code }: { site: string; code: string }) => [site, code])).toEqual([
+        ["limited", "rate_limited"], ["missing-site", "usage"],
+      ]);
+    });
+  });
+
+  it("fails on stderr when every site fails, preserving a common error code", async () => {
+    await withSiteFixtures(async (runFixture) => {
+      for (const args of [["latest", "--site", "limited,missing-site"], ["digest", "--budget", "1"]]) {
+        const { out, err, code } = await runFixture(...args, "--json");
+        const mixed = args[0] === "latest";
+        expect(code).toBe(mixed ? 1 : 4);
+        expect(out).toBe("");
+        expect(JSON.parse(err)).toMatchObject({
+          code: mixed ? "generic" : "rate_limited",
+          failed_sites: mixed
+            ? [{ site: "limited", code: "rate_limited" }, { site: "missing-site", code: "usage" }]
+            : [{ site: "limited", code: "rate_limited" }],
+        });
+      }
+    });
+  });
+
+  it("keeps digest site outcomes even when the payload budget omits their groups", async () => {
+    await withSiteFixtures(async (runFixture) => {
+      const { out, err, code } = await runFixture("digest", "--budget", "1", "--json");
+      expect(code).toBe(0);
+      expect(err).toBe("");
+      expect(JSON.parse(out)).toMatchObject({
+        data: [],
+        meta: {
+          succeeded_sites: ["empty"],
+          failed_sites: [{ site: "limited", code: "rate_limited" }],
+          omitted_sites: ["empty", "limited"],
+        },
+      });
+    }, "empty, limited");
+  });
+
+  it("opens a Discourse RSS list URL without an existing cache", async () => {
+    await withSiteFixtures(async (runFixture, origin, cachePath) => {
+      const list = await runFixture("latest", "feed", "-n", "1", "--json");
+      expect(list.code).toBe(0);
+      const [topic] = JSON.parse(list.out).data;
+      expect(topic.url).toStartWith(origin);
+      await rm(cachePath);
+      const show = await runFixture("show", topic.url, "--json");
+      expect(show.code).toBe(0);
+      expect(JSON.parse(show.out).data.id).toBe(topic.id);
+    });
+  });
+});
+
 describe("agent-friendly help", () => {
   it("adds concise prose and copy-pasteable examples to command help", async () => {
     const { out } = await run("hot", "--help");
     expect(out).toContain("USAGE fora hot");
     expect(out).toContain("Examples:");
     expect(out).toContain("fora hot --site v2ex");
-    expect(out).toContain("Failures from --site all are reported on stderr");
+    expect(out).toContain("meta.failed_sites");
     expect(out).not.toContain("NOTES FOR AGENTS");
   });
 

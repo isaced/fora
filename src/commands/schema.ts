@@ -97,6 +97,12 @@ export async function buildForaSchema(root: AnyCommand, version: string): Promis
       schema: "fora/v1",
       data: "command payload",
       meta: "approx_tokens plus command-specific fields such as site, count and degraded_sites",
+      site_results: {
+        commands: ["hot (multi-site)", "latest (multi-site)", "digest"],
+        succeeded_sites: "site names, including successful empty results",
+        failed_sites: "array of {site, code, message}",
+        all_failed: "nonzero exit; JSON error with failed_sites on stderr",
+      },
     },
     site_resolution: ["--site", "positional site", "FORA_SITE", "default_site"],
     output_default: {

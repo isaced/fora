@@ -67,6 +67,7 @@ export function createDiscourseAutoAdapter(
   return {
     engine: "discourse",
     capabilities: json.capabilities,
+    topicRefFromUrl: json.topicRefFromUrl?.bind(json),
 
     async detect(candidate: SiteCandidate): Promise<boolean> {
       const probe = candidateSite(candidate);

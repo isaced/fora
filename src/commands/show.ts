@@ -24,41 +24,21 @@ import { assertCapability, humanArg, intOption, jsonArg } from "./common.ts";
 const DETECT_ORDER = ["hn", "v2ex", "discourse-rss", "discourse", "flarum", "nodebb"];
 const MAX_ALL_PAGES = 50;
 
-function parseTopicRef(engine: string, rawUrl: string): string | undefined {
-  let url: URL;
-  try {
-    url = new URL(rawUrl);
-  } catch {
-    return undefined;
-  }
-
-  switch (engine) {
-    case "hn":
-      return url.searchParams.get("id") ?? undefined;
-    case "v2ex":
-      return url.pathname.match(/\/t\/(\d+)/)?.[1];
-    case "discourse":
-      return url.pathname.match(/\/t\/(?:[^/]+\/)?(\d+)/)?.[1];
-    case "flarum":
-      return url.pathname.match(/\/d\/(\d+)/)?.[1];
-    case "nodebb":
-      return url.pathname.match(/\/topic\/(.+?)\/?$/)?.[1];
-    case "rss":
-      return rawUrl;
-    default:
-      return url.pathname.match(/(\d+)\/?$/)?.[1];
-  }
-}
-
-function findSiteForHost(sites: Site[], host: string): Site | undefined {
-  return sites.find((site) => {
-    if (!site.base_url) return false;
-    try {
-      return new URL(site.base_url).host === host;
-    } catch {
-      return false;
+function findSiteForUrl(sites: Site[], url: URL): Site | undefined {
+  let best: Site | undefined;
+  let bestLength = -1;
+  for (const site of sites) {
+    for (const value of [site.base_url, site.site_url]) {
+      if (!value || !URL.canParse(value)) continue;
+      const base = new URL(value);
+      if (base.host !== url.host) continue;
+      const path = site.engine === "rss" ? "" : base.pathname.replace(/\/$/, "");
+      if (path.length <= bestLength || (url.pathname !== path && !url.pathname.startsWith(`${path}/`))) continue;
+      best = site;
+      bestLength = path.length;
     }
-  });
+  }
+  return best;
 }
 
 interface ShowTarget {
@@ -77,8 +57,13 @@ async function resolveShowTarget(
   }
 
   if (/^https?:\/\//i.test(ref)) {
+    if (!URL.canParse(ref)) throw new UsageError(`invalid topic URL: ${ref}`);
     const url = new URL(ref);
-    let site = findSiteForHost(ctx.sites, url.host);
+    const cached = (await ctx.cache.read())?.topics.find((topic) => topic.url === ref);
+    const cachedSite = cached && ctx.sites.find((site) => site.name === cached.site);
+    if (cached && cachedSite) return { site: cachedSite, id: cached.id };
+
+    let site = findSiteForUrl(ctx.sites, url);
 
     if (!site) {
       let engine: string | undefined;
@@ -110,7 +95,10 @@ async function resolveShowTarget(
       };
     }
 
-    const id = parseTopicRef(site.engine, ref);
+    const adapter = ctx.registry.require(site.engine);
+    const id = adapter.topicRefFromUrl
+      ? adapter.topicRefFromUrl(url, site)
+      : url.pathname.match(/(\d+)\/?$/)?.[1];
     if (!id) {
       throw new UsageError(
         formatCliError(`could not parse a topic id from ${ref}`, [

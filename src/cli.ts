@@ -15,7 +15,7 @@ import { closeBrowserFetches } from "./core/browser-fetch.ts";
 import { closeProxyBridge } from "./core/proxy-fetch.ts";
 import { formatCliError, type ErrorSection } from "./core/error-format.ts";
 import { resolveOutputMode } from "./core/output-mode.ts";
-import { ForaError, UsageError, exitCodeOf, messageOf } from "./core/errors.ts";
+import { ForaError, SiteBatchError, UsageError, exitCodeOf, messageOf } from "./core/errors.ts";
 import { VERSION } from "./core/version.ts";
 import { writeErrorJson } from "./output/json.ts";
 
@@ -269,7 +269,7 @@ function handleError(error: unknown, rawArgs: string[]): void {
 
   if (error instanceof ForaError) {
     const message = foraErrorMessage(error, rawArgs);
-    if (json) writeErrorJson(error.code, message);
+    if (json) writeErrorJson(error.code, message, error instanceof SiteBatchError ? { failed_sites: error.failures } : undefined);
     else process.stderr.write(`fora: ${message}\n`);
     process.exitCode = error.exitCode;
     return;

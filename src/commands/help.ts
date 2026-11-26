@@ -43,7 +43,7 @@ export const COMMAND_GUIDES: Record<string, CommandGuide> = {
       "Results become the last list, so `fora show <number>` can open an item without copying ids or URLs.",
     ],
     details: [
-      "Failures from --site all are reported on stderr; successful sites still print normally.",
+      "Partial failures from --site all or a site list go to stderr in human mode or meta.failed_sites in JSON.",
     ],
     examples: [
       "fora hot --site v2ex                        # explicit site (recommended)",

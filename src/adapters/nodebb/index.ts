@@ -155,6 +155,8 @@ export function createNodebbAdapter(http: HttpClient = new HttpClient()): Adapte
 
   return {
     engine,
+    topicRefFromUrl: (url) => url.pathname.match(/\/topic\/(\d+)(?=\/|$)/)?.[1]
+      ?? url.pathname.match(/\/topic\/(.+?)\/?$/)?.[1],
     capabilities: { hot: true, latest: true, hotPeriods: true, topic: true, search: true, categories: true },
 
     async detect(candidate: SiteCandidate): Promise<boolean> {

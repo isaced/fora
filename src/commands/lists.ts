@@ -1,7 +1,6 @@
 /** `fora hot` and `fora latest` — the two list verbs. */
 
 import { defineCommand, type CommandDef } from "citty";
-import { errorMessage, formatCliError } from "../core/error-format.ts";
 import { UnsupportedError } from "../core/errors.ts";
 import type { Period } from "../core/adapter.ts";
 import type { Topic } from "../core/model.ts";
@@ -20,9 +19,9 @@ import {
   pickSiteName,
   resolveSince,
   sinceArg,
-  siteByName,
   siteFlagArg,
 } from "./common.ts";
+import { reportSiteResults, siteFailure, type SiteOutcome } from "./site-results.ts";
 
 type ListKind = "hot" | "latest";
 
@@ -38,29 +37,22 @@ async function runList(kind: ListKind, args: Record<string, unknown>): Promise<v
   const selector = parseSiteSelector(selectorRaw);
 
   if (selector.all || selector.names.length > 1) {
-    const targets: Site[] = selector.all
-      ? sitesForAll(ctx.config, ctx.sites)
-      : selector.names.map((name) => siteByName(ctx.sites, name));
+    const targets = selector.all ? sitesForAll(ctx.config, ctx.sites).map((site) => site.name) : selector.names;
 
     const collected: Topic[] = [];
-    const failures: string[] = [];
+    const outcomes: SiteOutcome[] = [];
 
-    for (const site of targets) {
+    for (const name of targets) {
       try {
+        const site = requireSite(ctx.sites, name);
         collected.push(...(await fetchFromSite(ctx, site, kind, limit, period)));
+        outcomes.push({ site: name });
       } catch (error) {
-        failures.push(`${site.name}: ${errorMessage(error)}`);
+        outcomes.push({ site: name, failure: siteFailure(name, error) });
       }
     }
 
-    if (failures.length > 0) {
-      const report = formatCliError(
-        collected.length === 0 ? `all ${targets.length} site(s) failed` : "some sites failed",
-        [{ heading: "Failures:", lines: failures }],
-      );
-      if (collected.length === 0) throw new Error(report);
-      process.stderr.write(`fora: ${report}\n`);
-    }
+    const siteResults = reportSiteResults(outcomes, !json);
 
     await finishList(ctx, {
       topics: filterSince(collected, sinceMs),
@@ -69,7 +61,7 @@ async function runList(kind: ListKind, args: Record<string, unknown>): Promise<v
       fields,
       json,
       groupBySite: !json,
-      meta: { since: typeof args.since === "string" ? args.since : undefined },
+      meta: { since: typeof args.since === "string" ? args.since : undefined, ...siteResults },
     });
     return;
   }

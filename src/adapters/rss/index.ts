@@ -182,6 +182,7 @@ export function createRssAdapter(http: HttpClient = new HttpClient()): Adapter {
 
   return {
     engine,
+    topicRefFromUrl: (url) => url.href,
     capabilities: { hot: false, latest: true, hotPeriods: false, topic: true, search: false, categories: false },
 
     async detect(): Promise<boolean> {

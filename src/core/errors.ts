@@ -27,6 +27,18 @@ export class ForaError extends Error {
   }
 }
 
+export interface SiteFailure {
+  site: string;
+  code: ForaErrorCode;
+  message: string;
+}
+
+export class SiteBatchError extends ForaError {
+  constructor(code: ForaErrorCode, message: string, exitCode: number, readonly failures: SiteFailure[]) {
+    super(code, message, exitCode);
+  }
+}
+
 /** Bad flags, missing arguments, unknown sites — exit 2. */
 export class UsageError extends ForaError {
   constructor(message: string) {

@@ -51,7 +51,8 @@ function mapItem(item: HnItem, site: Site): Topic {
     id: String(item.id),
     site: site.name,
     title: item.title ?? "",
-    url: item.url ?? `https://news.ycombinator.com/item?id=${item.id}`,
+    url: `https://news.ycombinator.com/item?id=${item.id}`,
+    source_url: item.url,
     author: item.by ? { username: item.by } : undefined,
     reply_count: item.descendants,
     like_count: item.score,
@@ -95,6 +96,7 @@ export function createHnAdapter(http: HttpClient = new HttpClient({ minIntervalM
 
   return {
     engine,
+    topicRefFromUrl: (url) => url.pathname === "/item" ? url.searchParams.get("id") ?? undefined : undefined,
     capabilities: { hot: true, latest: true, hotPeriods: false, topic: true, search: true, categories: false },
 
     async detect(candidate: SiteCandidate): Promise<boolean> {
@@ -185,7 +187,8 @@ export function createHnAdapter(http: HttpClient = new HttpClient({ minIntervalM
           id: hit.objectID,
           site: site.name,
           title: hit.title ?? "",
-          url: hit.url ?? `https://news.ycombinator.com/item?id=${hit.objectID}`,
+          url: `https://news.ycombinator.com/item?id=${hit.objectID}`,
+          source_url: hit.url,
           author: hit.author ? { username: hit.author } : undefined,
           reply_count: hit.num_comments,
           like_count: hit.points,

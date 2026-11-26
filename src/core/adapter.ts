@@ -41,6 +41,7 @@ export interface Adapter {
   detect(site: SiteCandidate): Promise<boolean>;
   hot(site: Site, opts: HotOpts): Promise<Topic[]>;
   latest(site: Site, opts: ListOpts): Promise<Topic[]>;
+  topicRefFromUrl?(url: URL, site: Site): string | undefined;
   topic(site: Site, ref: string, page: number): Promise<TopicDetail>;
   search(site: Site, query: string, opts: ListOpts): Promise<Topic[]>;
   categories(site: Site): Promise<Category[]>;
@@ -59,6 +60,7 @@ export function isAdapter(value: unknown): value is Adapter {
   for (const method of ["detect", "hot", "latest", "topic", "search", "categories"]) {
     if (typeof candidate[method] !== "function") return false;
   }
+  if (candidate.topicRefFromUrl !== undefined && typeof candidate.topicRefFromUrl !== "function") return false;
   const caps = candidate.capabilities as Record<string, unknown> | undefined;
   if (!caps || typeof caps !== "object") return false;
   return ["hot", "latest", "hotPeriods", "topic", "search", "categories"].every(
