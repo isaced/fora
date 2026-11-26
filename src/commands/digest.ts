@@ -12,6 +12,7 @@ import { mapLimit } from "../core/async.ts";
 import { applyFields } from "../core/fields.ts";
 import { envelope } from "../core/envelope.ts";
 import { errorMessage } from "../core/error-format.ts";
+import type { DegradationInfo } from "../core/degradation.ts";
 import type { Post, Topic } from "../core/model.ts";
 import type { Site } from "../core/sites.ts";
 import { followSiteNames, requireSite } from "../core/sites.ts";
@@ -132,7 +133,11 @@ export async function fetchDigestGroups(ctx: Ctx, options: DigestFetchOptions): 
     );
   });
 
-  return loaded.map((entry) => entry.group);
+  return loaded.map((entry) => {
+    const degraded: DegradationInfo | undefined = ctx.degradation?.get(entry.group.site);
+    if (degraded) entry.group.degraded = degraded;
+    return entry.group;
+  });
 }
 
 export const digestCommand = defineCommand({
@@ -180,6 +185,7 @@ export const digestCommand = defineCommand({
       const data = groups.map((group) => ({
         site: group.site,
         error: group.error,
+        degraded: group.degraded,
         topics: applyFields(group.topics, fields),
       }));
       writeJson(

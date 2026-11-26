@@ -381,7 +381,8 @@ no per-site loops, no per-topic follow-up calls, no dedup homework.
   is the §3 model. `fora engines list --json` and `fora sites list --json`
   give a machine-readable capability matrix to plan with — no
   trial-and-error calls. `fora doctor --json` reports per-site
-  reachability and loaded engines as a pre-flight check.
+  reachability, active route (`json` / `rss`) and loaded engines as a
+  pre-flight check.
 - **CLI-first is deliberate.** Agents with shell access (Muse, pi,
   Claude Code, …) drive CLIs natively — the agent-browser precedent. An
   MCP wrapper may come later (§13) but is not the primary interface.
@@ -411,6 +412,8 @@ fixtures and docs:
 - Search = `GET /search.json?q=`
 - Categories = `GET /categories.json`; site info = `GET /site.json`
 - Embedded `users` array in list responses maps poster ids to usernames.
+- Every `discourse` site uses a JSON-first auto adapter: on an HTTP 403
+  anti-bot response it retries via §7.1a and reports the downgrade in output.
 
 ### 7.1a Discourse RSS (engine; Cloudflare-challenged Discourse sites)
 
@@ -424,7 +427,11 @@ readable. This engine keeps the same Topic mapping as §7.1 but reads feeds:
 - Search/Categories: unsupported (exit 3)
 - Engagement metrics are omitted because Discourse feeds do not carry them.
 - Detection: `/site.json` identifies Discourse; a challenged `/latest.json`
-  selects this engine instead of the JSON one.
+  selects this transport instead of the JSON one.
+- When used as a fallback, JSON output carries `meta.degraded_sites` with
+  `from`, `to`, `reason` and `limitations`; human output prints a warning.
+  `fora doctor` reports the active `route` (`json` or `rss`) per site.
+  A fallback cannot rescue an IP that is blocked at the feed layer too.
 
 ### 7.2 V2EX (single-site engine)
 

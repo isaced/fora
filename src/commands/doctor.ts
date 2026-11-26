@@ -32,16 +32,18 @@ export const doctorCommand = defineCommand({
     const sites: DoctorSiteReport[] = await mapLimit(targets, PROBE_CONCURRENCY, async (site) => {
       const adapter = ctx.registry.get(site.engine);
       if (!adapter) {
-        return { name: site.name, engine: site.engine, reachable: false, error: "engine not loaded" };
+        return { name: site.name, engine: site.engine, route: undefined, reachable: false, error: "engine not loaded" };
       }
       if (site.engine === "rss") {
-        return { name: site.name, engine: site.engine, reachable: "unknown", error: "RSS reachability not probed" };
+        return { name: site.name, engine: site.engine, route: "rss", reachable: "unknown", error: "RSS reachability not probed" };
       }
       try {
         const reachable = await adapter.detect({ base_url: site.base_url, url: site.base_url });
-        return { name: site.name, engine: site.engine, reachable };
+        const degraded = ctx.degradation.get(site.name);
+        const route = degraded ? "rss" : site.engine === "rss" ? "rss" : "json";
+        return { name: site.name, engine: site.engine, route, reachable };
       } catch (error) {
-        return { name: site.name, engine: site.engine, reachable: false, error: errorMessage(error) };
+        return { name: site.name, engine: site.engine, route: undefined, reachable: false, error: errorMessage(error) };
       }
     });
 

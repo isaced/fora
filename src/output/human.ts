@@ -1,5 +1,6 @@
 /** Human-readable renderers: compact tables and plain-text topic views. */
 
+import type { DegradationInfo } from "../core/degradation.ts";
 import type { Category, Post, Topic, TopicDetail } from "../core/model.ts";
 import type { AdapterInfo } from "../core/registry.ts";
 import type { Site } from "../core/sites.ts";
@@ -215,6 +216,7 @@ export interface DigestGroup {
   site: string;
   topics: DigestTopic[];
   error?: string;
+  degraded?: DegradationInfo;
 }
 
 export function renderDigest(groups: DigestGroup[], options: RenderOptions = {}): string {
@@ -227,7 +229,11 @@ export function renderDigest(groups: DigestGroup[], options: RenderOptions = {})
     lines.push(color.bold(color.cyan(`[${group.site}]`)));
     if (group.error) {
       lines.push(color.yellow(`  ! ${group.error}`));
+      if (group.degraded) lines.push(color.yellow(`  ! degraded to ${group.degraded.to} (${group.degraded.limitations.join(", ")})`));
       continue;
+    }
+    if (group.degraded) {
+      lines.push(color.yellow(`  ! degraded to ${group.degraded.to} (${group.degraded.limitations.join(", ")})`));
     }
     if (group.topics.length === 0) {
       lines.push(color.dim("  (no topics in this window)"));
@@ -253,6 +259,7 @@ export function renderDigest(groups: DigestGroup[], options: RenderOptions = {})
 export interface DoctorSiteReport {
   name: string;
   engine: string;
+  route?: "json" | "rss";
   reachable: boolean | "unknown";
   error?: string;
 }
@@ -261,6 +268,7 @@ export function renderDoctor(report: { sites: DoctorSiteReport[]; engines: strin
   const lines: string[] = [color.bold("fora doctor")];
   lines.push(color.dim(`loaded engines: ${report.engines.join(", ") || "(none)"}`));
   lines.push("");
+  lines.push(color.dim("SITE                   ENGINE     ROUTE  STATUS"));
   for (const site of report.sites) {
     const status =
       site.reachable === true
@@ -269,7 +277,9 @@ export function renderDoctor(report: { sites: DoctorSiteReport[]; engines: strin
           ? color.yellow("unknown")
           : color.red("unreachable");
     const suffix = site.error ? color.dim(` — ${site.error}`) : "";
-    lines.push(`${pad(site.name, 22)} ${pad(site.engine, 10)} ${status}${suffix}`);
+    lines.push(
+      `${pad(site.name, 22)} ${pad(site.engine, 10)} ${pad(site.route ?? "-", 6)} ${status}${suffix}`,
+    );
   }
   return lines.join("\n");
 }

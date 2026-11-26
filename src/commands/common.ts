@@ -3,10 +3,11 @@
 import type { Adapter, Capabilities } from "../core/adapter.ts";
 import { applyFields, parseFields } from "../core/fields.ts";
 import { envelope } from "../core/envelope.ts";
+import { degradationMeta, degradedSites, formatDegradation } from "../core/degradation.ts";
 import { formatCliError, knownSitesSection, type ErrorSection } from "../core/error-format.ts";
 import { UnsupportedError, UsageError } from "../core/errors.ts";
 import type { Topic } from "../core/model.ts";
-import { defaultSiteName, unknownSiteError, type Site } from "../core/sites.ts";
+import { defaultSiteName, parseSiteSelector, unknownSiteError, type Site } from "../core/sites.ts";
 import { parseDuration, withinSince } from "../core/time.ts";
 import type { Ctx } from "./context.ts";
 import { renderTopicList } from "../output/human.ts";
@@ -135,12 +136,24 @@ export interface FinishListParams {
 export async function finishList(ctx: Ctx, params: FinishListParams): Promise<void> {
   await ctx.cache.write(params.topics, { site: params.siteLabel, command: params.command });
 
+  const selector = parseSiteSelector(params.siteLabel);
+  const names = selector.all ? ctx.sites.map((site) => site.name) : selector.names;
+  const degraded = degradedSites(ctx.degradation, names);
+
   if (params.json) {
     const data = applyFields(params.topics, params.fields);
-    writeJson(envelope(data, { site: params.siteLabel, count: params.topics.length, ...(params.meta ?? {}) }));
+    writeJson(
+      envelope(data, {
+        site: params.siteLabel,
+        count: params.topics.length,
+        ...degradationMeta(degraded),
+        ...(params.meta ?? {}),
+      }),
+    );
     return;
   }
 
+  for (const info of degraded) process.stderr.write(`fora: degraded: ${formatDegradation(info)}\n`);
   process.stdout.write(`${renderTopicList(params.topics, { groupBySite: params.groupBySite })}\n`);
 }
 

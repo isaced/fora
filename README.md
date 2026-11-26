@@ -38,8 +38,8 @@ Adapters are written per **engine**, not per site. A site is just
 
 | Engine | Sites it serves | Notes |
 |---|---|---|
-| `discourse` | most Discourse instances | hot / latest / topic / search / categories |
-| `discourse-rss` | Discourse sites behind anti-bot walls (e.g. linux.do) | hot / latest / topic via `/top.rss`, `/latest.rss` (no search/categories or engagement metrics) |
+| `discourse` | all Discourse instances | JSON API first, automatic RSS fallback on HTTP 403; hot / latest / topic / search / categories |
+| `discourse-rss` | fallback transport used by `discourse` | hot / latest / topic via feeds; no search/categories or engagement metrics |
 | `v2ex` | v2ex.com | hot / latest / topic / categories (no search, no period) |
 | `hn` | Hacker News | hot / latest / topic / search (Firebase + Algolia) |
 | `flarum` | any Flarum instance | hot (approx.) / latest / topic / search / tags |
@@ -47,7 +47,9 @@ Adapters are written per **engine**, not per site. A site is just
 | `rss` | any forum with an RSS/Atom feed | latest, plus topic when full content is present |
 
 Out of the box (zero config) you get **linux.do, V2EX and Hacker News**, plus a
-bundled directory of ~30 notable forums.
+bundled directory of ~30 notable forums. When a Discourse site falls back to
+RSS, JSON output includes `meta.degraded_sites` so agents know search,
+categories and engagement metrics are unavailable.
 
 ## Install
 

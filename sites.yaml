@@ -33,7 +33,7 @@
 
 - name: linuxdo
   url: https://linux.do
-  engine: discourse-rss
+  engine: discourse
   tags: [linux, zh]
 
 - name: python-discuss
