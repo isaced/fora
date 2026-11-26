@@ -314,7 +314,7 @@ fora                             # prints help (use `fora hot` for the default s
 fora digest  [--since 24h] [--per-site 10] [--top-replies 3]   # §6.2, the agent flagship
 fora hot     [site] [--site <name|all|a,b>] [--period day|week|month|all] [-n 20]
 fora latest  [site] [--site <name|all|a,b>] [-n 20]
-fora show    <topic-url | site:topic-id | last-list-number> [--page N] [--all-pages]
+fora show    <topic-ref...> [--page N] [--all-pages] [--replies N] [--excerpt]
 fora search  <query…> [--site <name>]
 fora categories [site] [--site <name>]
 fora sites   list | add <url> | remove <name> | search <keyword>

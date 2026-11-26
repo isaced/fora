@@ -8,9 +8,12 @@
 
 import { defineCommand } from "citty";
 import type { Adapter } from "../core/adapter.ts";
+import { mapLimit } from "../core/async.ts";
+import { degradationMeta, degradedSites } from "../core/degradation.ts";
 import { envelope } from "../core/envelope.ts";
-import { formatCliError } from "../core/error-format.ts";
+import { errorMessage, formatCliError } from "../core/error-format.ts";
 import { UsageError } from "../core/errors.ts";
+import { excerptOf } from "../core/html.ts";
 import type { TopicDetail } from "../core/model.ts";
 import { requireSite, type Site } from "../core/sites.ts";
 import { renderTopicDetail } from "../output/human.ts";
@@ -156,16 +159,62 @@ function mergePages(pages: TopicDetail[]): TopicDetail {
   return { ...base, posts, page: 1, pages: base.pages, truncated: undefined, omitted_replies: undefined };
 }
 
+const SHOW_CONCURRENCY = 5;
+
+function repliesOption(raw: unknown, excerptOnly: boolean): number | undefined {
+  if (raw === undefined || raw === null || raw === "") return excerptOnly ? 3 : undefined;
+  const value = Number(raw);
+  if (!Number.isInteger(value) || value < 0) {
+    throw new UsageError("--replies must be a non-negative integer");
+  }
+  return value;
+}
+
+/** Keep the OP plus top replies, optionally replacing bodies with excerpts. */
+export function shapeTopicDetail(detail: TopicDetail, replies?: number, excerptOnly = false): TopicDetail {
+  const posts = detail.posts ?? [];
+  const op = posts.find((post) => post.floor === 1);
+  const allReplies = posts.filter((post) => post.floor > 1);
+  const selected =
+    replies === undefined
+      ? allReplies
+      : [...allReplies].sort((a, b) => (b.like_count ?? 0) - (a.like_count ?? 0)).slice(0, replies);
+  const omitted = Math.max(0, allReplies.length - selected.length);
+  const nextPosts = [...(op ? [op] : []), ...selected].sort((a, b) => a.floor - b.floor);
+
+  return {
+    ...detail,
+    excerpt: excerptOnly ? excerptOf(op?.content_html ?? op?.content_text ?? detail.excerpt ?? "") || detail.excerpt : detail.excerpt,
+    posts: excerptOnly
+      ? nextPosts.map((post) => ({
+          ...post,
+          content_text: excerptOf(post.content_html ?? post.content_text),
+          content_html: undefined,
+        }))
+      : nextPosts,
+    truncated: omitted > 0 ? true : detail.truncated,
+    omitted_replies: omitted || detail.omitted_replies,
+  };
+}
+
+interface ShowResult {
+  ref: string;
+  site?: string;
+  topic_id?: string;
+  detail?: TopicDetail;
+  error?: string;
+}
+
 export const showCommand = defineCommand({
   meta: {
     name: "show",
-    description: "Open a topic by URL, site:id, or a number from the last list",
+    description: "Open one or more topics by URL, site:id, or last-list number",
   },
   args: {
     topic: {
       type: "positional",
       required: true,
-      description: "Topic URL, site:topic-id, or last-list number",
+      description: "One or more topic URLs, site:topic-id values, or last-list numbers",
     },
     page: {
       type: "string",
@@ -177,31 +226,89 @@ export const showCommand = defineCommand({
       description: "Fetch every page of posts",
       default: false,
     },
+    replies: {
+      type: "string",
+      description: "Keep only the top N replies by likes",
+      valueHint: "n",
+    },
+    excerpt: {
+      type: "boolean",
+      description: "Return OP/reply excerpts instead of full bodies (implies --replies 3)",
+      default: false,
+    },
     json: jsonArg,
   },
   async run({ args }) {
     const ctx = await createContext();
-    const target = await resolveShowTarget(ctx, String(args.topic));
-    const adapter: Adapter = ctx.registry.require(target.site.engine);
-    assertCapability(adapter, "topic", "show");
-
+    const refs = ((args._ as string[] | undefined) ?? []).filter(
+      (ref) => typeof ref === "string" && ref.trim().length > 0,
+    );
+    const uniqueRefs = [...new Set(refs.length > 0 ? refs : [String(args.topic)])];
     const page = intOption(args.page, 1, "page");
-    let detail = await adapter.topic(target.site, target.id, page);
-
+    const excerptOnly = Boolean(args.excerpt);
+    const replies = repliesOption(args.replies, excerptOnly);
     const allPages = Boolean(args["all-pages"]) || Boolean((args as Record<string, unknown>).allPages);
-    if (allPages && detail.pages > 1 && adapter.engine !== "hn" && adapter.engine !== "rss") {
-      const pageCount = Math.min(detail.pages, MAX_ALL_PAGES);
-      const fetched: TopicDetail[] = [];
-      for (let number = 1; number <= pageCount; number += 1) {
-        fetched.push(number === page ? detail : await adapter.topic(target.site, target.id, number));
+    let firstError: unknown;
+
+    const results = await mapLimit(uniqueRefs, SHOW_CONCURRENCY, async (ref): Promise<ShowResult> => {
+      try {
+        const target = await resolveShowTarget(ctx, ref);
+        const adapter: Adapter = ctx.registry.require(target.site.engine);
+        assertCapability(adapter, "topic", "show");
+
+        let detail = await adapter.topic(target.site, target.id, page);
+        if (allPages && detail.pages > 1 && adapter.engine !== "hn" && adapter.engine !== "rss") {
+          const pageCount = Math.min(detail.pages, MAX_ALL_PAGES);
+          const fetched: TopicDetail[] = [];
+          for (let number = 1; number <= pageCount; number += 1) {
+            fetched.push(number === page ? detail : await adapter.topic(target.site, target.id, number));
+          }
+          detail = mergePages(fetched);
+        }
+        return {
+          ref,
+          site: target.site.name,
+          topic_id: detail.id,
+          detail: shapeTopicDetail(detail, replies, excerptOnly),
+        };
+      } catch (error) {
+        firstError ??= error;
+        return { ref, error: errorMessage(error) };
       }
-      detail = mergePages(fetched);
-    }
+    });
+
+    const failed = results.filter((result) => result.error);
+    if (failed.length === results.length) throw firstError ?? new Error("all show targets failed");
+    for (const failure of failed) process.stderr.write(`fora: ${failure.ref}: ${failure.error}\n`);
+
+    const sites = results.map((result) => result.site).filter((site): site is string => Boolean(site));
+    const degraded = degradationMeta(degradedSites(ctx.degradation, sites));
 
     if (args.json) {
-      writeJson(envelope(detail, { site: target.site.name, topic_id: detail.id }));
+      if (uniqueRefs.length === 1) {
+        const only = results[0]!;
+        writeJson(envelope(only.detail, {
+          site: only.site,
+          topic_id: only.topic_id,
+          ref: only.ref,
+          ...degraded,
+          ...(failed.length > 0 ? { errors: failed.map(({ ref, error }) => ({ ref, error })) } : {}),
+        }));
+        return;
+      }
+      writeJson(
+        envelope(
+          results.map(({ ref, site, topic_id, detail, error }) => ({ ref, site, topic_id, topic: detail, error })),
+          { count: results.length - failed.length, failures: failed.length, ...degraded },
+        ),
+      );
       return;
     }
-    process.stdout.write(`${renderTopicDetail(detail)}\n`);
+
+    for (const result of results) {
+      if (!result.detail) continue;
+      if (results.length > 1) process.stdout.write(`[${result.ref}]\n`);
+      process.stdout.write(`${renderTopicDetail(result.detail)}\n`);
+    }
   },
 });
