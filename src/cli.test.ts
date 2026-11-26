@@ -205,6 +205,27 @@ describe("agent-friendly help", () => {
     await rm(dir, { recursive: true, force: true });
   });
 
+  it("reads command-specific value flags from their definitions", async () => {
+    for (const [args, flag] of [
+      [["digest", "--budget"], "--budget"],
+      [["show", "linuxdo:12345", "--replies="], "--replies"],
+    ] as const) {
+      const { out, err, code } = await run(...args, "--json");
+      expect(code).toBe(2);
+      expect(out).toBe("");
+      expect(JSON.parse(err)).toMatchObject({ code: "usage", message: expect.stringContaining(`${flag} requires a value`) });
+    }
+  });
+
+  it("returns JSON for unknown help targets in both help forms", async () => {
+    for (const args of [["help", "sites", "lis"], ["sites", "lis", "--help"]]) {
+      const { out, err, code } = await run(...args, "--json");
+      expect(code).toBe(2);
+      expect(out).toBe("");
+      expect(JSON.parse(err)).toMatchObject({ code: "usage", message: expect.stringContaining("fora sites list") });
+    }
+  });
+
   it("resolves help targets when flags carry inline values", async () => {
     const { out } = await run("--site=v2ex", "hot", "--help");
     expect(out).toContain("USAGE fora hot");
