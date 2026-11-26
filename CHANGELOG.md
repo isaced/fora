@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/isaced/fora/compare/fora-cli-v0.2.0...fora-cli-v0.3.0) (2026-11-26)
+
+
+### Features
+
+* **output:** default to JSON when piped ([#9](https://github.com/isaced/fora/issues/9)) ([f8847b5](https://github.com/isaced/fora/commit/f8847b584a5a88c4a740e56dd36bf3e46a6a7b8c))
+
 ## [0.2.0](https://github.com/isaced/fora/compare/fora-cli-v0.1.1...fora-cli-v0.2.0) (2026-11-26)
 
 

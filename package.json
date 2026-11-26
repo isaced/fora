@@ -1,6 +1,6 @@
 {
   "name": "fora-cli",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "One read-only CLI for many forums — for humans and AI agents",
   "type": "module",
   "license": "MIT",
