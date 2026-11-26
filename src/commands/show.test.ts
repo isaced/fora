@@ -1,6 +1,8 @@
 import { describe, expect, it } from "bun:test";
+import type { Adapter } from "../core/adapter.ts";
 import type { TopicDetail } from "../core/model.ts";
-import { shapeTopicDetail } from "./show.ts";
+import type { Ctx } from "./context.ts";
+import { collectShowResults, shapeTopicDetail } from "./show.ts";
 
 function detail(): TopicDetail {
   return {
@@ -50,6 +52,50 @@ function detail(): TopicDetail {
     pages: 1,
   };
 }
+
+describe("collectShowResults", () => {
+  it("keeps batch order and isolates one failed ref", async () => {
+    const adapter = {
+      engine: "e1",
+      capabilities: { hot: true, latest: true, hotPeriods: false, topic: true, search: false, categories: false },
+      async detect() {
+        return true;
+      },
+      async hot() {
+        return [];
+      },
+      async latest() {
+        return [];
+      },
+      async topic(_site, ref: string) {
+        if (ref === "bad") throw new Error("not found");
+        return detail();
+      },
+      async search() {
+        return [];
+      },
+      async categories() {
+        return [];
+      },
+    } as Adapter;
+    const ctx = {
+      sites: [{ name: "s1", engine: "e1", base_url: "https://s1.test", source: "preset" }],
+      registry: { get: () => adapter, require: () => adapter },
+      degradation: new Map(),
+    } as unknown as Ctx;
+
+    const { results, firstError } = await collectShowResults(ctx, ["s1:1", "s1:bad", "s1:2"], {
+      page: 1,
+      replies: 1,
+    });
+
+    expect(results.map((result) => result.ref)).toEqual(["s1:1", "s1:bad", "s1:2"]);
+    expect(results[1]!.error).toBe("not found");
+    expect(firstError).toBeInstanceOf(Error);
+    expect(results[0]!.detail?.posts).toHaveLength(2);
+    expect(results[2]!.detail?.id).toBe("42");
+  });
+});
 
 describe("shapeTopicDetail", () => {
   it("keeps the OP and top replies, declaring what was omitted", () => {

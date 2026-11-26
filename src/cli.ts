@@ -14,6 +14,7 @@ import { buildForaSchema, resolveCommandArgs, selectCommandSchema } from "./comm
 import { closeBrowserFetches } from "./core/browser-fetch.ts";
 import { closeProxyBridge } from "./core/proxy-fetch.ts";
 import { formatCliError, type ErrorSection } from "./core/error-format.ts";
+import { resolveOutputMode } from "./core/output-mode.ts";
 import { ForaError, UsageError, exitCodeOf, messageOf } from "./core/errors.ts";
 import { VERSION } from "./core/version.ts";
 import { writeErrorJson } from "./output/json.ts";
@@ -351,9 +352,12 @@ async function printUsage(cmd: AnyCommand, parent: AnyCommand | undefined, guide
 
 /** Piped output defaults to JSON for data commands; TTY stays human-readable. */
 async function withDefaultJson(rawArgs: string[]): Promise<string[] | undefined> {
-  const wantsJson = rawArgs.includes("--json");
-  const wantsHuman = rawArgs.includes("--human");
-  if (wantsJson && wantsHuman) {
+  const [cmd] = resolveHelpTarget(rawArgs);
+  const args = await resolveCommandArgs(cmd);
+  if (!("json" in args)) return rawArgs;
+
+  const mode = resolveOutputMode({ isTTY: Boolean(process.stdout.isTTY), args: rawArgs, env: process.env });
+  if (mode === "conflict") {
     handleError(
       new UsageError(
         formatCliError("--json and --human cannot be combined", [
@@ -364,15 +368,7 @@ async function withDefaultJson(rawArgs: string[]): Promise<string[] | undefined>
     );
     return undefined;
   }
-  if (wantsHuman) return rawArgs;
-
-  const [cmd] = resolveHelpTarget(rawArgs);
-  const args = await resolveCommandArgs(cmd);
-  if (!("json" in args)) return rawArgs;
-
-  const forced = process.env.FORA_JSON;
-  const useJson = wantsJson || forced === "1" || (!process.stdout.isTTY && forced !== "0");
-  return useJson && !wantsJson ? [...rawArgs, "--json"] : rawArgs;
+  return mode === "json" && !rawArgs.includes("--json") ? [...rawArgs, "--json"] : rawArgs;
 }
 
 async function mainEntry(): Promise<void> {
