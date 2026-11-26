@@ -168,6 +168,24 @@ Agent-specific provisions:
 - `fora engines list --json` and `fora doctor --json` are machine-readable
   capability/pre-flight checks.
 
+## Token economy
+
+Agents pay for every byte they read. Raw forum APIs return rendered HTML and
+complete reply trees; fora returns excerpts and top replies, with truncation
+declared in every envelope (`meta.approx_tokens`).
+
+Measured 2026-11-26, same ~4 chars/token estimator on both sides:
+
+|                                   |  Raw API |  fora |
+| --------------------------------- | -------: | ----: |
+| V2EX hot list (10)                |  ~12,300 | 1,313 |
+| V2EX top 5 threads (677 replies)  | ~187,000 | 3,058 |
+| HN front page (10)                |   ~5,400 |   874 |
+| HN top 5 threads (2,409 comments) | ~341,000 | 6,000 |
+
+Via HN's official Firebase API the same five threads cost 2,409 separate
+requests (~192k tokens) — fora does it in one call.
+
 ## Development
 
 ```sh
