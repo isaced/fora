@@ -25,6 +25,8 @@ Environment:
   FORA_INSTALL_DIR   Install directory (default: \$HOME/.fora/bin)
   FORA_MODIFY_PATH   Set to 1 to append to \$HOME/.profile
   FORA_VERIFY_ATTESTATION  Set to 1 to require 'gh attestation verify'
+  FORA_GITHUB_API    Override latest-release API URL (mainly for tests)
+  FORA_RELEASE_BASE  Override release asset base URL (mainly for tests)
 EOF
 }
 
@@ -82,8 +84,11 @@ case "$os" in
     ;;
 esac
 
+LATEST_API="${FORA_GITHUB_API:-https://api.github.com/repos/$REPO/releases/latest}"
+RELEASE_BASE="${FORA_RELEASE_BASE:-https://github.com/$REPO/releases/download}"
+
 if [ -z "$VERSION" ]; then
-  VERSION=$(curl -fsSL "https://api.github.com/repos/$REPO/releases/latest" |
+  VERSION=$(curl -fsSL "$LATEST_API" |
     sed -n 's/.*"tag_name": *"\([^"]*\)".*/\1/p' | head -n 1)
   [ -n "$VERSION" ] || {
     echo "error: could not determine the latest release" >&2
@@ -91,7 +96,7 @@ if [ -z "$VERSION" ]; then
   }
 fi
 
-base_url="https://github.com/$REPO/releases/download/$VERSION"
+base_url="$RELEASE_BASE/$VERSION"
 tmp_dir=$(mktemp -d)
 trap 'rm -rf "$tmp_dir"' EXIT INT TERM
 
