@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it } from "bun:test";
 import type { DegradationStore } from "./degradation.ts";
 import { configureFallbackSink, withBrowserFallback } from "./fallback-fetch.ts";
 
-const challenge = '<html><title>Just a moment...</title><body>cf-challenge</body></html>';
+const forbidden = 'Forbidden';
 
 afterEach(() => {
   configureFallbackSink(undefined);
@@ -10,7 +10,7 @@ afterEach(() => {
 });
 
 describe("withBrowserFallback", () => {
-  it("retries anti-bot 403s through the browser and records degradation", async () => {
+  it("retries any HTTP 403 through the browser and records degradation", async () => {
     const store: DegradationStore = new Map();
     configureFallbackSink({
       store,
@@ -22,7 +22,7 @@ describe("withBrowserFallback", () => {
       browserCalls += 1;
       return new Response('{"topics":[]}', { status: 200 });
     }) as unknown as typeof fetch;
-    const base = (async () => new Response(challenge, { status: 403 })) as unknown as typeof fetch;
+    const base = (async () => new Response(forbidden, { status: 403 })) as unknown as typeof fetch;
 
     const result = await withBrowserFallback(base, browser)("https://ruby-china.org/api/v3/topics.json");
 
@@ -52,7 +52,7 @@ describe("withBrowserFallback", () => {
       browserCalls += 1;
       return new Response("browser");
     }) as unknown as typeof fetch;
-    const base = (async () => new Response(challenge, { status: 403 })) as unknown as typeof fetch;
+    const base = (async () => new Response(forbidden, { status: 403 })) as unknown as typeof fetch;
 
     const result = await withBrowserFallback(base, browser)("https://example.com/");
     expect(result.status).toBe(403);

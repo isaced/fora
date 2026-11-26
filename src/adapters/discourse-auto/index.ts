@@ -2,21 +2,17 @@
  * Discourse auto engine — the default path for every `engine: discourse` site.
  *
  * It tries the JSON API first and falls back to Discourse feeds only when the
- * JSON endpoint is blocked by a Cloudflare-style anti-bot response (HTTP 403).
+ * JSON endpoint is blocked by any HTTP 403.
  * The fallback is recorded in a per-invocation store so every command can tell
  * agents that search, categories and engagement metrics are unavailable.
  */
 
 import type { Adapter, SiteCandidate } from "../../core/adapter.ts";
 import type { DegradationStore } from "../../core/degradation.ts";
-import { RateLimitError, UnsupportedError } from "../../core/errors.ts";
+import { isHttpForbidden, UnsupportedError } from "../../core/errors.ts";
 import type { Site } from "../../core/sites.ts";
 
 const LIMITATIONS = ["no search", "no categories", "no engagement metrics"];
-
-function isChallenge(error: unknown): boolean {
-  return error instanceof RateLimitError && /(anti-bot|HTTP 403)/.test(error.message);
-}
 
 function candidateSite(candidate: SiteCandidate): Site | undefined {
   const raw = candidate.url ?? candidate.base_url;
@@ -44,7 +40,7 @@ export function createDiscourseAutoAdapter(
       site: site.name,
       from: "discourse",
       to: "discourse-rss",
-      reason: "Discourse JSON API returned a Cloudflare-style challenge",
+      reason: "Discourse JSON API returned HTTP 403",
       limitations: LIMITATIONS,
     });
   };
@@ -55,7 +51,7 @@ export function createDiscourseAutoAdapter(
       store.delete(site.name);
       return result;
     } catch (error) {
-      if (!isChallenge(error)) throw error;
+      if (!isHttpForbidden(error)) throw error;
       markDegraded(site);
       try {
         return await run(rss);
@@ -86,7 +82,7 @@ export function createDiscourseAutoAdapter(
           store.delete(probe.name);
           return true;
         } catch (error) {
-          if (!isChallenge(error)) return true;
+          if (!isHttpForbidden(error)) return true;
           markDegraded(probe);
         }
       }

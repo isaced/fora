@@ -1,6 +1,6 @@
 /**
  * Discourse-over-RSS adapter — for Discourse instances whose JSON endpoints
- * sit behind a Cloudflare challenge (e.g. linux.do). The RSS endpoints remain
+ * whose JSON endpoints are blocked (e.g. linux.do). The RSS endpoints remain
  * readable, so hot/latest/topic are mapped from feeds instead of /top.json.
  *
  * The output model matches the regular discourse adapter; engagement metrics
@@ -9,7 +9,7 @@
 
 import { unsupported, type Adapter, type HotOpts, type ListOpts, type Period, type SiteCandidate } from "../../core/adapter.ts";
 import { formatCliError, missingBaseUrlError } from "../../core/error-format.ts";
-import { NotFoundError, RateLimitError, UsageError } from "../../core/errors.ts";
+import { isHttpForbidden, NotFoundError, RateLimitError, UsageError } from "../../core/errors.ts";
 import { HttpClient } from "../../core/http.ts";
 import type { Site } from "../../core/sites.ts";
 import { feedEntryToDetail, feedEntryToTopic, parseFeed } from "../rss/index.ts";
@@ -68,14 +68,14 @@ export function createDiscourseRssAdapter(http: HttpClient = new HttpClient()): 
   const load = async (site: Site, path: string): Promise<ReturnType<typeof parseFeed>> =>
     parseFeed(await http.getText(`${forumOrigin(site)}${path}`, { accept: FEED_ACCEPT }));
 
-  /** Cloudflare challenges are transient; try equivalent feed URLs before giving up. */
+  /** A 403 can be transient or path-specific; try equivalent feed URLs before giving up. */
   const loadWithFallback = async (site: Site, paths: string[]) => {
     let challenged = false;
     for (const path of [...new Set(paths)]) {
       try {
         return await load(site, path);
       } catch (error) {
-        if (!(error instanceof RateLimitError)) throw error;
+        if (!isHttpForbidden(error)) throw error;
         challenged = true;
       }
     }
@@ -99,13 +99,13 @@ export function createDiscourseRssAdapter(http: HttpClient = new HttpClient()): 
       }
       if (!isDiscourse) return false;
 
-      // A regular Discourse instance serves /latest.json. Cloudflare-protected
-      // ones answer with an anti-bot challenge there; those need this engine.
+      // A regular Discourse instance serves /latest.json. A blocked JSON
+      // endpoint means this feed-backed transport is needed.
       try {
         await http.getJson(`${base}/latest.json`);
         return false;
       } catch (error) {
-        return error instanceof RateLimitError && /anti-bot/.test(error.message);
+        return isHttpForbidden(error);
       }
     },
 
@@ -128,7 +128,7 @@ export function createDiscourseRssAdapter(http: HttpClient = new HttpClient()): 
         try {
           entries = await load(site, path);
         } catch (error) {
-          if (!(error instanceof RateLimitError)) throw error;
+          if (!isHttpForbidden(error)) throw error;
           challenged = true;
           continue;
         }

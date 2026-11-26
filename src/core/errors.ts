@@ -94,3 +94,8 @@ export function messageOf(error: unknown): string {
   if (error instanceof Error) return error.message;
   return String(error);
 }
+
+/** Any HTTP 403 on a public read request (not only Cloudflare challenges). */
+export function isHttpForbidden(error: unknown): boolean {
+  return error instanceof ForaError && /\b403\b/.test(error.message);
+}
