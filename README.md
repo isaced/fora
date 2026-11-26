@@ -26,7 +26,8 @@ well an agent can discover, call and afford it.
   Examples (`fora help <command>`).
 - **Efficiency**: one call replaces agent-side loops — `digest` returns every
   followed site's briefing in a single payload; fetches use a bounded global
-  pool while keeping each host's request pacing.
+  pool while keeping each host's request pacing. Anti-bot 403s retry once via
+  a reusable agent-browser session when available.
 - **Cost awareness**: `--fields` projection, excerpts by default, top-N replies,
   declared truncation, and a token estimate in every JSON envelope so agents can
   budget before reading the full payload.
@@ -44,12 +45,13 @@ Adapters are written per **engine**, not per site. A site is just
 | `hn` | Hacker News | hot / latest / topic / search (Firebase + Algolia) |
 | `flarum` | any Flarum instance | hot (approx.) / latest / topic / search / tags |
 | `nodebb` | any NodeBB instance | hot / latest / topic / search / categories |
+| `ruby-china` | ruby-china.org | hot / latest / topic / categories (no search, no period) |
 | `rss` | any forum with an RSS/Atom feed | latest, plus topic when full content is present |
 
 Out of the box (zero config) you get **linux.do, V2EX and Hacker News**, plus a
 bundled directory of ~30 notable forums. When a Discourse site falls back to
-RSS, JSON output includes `meta.degraded_sites` so agents know search,
-categories and engagement metrics are unavailable.
+RSS or the browser, JSON output includes `meta.degraded_sites` so agents know
+which capabilities were lost.
 
 ## Install
 

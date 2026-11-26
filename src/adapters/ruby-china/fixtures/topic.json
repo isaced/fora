@@ -1,0 +1,16 @@
+{
+  "id": 44696,
+  "title": "Matz 合并了我给 Spinel 的一个 PR",
+  "node_id": 1,
+  "node_name": "Ruby",
+  "excellent": 1,
+  "replies_count": 2,
+  "likes_count": 12,
+  "hits": 664,
+  "user": { "id": 321, "login": "femto", "name": "Femto", "avatar_url": "https://ruby-china.org/avatar/f.png" },
+  "body": "Spinel 是一个 Ruby AOT 编译器。",
+  "body_html": "<p>Spinel 是一个 Ruby AOT 编译器。</p>",
+  "created_at": "2026-09-24T07:46:28.549Z",
+  "replied_at": "2026-11-06T07:25:45.039Z",
+  "updated_at": "2026-11-06T07:25:45.137Z"
+}

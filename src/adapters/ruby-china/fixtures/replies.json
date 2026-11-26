@@ -1,0 +1,18 @@
+[
+  {
+    "id": 9001,
+    "topic_id": 44696,
+    "body_html": "<p>恭喜！这个特性很有用。</p>",
+    "likes_count": 7,
+    "user": { "id": 12, "login": "alice", "name": "Alice", "avatar_url": "https://ruby-china.org/avatar/a.png" },
+    "created_at": "2026-11-06T06:00:00.000Z"
+  },
+  {
+    "id": 9002,
+    "topic_id": 44696,
+    "body_html": "<p>期待更多文档。</p>",
+    "likes_count": 3,
+    "user": { "id": 13, "login": "bob", "name": "", "avatar_url": "https://ruby-china.org/avatar/b.png" },
+    "created_at": "2026-11-06T07:25:45.039Z"
+  }
+]

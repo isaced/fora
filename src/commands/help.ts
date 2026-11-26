@@ -37,7 +37,7 @@ export const COMMAND_GUIDES: Record<string, CommandGuide> = {
   hot: {
     about: [
       "Ranking windows vary by engine; `fora engines list` shows which engines support `hot` and `--period`.",
-      "Discourse sites fall back from JSON to RSS on HTTP 403; degraded calls declare it in output.",
+      "Anti-bot HTTP 403s retry once through agent-browser; Discourse can then fall back to RSS. Degraded calls declare it in output.",
       "Results become the last list, so `fora show <number>` can open an item without copying ids or URLs.",
     ],
     details: [

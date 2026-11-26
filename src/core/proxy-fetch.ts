@@ -10,6 +10,7 @@
  */
 
 import { connect, createServer, type Server, type Socket } from "node:net";
+import { withBrowserFallback } from "./fallback-fetch.ts";
 
 interface ProxyUrl {
   protocol: "socks5" | "socks5h" | "http" | "https";
@@ -203,6 +204,7 @@ async function handleClient(client: Socket, proxy: ProxyUrl): Promise<void> {
   }
 }
 
+const bridgeSockets = new Set<Socket>();
 let bridge: { key: string; url: string; server: Server } | undefined;
 
 async function ensureBridge(proxy: ProxyUrl): Promise<string> {
@@ -211,6 +213,8 @@ async function ensureBridge(proxy: ProxyUrl): Promise<string> {
   if (bridge) bridge.server.close();
 
   const server = createServer((client) => {
+    bridgeSockets.add(client);
+    client.once("close", () => bridgeSockets.delete(client));
     void handleClient(client, proxy);
   });
   await new Promise<void>((resolve, reject) => {
@@ -235,13 +239,15 @@ function fetchViaBridge(proxy: ProxyUrl): typeof fetch {
 /** Test/cleanup helper: stop the local SOCKS bridge if one was started. */
 export function closeProxyBridge(): void {
   bridge?.server.close();
+  for (const socket of bridgeSockets) socket.destroy();
+  bridgeSockets.clear();
   bridge = undefined;
 }
 
-/** Use Bun's native fetch unless a SOCKS proxy requires the local bridge. */
+/** Use Bun's native fetch, bridge SOCKS when needed, and add generic anti-bot fallback. */
 export function createFetch(): typeof fetch {
   const proxy = proxyUrl();
-  if (!proxy) return globalThis.fetch;
-  if (proxy.protocol === "socks5" || proxy.protocol === "socks5h") return fetchViaBridge(proxy);
-  return globalThis.fetch;
+  let base = globalThis.fetch;
+  if (proxy?.protocol === "socks5" || proxy?.protocol === "socks5h") base = fetchViaBridge(proxy);
+  return withBrowserFallback(base);
 }

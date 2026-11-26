@@ -9,6 +9,7 @@ import flarum from "../adapters/flarum/index.ts";
 import hn from "../adapters/hn/index.ts";
 import nodebb from "../adapters/nodebb/index.ts";
 import rss from "../adapters/rss/index.ts";
+import rubyChina from "../adapters/ruby-china/index.ts";
 import v2ex from "../adapters/v2ex/index.ts";
 
-export const builtinAdapters: Adapter[] = [discourse, discourseRss, v2ex, hn, flarum, nodebb, rss];
+export const builtinAdapters: Adapter[] = [discourse, discourseRss, v2ex, hn, flarum, nodebb, rubyChina, rss];

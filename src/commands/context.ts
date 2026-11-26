@@ -5,6 +5,7 @@ import { ConfigStore, configDir, type ForaConfig } from "../core/config.ts";
 import { ensureEnginePackage, loadExternalAdapters, loadPackageAdapters } from "../core/loader.ts";
 import { AdapterRegistry } from "../core/registry.ts";
 import type { DegradationStore } from "../core/degradation.ts";
+import { configureFallbackSink } from "../core/fallback-fetch.ts";
 import { createDiscourseAutoAdapter } from "../adapters/discourse-auto/index.ts";
 import { buildSites, type Site } from "../core/sites.ts";
 
@@ -33,11 +34,20 @@ export async function createContext(): Promise<Ctx> {
     if (!registry.has(site.engine)) await ensureEnginePackage(registry, site.engine);
   }
 
+  const sites = buildSites(config);
+  configureFallbackSink({
+    store: degradation,
+    siteForUrl: (url) => {
+      const host = new URL(url).host;
+      return sites.find((site) => site.base_url && new URL(site.base_url).host === host)?.name ?? host;
+    },
+  });
+
   return {
     config,
     configStore,
     registry,
-    sites: buildSites(config),
+    sites,
     cache: new ListCache(),
     degradation,
   };

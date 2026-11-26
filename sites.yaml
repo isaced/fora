@@ -4,7 +4,7 @@
 # Adding a forum is a one-line change. User config overrides an entry on a
 # name clash. See SPEC.md §5.1.
 #
-# Engines: discourse, discourse-rss, v2ex, hn, flarum, nodebb, rss
+# Engines: discourse, discourse-rss, v2ex, hn, flarum, nodebb, ruby-china, rss
 
 - name: swift-forums
   url: https://forums.swift.org
@@ -155,3 +155,8 @@
   url: https://github.blog/feed/
   engine: rss
   tags: [github, blog, en]
+
+- name: ruby-china
+  url: https://ruby-china.org
+  engine: ruby-china
+  tags: [ruby, zh]

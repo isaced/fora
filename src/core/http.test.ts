@@ -7,6 +7,9 @@ import { afterAll, beforeAll, describe, expect, it } from "bun:test";
 import { NetworkError, RateLimitError } from "./errors.ts";
 import { HttpClient } from "./http.ts";
 
+const savedBrowserFallback = process.env.FORA_BROWSER_FALLBACK;
+process.env.FORA_BROWSER_FALLBACK = "0";
+
 let server: ReturnType<typeof Bun.serve>;
 let flakyCount = 0;
 
@@ -27,6 +30,8 @@ beforeAll(() => {
 });
 
 afterAll(() => {
+  if (savedBrowserFallback === undefined) delete process.env.FORA_BROWSER_FALLBACK;
+  else process.env.FORA_BROWSER_FALLBACK = savedBrowserFallback;
   server.stop(true);
 });
 

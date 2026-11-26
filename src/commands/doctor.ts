@@ -40,7 +40,7 @@ export const doctorCommand = defineCommand({
       try {
         const reachable = await adapter.detect({ base_url: site.base_url, url: site.base_url });
         const degraded = ctx.degradation.get(site.name);
-        const route = degraded ? "rss" : site.engine === "rss" ? "rss" : "json";
+        const route = degraded?.to === "browser" ? "browser" : degraded ? "rss" : site.engine === "rss" ? "rss" : "http";
         return { name: site.name, engine: site.engine, route, reachable };
       } catch (error) {
         return { name: site.name, engine: site.engine, route: undefined, reachable: false, error: errorMessage(error) };
