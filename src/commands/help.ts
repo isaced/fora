@@ -101,6 +101,7 @@ export const COMMAND_GUIDES: Record<string, CommandGuide> = {
   digest: {
     about: [
       "The site set comes from `follow:` in config, or `default_site` when `follow` is unset.",
+      "`--budget` caps the approximate payload tokens; trimmed sites/topics are declared instead of silently dropped.",
       "Site and topic fetches share a bounded global pool; each host still keeps its request pacing.",
     ],
     details: [
@@ -110,6 +111,7 @@ export const COMMAND_GUIDES: Record<string, CommandGuide> = {
       "fora digest",
       "fora digest --since 24h --per-site 5",
       "fora digest --top-replies 2 --json",
+      "fora digest --budget 8000 --json         # bounded context cost",
     ],
   },
   sites: {
