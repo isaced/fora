@@ -1,0 +1,63 @@
+{
+  "default_archetype": "regular",
+  "periods": [
+    "all",
+    "yearly",
+    "quarterly",
+    "monthly",
+    "weekly",
+    "daily"
+  ],
+  "top_menu_items": [
+    "latest",
+    "unread",
+    "new",
+    "unseen",
+    "top",
+    "read",
+    "posted",
+    "bookmarks",
+    "hot",
+    "categories",
+    "votes"
+  ],
+  "post_action_types": [
+    {
+      "id": 6,
+      "name": "Send @%{username} a message",
+      "name_key": "notify_user",
+      "description": "I want to talk to this person directly and personally about their post.",
+      "short_description": "I want to talk to this person directly and personally about their post.",
+      "applies_to": [
+        "Post",
+        "Chat::Message"
+      ],
+      "position": 0,
+      "require_message": true,
+      "enabled": true,
+      "is_flag": true,
+      "is_used": true,
+      "auto_action_type": false,
+      "system": true
+    },
+    {
+      "id": 3,
+      "name": "Off-Topic",
+      "name_key": "off_topic",
+      "description": "This post is not relevant to the current discussion as defined by the title and first post, and should probably be moved elsewhere.",
+      "short_description": "Not relevant to the discussion",
+      "applies_to": [
+        "Post",
+        "Chat::Message",
+        "DiscourseBoosts::Boost"
+      ],
+      "position": 1,
+      "require_message": false,
+      "enabled": true,
+      "is_flag": true,
+      "is_used": true,
+      "auto_action_type": true,
+      "system": true
+    }
+  ]
+}

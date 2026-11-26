@@ -1,0 +1,86 @@
+{
+  "category_list": {
+    "categories": [
+      {
+        "id": 207,
+        "name": "News and Events",
+        "slug": "news-and-events",
+        "description": "Stay informed about Discourse – the product, the company, and the community.",
+        "description_text": "Stay informed about Discourse – the product, the company, and the community.",
+        "topic_count": 2
+      },
+      {
+        "id": 65,
+        "name": "Community Building",
+        "slug": "community-building",
+        "description": "For discussions about launching, building, growing and managing a thriving community.",
+        "description_text": "For discussions about launching, building, growing and managing a thriving community.",
+        "topic_count": 1077
+      },
+      {
+        "id": 124,
+        "name": "General",
+        "slug": "general",
+        "description": "For open discussions among the community that don’t belong somewhere else",
+        "description_text": "For open discussions among the community that don’t belong somewhere else",
+        "topic_count": 269
+      },
+      {
+        "id": 6,
+        "name": "Product Support",
+        "slug": "support",
+        "description": "Ask the community for help with anything related to Discourse.<br><br>To help others help you, share as much detail as you can about the issue and what is occurring, including what you have tried so far from <a href=\"/search\">searching</a>, reading the <a href=\"/docs\">documentation</a> or <a href=\"https://ask.discourse.com\">asking our AI bot</a>.",
+        "description_text": "Ask the community for help with anything related to Discourse.To help others help you, share as much detail as you can about the issue and what is occurring, including what you have tried so far from searching, reading the documentation or asking our AI bot.",
+        "topic_count": 20656
+      },
+      {
+        "id": 208,
+        "name": "Contribute",
+        "slug": "contribute",
+        "description": "Contributing to an open-source project isn’t limited to coding. Share product ideas, report bugs and UX issues, or share ideas for how to improve our community. <a href=\"https://meta.discourse.org/t/contributing-to-discourse/53797\">Learn more…</a>",
+        "description_text": "Contributing to an open-source project isn’t limited to coding. Share product ideas, report bugs and UX issues, or share ideas for how to improve our community. Learn more…",
+        "topic_count": 1
+      },
+      {
+        "id": 209,
+        "name": "Customization",
+        "slug": "customization",
+        "description": "Directories for official and community built themes, components, plugins, and other extensions you can use to customize Discourse.",
+        "description_text": "Directories for official and community built themes, components, plugins, and other extensions you can use to customize Discourse.",
+        "topic_count": 0
+      },
+      {
+        "id": 10,
+        "name": "Documentation",
+        "slug": "documentation",
+        "description": "Official documentation for how to use Discourse, install and configure sites, develop plugins and themes, and troubleshoot common issues. Includes topics for tutorials, how-tos, general reference and troubleshooting.",
+        "description_text": "Official documentation for how to use Discourse, install and configure sites, develop plugins and themes, and troubleshoot common issues. Includes topics for tutorials, how-tos, general reference and troubleshooting.",
+        "topic_count": 2
+      },
+      {
+        "id": 177,
+        "name": "Wiki",
+        "slug": "wiki",
+        "description": "Guides, tips, and examples created and edited by members of the Discourse community.",
+        "description_text": "Guides, tips, and examples created and edited by members of the Discourse community.",
+        "topic_count": 0
+      },
+      {
+        "id": 7,
+        "name": "Development",
+        "slug": "dev",
+        "description": "The category for all things Discourse Development. Building a customization for yourself or the community? Then this is the category for you! <a href=\"https://meta.discourse.org/t/developer-guides-index/308036\">Learn more…</a>",
+        "description_text": "The category for all things Discourse Development. Building a customization for yourself or the community? Then this is the category for you! Learn more…",
+        "topic_count": 4401
+      },
+      {
+        "id": 14,
+        "name": "Marketplace",
+        "slug": "marketplace",
+        "description": "A hub for all Discourse-related commerce: jobs, gigs, plugins, themes, hosting, and more.",
+        "description_text": "A hub for all Discourse-related commerce: jobs, gigs, plugins, themes, hosting, and more.",
+        "topic_count": 1330
+      }
+    ]
+  }
+}

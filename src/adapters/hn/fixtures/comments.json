@@ -1,0 +1,122 @@
+[
+  {
+    "by": "tptacek",
+    "id": 50644982,
+    "kids": [
+      50645808,
+      50646315,
+      50645270,
+      50646306
+    ],
+    "parent": 50644817,
+    "text": "This is the single most important attack vector for SAAS companies. It has been for a long time --- this is the standard fact pattern for every SAAS breach --- but much more so today. As the number of employees grow, the likelihood that one of their laptops will get compromised approaches 1. When that happens, the attacker will be able to push code to Github, and if that code gets deployed, you&#x27;re owned.<p>In 1Password&#x27;s case, the absolute worst-case catastrophe is mitigated by the fact that customers retain custody of their unlocking secrets; 1Password (at least in the normal product flows) simply doesn&#x27;t hold it. But an attack like this implicates every catastrophe short of that worst case.<p>Change velocity in 2026 is unreal and that trend is going to continue. You could not outcompete 1Password by building a handcrafted artisanal password manager backend (witness all the commercially successful password managers that don&#x27;t even share 1Password&#x27;s customer secret custody model). You have to accept insane PR rates as a premise to do modern SAAS security.<p>So the question then becomes: what is review? It&#x27;s not what r&#x2F;programming assumes it is; you almost certainly can&#x27;t literally have a team of people line-by-line reviewing PRs anymore, at least not across the whole codebase (you can and should probably do a threat model for your codebase and institute stuff like that on a case-by-case basis, though). What you can realistically expect to review for is change provenance; a human developer signoff of some sort. But it&#x27;s tricky! The attacker owns your email during the window of attack.<p>I think this is a fun problem to noodle on, and someone could probably come up with something here that would make a real difference.",
+    "time": 1795628085,
+    "type": "comment"
+  },
+  {
+    "by": "mikeocool",
+    "id": 50645808,
+    "kids": [],
+    "parent": 50644982,
+    "text": "&gt; You have to accept insane PR rates as a premise to do modern SAAS security.<p>You kinda have to wonder if this is necessary or true. I can’t say I’ve seen the rate of significant product improvements from SaaS providers increase this year (for 1Password in particular, I can’t think of one thing that had changed this year in the product).<p>However there has undoubtedly been an uptick in major outages and security incidents that have accompanied the increased rate of change.",
+    "time": 1795632117,
+    "type": "comment"
+  },
+  {
+    "by": "bfmalky",
+    "id": 50646315,
+    "kids": [],
+    "parent": 50644982,
+    "text": "&gt; you almost certainly can&#x27;t literally have a team of people line-by-line reviewing PRs anymore<p>You absolutely can, especially with a mature product like 1password. A security focused company like 1password should have plenty of human controlled approval gates in their process.",
+    "time": 1795634995,
+    "type": "comment"
+  },
+  {
+    "by": "ceocoder",
+    "id": 50645270,
+    "kids": [],
+    "parent": 50644982,
+    "text": "Agreed 100% and this[0] is the discussion I started back in 2020 with response from 1Password’s cofounders.<p>Folks if you are reading this thread - which I’m sure you are - do take this as a clear sign why local vaults are necessary.<p>[0] <a href=\"https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=24054864\">https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=24054864</a>",
+    "time": 1795629562,
+    "type": "comment"
+  },
+  {
+    "by": "pdpi",
+    "id": 50646306,
+    "kids": [],
+    "parent": 50644982,
+    "text": "In 1Password&#x27;s case, the true catastrophe scenario is if the frontend gets compromised, at which point attackers can exfiltrate master keys as users type them in.",
+    "time": 1795634959,
+    "type": "comment"
+  },
+  {
+    "by": "ChrisHardie",
+    "id": 50644952,
+    "kids": [
+      50645009,
+      50647804,
+      50648362,
+      50645037
+    ],
+    "parent": 50644817,
+    "text": "Longtime 1Password user here who maintains a local-only vault (and is therefore stuck on older versions of their apps&#x2F;extensions) out of concern for incidents like this.<p>I&#x27;ve read their architecture docs about why online vaults are safe, and I understand that they have more resources to throw at securing infrastructure than I do. But &quot;malicious actor pushes code to production services&quot; seems like exactly the foundation for someone to eventually insert themselves into the middle of a user&#x27;s access to decrypted vault contents.<p>I really wish 1Password would return to supporting local-only vaults.",
+    "time": 1795627884,
+    "type": "comment"
+  },
+  {
+    "by": "tptacek",
+    "id": 50645009,
+    "kids": [],
+    "parent": 50644952,
+    "text": "I&#x27;m in the same boat with 1Password, by the way. 1Password could sell me something here, but I don&#x27;t think they will: the team secret management space they&#x27;re in has to be way more lucrative than consumer password management. At some point, I&#x27;ll cross the threshold where it makes sense to just vibecode my own password manager.",
+    "time": 1795628235,
+    "type": "comment"
+  },
+  {
+    "by": "Johnny555",
+    "id": 50647804,
+    "kids": [],
+    "parent": 50644952,
+    "text": "&gt;exactly the foundation for someone to eventually insert themselves into the middle of a user&#x27;s access to decrypted vault contents.<p>Since 1Password doesn&#x27;t hold your secret key or vault passphrase, I&#x27;m not sure that you&#x27;re any safer with a local-only vault if you&#x27;re worried that someone will hack the 1Password application itself to give access to your vaults.<p>Whether your vault is stored on your local machine or in the cloud seems immaterial if someone compromises the application where you unlock your vault.",
+    "time": 1795642083,
+    "type": "comment"
+  },
+  {
+    "by": "tempestn",
+    "id": 50648362,
+    "kids": [],
+    "parent": 50644952,
+    "text": "If they can push code, they can update your client. Which has access to your decrypted local vault.",
+    "time": 1795644908,
+    "type": "comment"
+  },
+  {
+    "by": "grey-area",
+    "id": 50645037,
+    "kids": [],
+    "parent": 50644952,
+    "text": "I know, it&#x27;s really really frustrating. I have resisted for years and only recently gave in, and now this. They make it very difficult to keep things offline though - you end up stuck on 1pass 7, local sync doesn&#x27;t work so well, browser autofill stopped working for me etc.<p>Well done to you for resisting their repeated attempts to force users into online usage.",
+    "time": 1795628389,
+    "type": "comment"
+  },
+  {
+    "by": "ctidd",
+    "id": 50645961,
+    "kids": [
+      50646100
+    ],
+    "parent": 50644817,
+    "text": "&gt; push malicious code to backend services<p>This is a huge red flag, and was not addressed sufficiently in this announcement.<p>Do they not disable push to main? I don’t see this addressed in the action items or elsewhere in the writeup, whether they were missing branch protection rules or whether these were able to be bypassed.",
+    "time": 1795633090,
+    "type": "comment"
+  },
+  {
+    "by": "fjni",
+    "id": 50646100,
+    "kids": [],
+    "parent": 50645961,
+    "text": "It’s generally really vague. And maybe they don’t know and we’ll learn more, but: \nwas an employees machine compromised? Were they phished? Was their GitHub instance or cloud instance unrestricted open on the Internet or restricted to internal networks?<p>They say “token”, singular, which would point to a personal access token.<p>Assuming we will learn more it’s too early to judge, but if we hear nothing else from 1Password this points to security practices which are entirely inadequate for a password manager company!",
+    "time": 1795633867,
+    "type": "comment"
+  }
+]

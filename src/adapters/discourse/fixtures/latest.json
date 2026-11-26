@@ -1,0 +1,1002 @@
+{
+  "users": [
+    {
+      "id": 115923,
+      "username": "Discourse",
+      "name": null,
+      "avatar_template": "/user_avatar/meta.discourse.org/discourse/{size}/580155_2.png",
+      "admin": true,
+      "trust_level": 4
+    },
+    {
+      "id": 35474,
+      "username": "Canapin",
+      "name": "Coin-coin le Canapin",
+      "avatar_template": "/user_avatar/meta.discourse.org/canapin/{size}/119591_2.png",
+      "trust_level": 2
+    },
+    {
+      "id": 71154,
+      "username": "martin",
+      "name": "Martin Brennan",
+      "avatar_template": "/user_avatar/meta.discourse.org/martin/{size}/491371_2.png",
+      "flair_name": "team",
+      "flair_url": "https://global.discourse-cdn.com/meta/original/3X/e/b/ebee30bd98aef20357e4a177a5a1e45b877ce088.svg",
+      "flair_color": "111",
+      "flair_group_id": 47,
+      "primary_group_name": "team",
+      "admin": true,
+      "trust_level": 2
+    },
+    {
+      "id": 1,
+      "username": "sam",
+      "name": "Sam Saffron",
+      "avatar_template": "/user_avatar/meta.discourse.org/sam/{size}/102149_2.png",
+      "flair_name": "team",
+      "flair_url": "https://global.discourse-cdn.com/meta/original/3X/e/b/ebee30bd98aef20357e4a177a5a1e45b877ce088.svg",
+      "flair_color": "111",
+      "flair_group_id": 47,
+      "primary_group_name": "team",
+      "admin": true,
+      "trust_level": 3
+    },
+    {
+      "id": -3083,
+      "username": "meta-bot",
+      "name": "meta-bot",
+      "avatar_template": "/user_avatar/meta.discourse.org/meta-bot/{size}/582912_2.png",
+      "trust_level": 3
+    },
+    {
+      "id": 28913,
+      "username": "JonahAragon1",
+      "name": "Jonah Aragon",
+      "avatar_template": "https://avatars.discourse-cdn.com/v4/letter/j/f19dbf/{size}.png",
+      "trust_level": 2
+    },
+    {
+      "id": 181060,
+      "username": "clechasseur",
+      "name": "Charles Lechasseur",
+      "avatar_template": "/user_avatar/meta.discourse.org/clechasseur/{size}/517802_2.png",
+      "trust_level": 2
+    },
+    {
+      "id": 406,
+      "username": "RGJ",
+      "name": "Richard - Communiteq",
+      "avatar_template": "/user_avatar/meta.discourse.org/rgj/{size}/523185_2.png",
+      "flair_name": "support-experts",
+      "flair_url": "https://global.discourse-cdn.com/meta/original/3X/e/2/e250ec403580530d19e6a9ed42d0d525a51a9dbe.svg",
+      "flair_bg_color": "FFFFFF",
+      "flair_group_id": 142,
+      "trust_level": 4
+    },
+    {
+      "id": 128177,
+      "username": "Juan_David_Martínez",
+      "name": "Juan David Martinez Cubillos",
+      "avatar_template": "/user_avatar/meta.discourse.org/juan_david_martínez/{size}/307484_2.png",
+      "flair_name": "team",
+      "flair_url": "https://global.discourse-cdn.com/meta/original/3X/e/b/ebee30bd98aef20357e4a177a5a1e45b877ce088.svg",
+      "flair_color": "111",
+      "flair_group_id": 47,
+      "primary_group_name": "team",
+      "admin": true,
+      "trust_level": 2
+    },
+    {
+      "id": 95552,
+      "username": "Moin",
+      "name": "",
+      "avatar_template": "/user_avatar/meta.discourse.org/moin/{size}/554653_2.png",
+      "trust_level": 3
+    },
+    {
+      "id": 160471,
+      "username": "Ethsim2",
+      "name": "Ethan ",
+      "avatar_template": "/user_avatar/meta.discourse.org/ethsim2/{size}/522255_2.png",
+      "flair_name": "theme_authors",
+      "flair_url": "paintbrush",
+      "flair_bg_color": "ddd",
+      "flair_color": "111",
+      "flair_group_id": 73,
+      "trust_level": 1
+    },
+    {
+      "id": 1995,
+      "username": "zogstrip",
+      "name": "Régis HANOL",
+      "avatar_template": "/user_avatar/meta.discourse.org/zogstrip/{size}/512781_2.png",
+      "flair_name": "team",
+      "flair_url": "https://global.discourse-cdn.com/meta/original/3X/e/b/ebee30bd98aef20357e4a177a5a1e45b877ce088.svg",
+      "flair_color": "111",
+      "flair_group_id": 47,
+      "primary_group_name": "team",
+      "admin": true,
+      "trust_level": 2
+    },
+    {
+      "id": 195844,
+      "username": "osan",
+      "name": "Osan",
+      "avatar_template": "/user_avatar/meta.discourse.org/osan/{size}/569599_2.png",
+      "trust_level": 1
+    },
+    {
+      "id": 2770,
+      "username": "awesomerobot",
+      "name": "Kris",
+      "avatar_template": "/user_avatar/meta.discourse.org/awesomerobot/{size}/142900_2.png",
+      "flair_name": "team",
+      "flair_url": "https://global.discourse-cdn.com/meta/original/3X/e/b/ebee30bd98aef20357e4a177a5a1e45b877ce088.svg",
+      "flair_color": "111",
+      "flair_group_id": 47,
+      "primary_group_name": "team",
+      "admin": true,
+      "trust_level": 3
+    },
+    {
+      "id": 121563,
+      "username": "tannerabread",
+      "name": "Bannon Tanner",
+      "avatar_template": "/user_avatar/meta.discourse.org/tannerabread/{size}/526153_2.png",
+      "flair_name": "team",
+      "flair_url": "https://global.discourse-cdn.com/meta/original/3X/e/b/ebee30bd98aef20357e4a177a5a1e45b877ce088.svg",
+      "flair_color": "111",
+      "flair_group_id": 47,
+      "primary_group_name": "team",
+      "admin": true,
+      "trust_level": 3
+    },
+    {
+      "id": 201820,
+      "username": "ScaryLarryGames1",
+      "name": "Scary Larry Games",
+      "avatar_template": "/user_avatar/meta.discourse.org/scarylarrygames1/{size}/575669_2.png",
+      "trust_level": 0
+    },
+    {
+      "id": 183294,
+      "username": "small-lovely-cat",
+      "name": "Small Lovely Cat",
+      "avatar_template": "/user_avatar/meta.discourse.org/small-lovely-cat/{size}/579066_2.png",
+      "trust_level": 2
+    },
+    {
+      "id": 207421,
+      "username": "sperry",
+      "name": null,
+      "avatar_template": "/user_avatar/meta.discourse.org/sperry/{size}/584571_2.png",
+      "trust_level": 0
+    },
+    {
+      "id": 8722,
+      "username": "Falco",
+      "name": "Falco",
+      "avatar_template": "/user_avatar/meta.discourse.org/falco/{size}/179432_2.png",
+      "flair_name": "team",
+      "flair_url": "https://global.discourse-cdn.com/meta/original/3X/e/b/ebee30bd98aef20357e4a177a5a1e45b877ce088.svg",
+      "flair_color": "111",
+      "flair_group_id": 47,
+      "primary_group_name": "team",
+      "admin": true,
+      "trust_level": 4
+    },
+    {
+      "id": 80288,
+      "username": "one1",
+      "name": "",
+      "avatar_template": "/user_avatar/meta.discourse.org/one1/{size}/493591_2.png",
+      "trust_level": 2
+    }
+  ],
+  "topic_list": {
+    "topics": [
+      {
+        "fancy_title": "New to Discourse? Start here!",
+        "fancy_title_localized": false,
+        "locale": "en",
+        "id": 1,
+        "title": "New to Discourse? Start here!",
+        "slug": "new-to-discourse-start-here",
+        "posts_count": 1,
+        "reply_count": 5,
+        "highest_post_number": 1,
+        "image_url": null,
+        "created_at": "2013-02-01T04:52:28.073Z",
+        "last_posted_at": "2013-02-01T04:52:28.397Z",
+        "bumped": true,
+        "bumped_at": "2025-09-23T19:13:50.543Z",
+        "archetype": "regular",
+        "unseen": false,
+        "pinned": true,
+        "unpinned": null,
+        "excerpt": ":waving_hand: We’re so glad you’re here! This is our official community, where you can connect, ask questions, and share ideas about Discourse, a powerful platform for support, teamwork, and everything community. \nYou’ll&hellip;",
+        "visible": true,
+        "closed": true,
+        "archived": false,
+        "bookmarked": null,
+        "liked": null,
+        "thumbnails": null,
+        "tags": [],
+        "tags_descriptions": {},
+        "views": 121666,
+        "like_count": 449,
+        "has_summary": false,
+        "last_poster_username": "Discourse",
+        "category_id": 67,
+        "op_like_count": 449,
+        "pinned_globally": true,
+        "featured_link": null,
+        "has_accepted_answer": false,
+        "can_vote": false,
+        "posters": [
+          {
+            "extras": "latest single",
+            "description": "Original Poster, Most Recent Poster",
+            "user_id": 115923,
+            "primary_group_id": null,
+            "flair_group_id": null
+          }
+        ]
+      },
+      {
+        "fancy_title": "404 error when you revert a tag name after changing it without reloading the page",
+        "fancy_title_localized": false,
+        "locale": "en",
+        "id": 342559,
+        "title": "404 error when you revert a tag name after changing it without reloading the page",
+        "slug": "404-error-when-you-revert-a-tag-name-after-changing-it-without-reloading-the-page",
+        "posts_count": 4,
+        "reply_count": 0,
+        "highest_post_number": 8,
+        "image_url": "https://global.discourse-cdn.com/meta/optimized/4X/9/0/f/90fe7a1f07e96d1e121516d596b5facac0fd24ce_2_1024x304.gif",
+        "created_at": "2024-12-15T19:49:48.397Z",
+        "last_posted_at": "2026-11-26T01:26:53.973Z",
+        "bumped": true,
+        "bumped_at": "2026-11-26T01:26:53.973Z",
+        "archetype": "regular",
+        "unseen": false,
+        "pinned": false,
+        "unpinned": null,
+        "excerpt": "This is a very minor bug, sort of an edge case, but hitting a 404 is never pleasant as it triggers a “did I do something wrong?” when managing a website. \nChanging a tag name and reverting it to a previous tag name choic&hellip;",
+        "visible": true,
+        "closed": true,
+        "archived": false,
+        "bookmarked": null,
+        "liked": null,
+        "thumbnails": [
+          {
+            "max_width": null,
+            "max_height": null,
+            "width": 1112,
+            "height": 331,
+            "url": "https://global.discourse-cdn.com/meta/original/4X/9/0/f/90fe7a1f07e96d1e121516d596b5facac0fd24ce.gif"
+          },
+          {
+            "max_width": 1024,
+            "max_height": 1024,
+            "width": 1024,
+            "height": 304,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/9/0/f/90fe7a1f07e96d1e121516d596b5facac0fd24ce_2_1024x304.gif"
+          },
+          {
+            "max_width": 800,
+            "max_height": 800,
+            "width": 800,
+            "height": 238,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/9/0/f/90fe7a1f07e96d1e121516d596b5facac0fd24ce_2_800x238.gif"
+          },
+          {
+            "max_width": 600,
+            "max_height": 600,
+            "width": 600,
+            "height": 178,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/9/0/f/90fe7a1f07e96d1e121516d596b5facac0fd24ce_2_600x178.gif"
+          },
+          {
+            "max_width": 400,
+            "max_height": 400,
+            "width": 400,
+            "height": 119,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/9/0/f/90fe7a1f07e96d1e121516d596b5facac0fd24ce_2_400x119.gif"
+          },
+          {
+            "max_width": 300,
+            "max_height": 300,
+            "width": 300,
+            "height": 89,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/9/0/f/90fe7a1f07e96d1e121516d596b5facac0fd24ce_2_300x89.gif"
+          },
+          {
+            "max_width": 200,
+            "max_height": 200,
+            "width": 200,
+            "height": 59,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/9/0/f/90fe7a1f07e96d1e121516d596b5facac0fd24ce_2_200x59.gif"
+          }
+        ],
+        "tags": [
+          {
+            "id": 529,
+            "name": "tags",
+            "slug": "tags"
+          }
+        ],
+        "tags_descriptions": {},
+        "views": 184,
+        "like_count": 9,
+        "has_summary": false,
+        "last_poster_username": "meta-bot",
+        "category_id": 1,
+        "op_like_count": 2,
+        "pinned_globally": false,
+        "featured_link": null,
+        "has_accepted_answer": false,
+        "can_vote": false,
+        "posters": [
+          {
+            "extras": null,
+            "description": "Original Poster",
+            "user_id": 35474,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": null,
+            "description": "Frequent Poster",
+            "user_id": 71154,
+            "primary_group_id": 47,
+            "flair_group_id": 47
+          },
+          {
+            "extras": null,
+            "description": "Recent Poster",
+            "user_id": 1,
+            "primary_group_id": 47,
+            "flair_group_id": 47
+          },
+          {
+            "extras": "latest",
+            "description": "Most Recent Poster",
+            "user_id": -3083,
+            "primary_group_id": null,
+            "flair_group_id": null
+          }
+        ]
+      },
+      {
+        "fancy_title": "New Matrix v12 rooms not supported by chat integration",
+        "fancy_title_localized": false,
+        "locale": "en",
+        "id": 378675,
+        "title": "New Matrix v12 rooms not supported by chat integration",
+        "slug": "new-matrix-v12-rooms-not-supported-by-chat-integration",
+        "posts_count": 4,
+        "reply_count": 0,
+        "highest_post_number": 4,
+        "image_url": "https://global.discourse-cdn.com/meta/optimized/4X/3/3/8/338d520e43e8713e271c272f10a93692beb11a2f_2_1024x758.png",
+        "created_at": "2025-08-15T00:28:13.536Z",
+        "last_posted_at": "2026-11-26T01:26:14.983Z",
+        "bumped": true,
+        "bumped_at": "2026-11-26T01:26:14.983Z",
+        "archetype": "regular",
+        "unseen": false,
+        "pinned": false,
+        "unpinned": null,
+        "excerpt": "Room IDs in Matrix have changed from a format like !XobthiyrsXshZCJPxh:privacyguides.org to a format like !0EgO6JUj4upTN5XF70_Ox0Wg0gFVD8WKJxIdFGiYL_4 following a security release on August 11th. \nhttps://github.com/matr&hellip;",
+        "visible": true,
+        "closed": true,
+        "archived": false,
+        "bookmarked": null,
+        "liked": null,
+        "thumbnails": [
+          {
+            "max_width": null,
+            "max_height": null,
+            "width": 1228,
+            "height": 910,
+            "url": "https://global.discourse-cdn.com/meta/original/4X/3/3/8/338d520e43e8713e271c272f10a93692beb11a2f.png"
+          },
+          {
+            "max_width": 1024,
+            "max_height": 1024,
+            "width": 1024,
+            "height": 758,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/3/3/8/338d520e43e8713e271c272f10a93692beb11a2f_2_1024x758.png"
+          },
+          {
+            "max_width": 800,
+            "max_height": 800,
+            "width": 800,
+            "height": 592,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/3/3/8/338d520e43e8713e271c272f10a93692beb11a2f_2_800x592.png"
+          },
+          {
+            "max_width": 600,
+            "max_height": 600,
+            "width": 600,
+            "height": 444,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/3/3/8/338d520e43e8713e271c272f10a93692beb11a2f_2_600x444.png"
+          },
+          {
+            "max_width": 400,
+            "max_height": 400,
+            "width": 400,
+            "height": 296,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/3/3/8/338d520e43e8713e271c272f10a93692beb11a2f_2_400x296.png"
+          },
+          {
+            "max_width": 300,
+            "max_height": 300,
+            "width": 300,
+            "height": 222,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/3/3/8/338d520e43e8713e271c272f10a93692beb11a2f_2_300x222.png"
+          },
+          {
+            "max_width": 200,
+            "max_height": 200,
+            "width": 200,
+            "height": 148,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/3/3/8/338d520e43e8713e271c272f10a93692beb11a2f_2_200x148.png"
+          }
+        ],
+        "tags": [
+          {
+            "id": 68,
+            "name": "pr-welcome",
+            "slug": "pr-welcome"
+          },
+          {
+            "id": 230,
+            "name": "chat-integration",
+            "slug": "chat-integration"
+          }
+        ],
+        "tags_descriptions": {
+          "pr-welcome": "You're welcome to submit a Github pull request that implements this"
+        },
+        "views": 308,
+        "like_count": 6,
+        "has_summary": false,
+        "last_poster_username": "meta-bot",
+        "category_id": 1,
+        "op_like_count": 1,
+        "pinned_globally": false,
+        "featured_link": null,
+        "has_accepted_answer": false,
+        "can_vote": false,
+        "posters": [
+          {
+            "extras": null,
+            "description": "Original Poster",
+            "user_id": 28913,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": null,
+            "description": "Frequent Poster",
+            "user_id": 181060,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": null,
+            "description": "Recent Poster",
+            "user_id": 1,
+            "primary_group_id": 47,
+            "flair_group_id": 47
+          },
+          {
+            "extras": "latest",
+            "description": "Most Recent Poster",
+            "user_id": -3083,
+            "primary_group_id": null,
+            "flair_group_id": null
+          }
+        ]
+      },
+      {
+        "fancy_title": "All help labels disappear in automation plugin for English (UK)",
+        "fancy_title_localized": false,
+        "locale": "en",
+        "id": 390029,
+        "title": "All help labels disappear in automation plugin for English (UK)",
+        "slug": "all-help-labels-disappear-in-automation-plugin-for-english-uk",
+        "posts_count": 8,
+        "reply_count": 2,
+        "highest_post_number": 11,
+        "image_url": "https://global.discourse-cdn.com/meta/optimized/4X/2/2/b/22b0d838f02cdb588b6d1ad770643d4727b5975f_2_1024x882.jpeg",
+        "created_at": "2025-12-01T09:35:10.074Z",
+        "last_posted_at": "2026-11-26T01:25:07.486Z",
+        "bumped": true,
+        "bumped_at": "2026-11-26T01:25:07.486Z",
+        "archetype": "regular",
+        "unseen": false,
+        "pinned": false,
+        "unpinned": null,
+        "excerpt": "When using the automation plugin, I found that there were no help labels to be seen. \nAfter some sleuthing I found that this was caused by the fact that my user interface language was set to “English (UK)”. \nWatch and se&hellip;",
+        "visible": true,
+        "closed": true,
+        "archived": false,
+        "bookmarked": null,
+        "liked": null,
+        "thumbnails": [
+          {
+            "max_width": null,
+            "max_height": null,
+            "width": 1392,
+            "height": 1200,
+            "url": "https://global.discourse-cdn.com/meta/original/4X/2/2/b/22b0d838f02cdb588b6d1ad770643d4727b5975f.jpeg"
+          },
+          {
+            "max_width": 1024,
+            "max_height": 1024,
+            "width": 1024,
+            "height": 882,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/2/2/b/22b0d838f02cdb588b6d1ad770643d4727b5975f_2_1024x882.jpeg"
+          },
+          {
+            "max_width": 800,
+            "max_height": 800,
+            "width": 800,
+            "height": 689,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/2/2/b/22b0d838f02cdb588b6d1ad770643d4727b5975f_2_800x689.jpeg"
+          },
+          {
+            "max_width": 600,
+            "max_height": 600,
+            "width": 600,
+            "height": 517,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/2/2/b/22b0d838f02cdb588b6d1ad770643d4727b5975f_2_600x517.jpeg"
+          },
+          {
+            "max_width": 400,
+            "max_height": 400,
+            "width": 400,
+            "height": 344,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/2/2/b/22b0d838f02cdb588b6d1ad770643d4727b5975f_2_400x344.jpeg"
+          },
+          {
+            "max_width": 300,
+            "max_height": 300,
+            "width": 300,
+            "height": 258,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/2/2/b/22b0d838f02cdb588b6d1ad770643d4727b5975f_2_300x258.jpeg"
+          },
+          {
+            "max_width": 200,
+            "max_height": 200,
+            "width": 200,
+            "height": 172,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/2/2/b/22b0d838f02cdb588b6d1ad770643d4727b5975f_2_200x172.jpeg"
+          }
+        ],
+        "tags": [
+          {
+            "id": 275,
+            "name": "automation",
+            "slug": "automation"
+          }
+        ],
+        "tags_descriptions": {},
+        "views": 318,
+        "like_count": 21,
+        "has_summary": false,
+        "last_poster_username": "meta-bot",
+        "category_id": 1,
+        "op_like_count": 4,
+        "pinned_globally": false,
+        "featured_link": null,
+        "has_accepted_answer": false,
+        "can_vote": false,
+        "posters": [
+          {
+            "extras": null,
+            "description": "Original Poster",
+            "user_id": 406,
+            "primary_group_id": null,
+            "flair_group_id": 142
+          },
+          {
+            "extras": null,
+            "description": "Frequent Poster",
+            "user_id": 128177,
+            "primary_group_id": 47,
+            "flair_group_id": 47
+          },
+          {
+            "extras": null,
+            "description": "Frequent Poster",
+            "user_id": 95552,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": null,
+            "description": "Recent Poster",
+            "user_id": 1,
+            "primary_group_id": 47,
+            "flair_group_id": 47
+          },
+          {
+            "extras": "latest",
+            "description": "Most Recent Poster",
+            "user_id": -3083,
+            "primary_group_id": null,
+            "flair_group_id": null
+          }
+        ]
+      },
+      {
+        "fancy_title": "Bulk adding email addresses to group sends invitation emails even when “Notify users” is unchecked (latest branch)",
+        "fancy_title_localized": false,
+        "locale": "en",
+        "id": 397334,
+        "title": "Bulk adding email addresses to group sends invitation emails even when “Notify users” is unchecked (latest branch)",
+        "slug": "bulk-adding-email-addresses-to-group-sends-invitation-emails-even-when-notify-users-is-unchecked-latest-branch",
+        "posts_count": 6,
+        "reply_count": 3,
+        "highest_post_number": 6,
+        "image_url": null,
+        "created_at": "2026-02-28T08:41:41.753Z",
+        "last_posted_at": "2026-11-26T01:24:28.490Z",
+        "bumped": true,
+        "bumped_at": "2026-11-26T01:24:28.490Z",
+        "archetype": "regular",
+        "unseen": false,
+        "pinned": false,
+        "unpinned": null,
+        "excerpt": "Summary\nBulk adding email addresses to a group appears to send invitation emails even when “Notify users” is unchecked. \nExpected behaviour\nWhen “Notify users” is unchecked, no emails should be sent. \nActual behaviour\nDi&hellip;",
+        "visible": true,
+        "closed": false,
+        "archived": false,
+        "bookmarked": null,
+        "liked": null,
+        "thumbnails": null,
+        "tags": [
+          {
+            "id": 39,
+            "name": "email",
+            "slug": "email"
+          },
+          {
+            "id": 9,
+            "name": "groups",
+            "slug": "groups"
+          },
+          {
+            "id": 509,
+            "name": "invites",
+            "slug": "invites"
+          },
+          {
+            "id": 32,
+            "name": "notifications",
+            "slug": "notifications"
+          }
+        ],
+        "tags_descriptions": {},
+        "views": 281,
+        "like_count": 1,
+        "has_summary": false,
+        "last_poster_username": "meta-bot",
+        "category_id": 1,
+        "op_like_count": 1,
+        "pinned_globally": false,
+        "featured_link": null,
+        "has_accepted_answer": false,
+        "can_vote": false,
+        "posters": [
+          {
+            "extras": null,
+            "description": "Original Poster",
+            "user_id": 160471,
+            "primary_group_id": null,
+            "flair_group_id": 73
+          },
+          {
+            "extras": null,
+            "description": "Recent Poster",
+            "user_id": 1995,
+            "primary_group_id": 47,
+            "flair_group_id": 47
+          },
+          {
+            "extras": "latest",
+            "description": "Most Recent Poster",
+            "user_id": -3083,
+            "primary_group_id": null,
+            "flair_group_id": null
+          }
+        ]
+      },
+      {
+        "fancy_title": "Category description truncates to first paragraph for primary/base language, but not for Localizations panel languages",
+        "fancy_title_localized": false,
+        "locale": "en",
+        "id": 406801,
+        "title": "Category description truncates to first paragraph for primary/base language, but not for Localizations panel languages",
+        "slug": "category-description-truncates-to-first-paragraph-for-primary-base-language-but-not-for-localizations-panel-languages",
+        "posts_count": 3,
+        "reply_count": 0,
+        "highest_post_number": 3,
+        "image_url": "https://global.discourse-cdn.com/meta/optimized/4X/8/6/9/869a4f757cd667bf347a8b6a916b706bbe0a4436_2_1023x565.jpeg",
+        "created_at": "2026-07-03T23:22:44.230Z",
+        "last_posted_at": "2026-11-26T01:24:04.407Z",
+        "bumped": true,
+        "bumped_at": "2026-11-26T01:24:04.407Z",
+        "archetype": "regular",
+        "unseen": false,
+        "pinned": false,
+        "unpinned": null,
+        "excerpt": "When a category’s “Category language” is set to a non-default locale (e.g. German, on a site whose default locale is also German), the category banner correctly truncates the description to the first paragraph only — mat&hellip;",
+        "visible": true,
+        "closed": true,
+        "archived": false,
+        "bookmarked": null,
+        "liked": null,
+        "thumbnails": [
+          {
+            "max_width": null,
+            "max_height": null,
+            "width": 1470,
+            "height": 812,
+            "url": "https://global.discourse-cdn.com/meta/original/4X/8/6/9/869a4f757cd667bf347a8b6a916b706bbe0a4436.jpeg"
+          },
+          {
+            "max_width": 1024,
+            "max_height": 1024,
+            "width": 1023,
+            "height": 565,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/8/6/9/869a4f757cd667bf347a8b6a916b706bbe0a4436_2_1023x565.jpeg"
+          },
+          {
+            "max_width": 800,
+            "max_height": 800,
+            "width": 800,
+            "height": 441,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/8/6/9/869a4f757cd667bf347a8b6a916b706bbe0a4436_2_800x441.jpeg"
+          },
+          {
+            "max_width": 600,
+            "max_height": 600,
+            "width": 600,
+            "height": 331,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/8/6/9/869a4f757cd667bf347a8b6a916b706bbe0a4436_2_600x331.jpeg"
+          },
+          {
+            "max_width": 400,
+            "max_height": 400,
+            "width": 400,
+            "height": 220,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/8/6/9/869a4f757cd667bf347a8b6a916b706bbe0a4436_2_400x220.jpeg"
+          },
+          {
+            "max_width": 300,
+            "max_height": 300,
+            "width": 300,
+            "height": 165,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/8/6/9/869a4f757cd667bf347a8b6a916b706bbe0a4436_2_300x165.jpeg"
+          },
+          {
+            "max_width": 200,
+            "max_height": 200,
+            "width": 200,
+            "height": 110,
+            "url": "https://global.discourse-cdn.com/meta/optimized/4X/8/6/9/869a4f757cd667bf347a8b6a916b706bbe0a4436_2_200x110.jpeg"
+          }
+        ],
+        "tags": [
+          {
+            "id": 554,
+            "name": "category-banners",
+            "slug": "category-banners"
+          }
+        ],
+        "tags_descriptions": {
+          "category-banners": "Topics about the <a href=\"https://meta.discourse.org/t/category-banners/86241..."
+        },
+        "views": 149,
+        "like_count": 4,
+        "has_summary": false,
+        "last_poster_username": "meta-bot",
+        "category_id": 1,
+        "op_like_count": 2,
+        "pinned_globally": false,
+        "featured_link": null,
+        "has_accepted_answer": false,
+        "can_vote": false,
+        "posters": [
+          {
+            "extras": null,
+            "description": "Original Poster",
+            "user_id": 195844,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": null,
+            "description": "Frequent Poster",
+            "user_id": 2770,
+            "primary_group_id": 47,
+            "flair_group_id": 47
+          },
+          {
+            "extras": null,
+            "description": "Recent Poster",
+            "user_id": 1,
+            "primary_group_id": 47,
+            "flair_group_id": 47
+          },
+          {
+            "extras": "latest",
+            "description": "Most Recent Poster",
+            "user_id": -3083,
+            "primary_group_id": null,
+            "flair_group_id": null
+          }
+        ]
+      },
+      {
+        "fancy_title": "iOS Markdown composer/editor freezes when selecting text a second time",
+        "fancy_title_localized": false,
+        "locale": "en",
+        "id": 407258,
+        "title": "iOS Markdown composer/editor freezes when selecting text a second time",
+        "slug": "ios-markdown-composer-editor-freezes-when-selecting-text-a-second-time",
+        "posts_count": 5,
+        "reply_count": 1,
+        "highest_post_number": 8,
+        "image_url": null,
+        "created_at": "2026-07-10T11:50:36.970Z",
+        "last_posted_at": "2026-11-26T01:23:35.878Z",
+        "bumped": true,
+        "bumped_at": "2026-11-26T01:23:35.878Z",
+        "archetype": "regular",
+        "unseen": false,
+        "pinned": false,
+        "unpinned": null,
+        "excerpt": "I am experiencing a reproducible text-selection problem in the Discourse Markdown composer on iOS. \nThis is separate from the /upcoming-events issue I reported previously. I first noticed this composer behaviour after ea&hellip;",
+        "visible": true,
+        "closed": true,
+        "archived": false,
+        "bookmarked": null,
+        "liked": null,
+        "thumbnails": null,
+        "tags": [
+          {
+            "id": 22,
+            "name": "composer",
+            "slug": "composer"
+          },
+          {
+            "id": 531,
+            "name": "ios",
+            "slug": "ios"
+          }
+        ],
+        "tags_descriptions": {},
+        "views": 248,
+        "like_count": 1,
+        "has_summary": false,
+        "last_poster_username": "meta-bot",
+        "category_id": 1,
+        "op_like_count": 0,
+        "pinned_globally": false,
+        "featured_link": null,
+        "has_accepted_answer": false,
+        "can_vote": false,
+        "posters": [
+          {
+            "extras": null,
+            "description": "Original Poster",
+            "user_id": 160471,
+            "primary_group_id": null,
+            "flair_group_id": 73
+          },
+          {
+            "extras": null,
+            "description": "Frequent Poster",
+            "user_id": 121563,
+            "primary_group_id": 47,
+            "flair_group_id": 47
+          },
+          {
+            "extras": null,
+            "description": "Recent Poster",
+            "user_id": 1,
+            "primary_group_id": 47,
+            "flair_group_id": 47
+          },
+          {
+            "extras": "latest",
+            "description": "Most Recent Poster",
+            "user_id": -3083,
+            "primary_group_id": null,
+            "flair_group_id": null
+          }
+        ]
+      },
+      {
+        "fancy_title": "Form template composer fields lose their newlines in the edit preview",
+        "fancy_title_localized": false,
+        "locale": "en",
+        "id": 411146,
+        "title": "Form template composer fields lose their newlines in the edit preview",
+        "slug": "form-template-composer-fields-lose-their-newlines-in-the-edit-preview",
+        "posts_count": 3,
+        "reply_count": 0,
+        "highest_post_number": 5,
+        "image_url": null,
+        "created_at": "2026-08-28T13:24:25.223Z",
+        "last_posted_at": "2026-11-26T01:22:56.949Z",
+        "bumped": true,
+        "bumped_at": "2026-11-26T01:22:56.949Z",
+        "archetype": "regular",
+        "unseen": false,
+        "pinned": false,
+        "unpinned": null,
+        "excerpt": "Editing a post that uses a form template, the composer preview renders any multiline composer field as one run-on line: headings glued to the sentence after them, lists and BBCode as literal text. The saved post cooks co&hellip;",
+        "visible": true,
+        "closed": true,
+        "archived": false,
+        "bookmarked": null,
+        "liked": null,
+        "thumbnails": null,
+        "tags": [
+          {
+            "id": 705,
+            "name": "form-templates",
+            "slug": "form-templates"
+          }
+        ],
+        "tags_descriptions": {},
+        "views": 133,
+        "like_count": 4,
+        "has_summary": false,
+        "last_poster_username": "meta-bot",
+        "category_id": 1,
+        "op_like_count": 2,
+        "pinned_globally": false,
+        "featured_link": null,
+        "has_accepted_answer": false,
+        "can_vote": false,
+        "posters": [
+          {
+            "extras": null,
+            "description": "Original Poster",
+            "user_id": 201820,
+            "primary_group_id": null,
+            "flair_group_id": null
+          },
+          {
+            "extras": null,
+            "description": "Frequent Poster",
+            "user_id": 121563,
+            "primary_group_id": 47,
+            "flair_group_id": 47
+          },
+          {
+            "extras": null,
+            "description": "Recent Poster",
+            "user_id": 1,
+            "primary_group_id": 47,
+            "flair_group_id": 47
+          },
+          {
+            "extras": "latest",
+            "description": "Most Recent Poster",
+            "user_id": -3083,
+            "primary_group_id": null,
+            "flair_group_id": null
+          }
+        ]
+      }
+    ]
+  }
+}

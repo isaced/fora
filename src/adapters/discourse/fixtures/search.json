@@ -1,0 +1,228 @@
+{
+  "topics": [
+    {
+      "fancy_title": "Welcome Link Banner",
+      "fancy_title_localized": false,
+      "locale": "en",
+      "id": 218743,
+      "title": "Welcome Link Banner",
+      "slug": "welcome-link-banner",
+      "posts_count": 40,
+      "reply_count": 109,
+      "highest_post_number": 155,
+      "created_at": "2022-02-18T22:21:47.967Z",
+      "last_posted_at": "2025-07-09T12:35:13.697Z",
+      "bumped": true,
+      "bumped_at": "2025-07-09T12:35:13.697Z",
+      "archetype": "regular",
+      "unseen": false,
+      "pinned": false,
+      "unpinned": null,
+      "excerpt": ":discourse2:\nSummary\n\nWelcome Link Banner is a simple banner that allows you to add custom text and 1-4 links.\n\n\n:eyeglasses:\nPreview\nPreview on Discourse Theme Creator\n\n\n:hammer_and_wrench:\nRepository Link\nht&hellip;",
+      "visible": true,
+      "closed": false,
+      "archived": false,
+      "bookmarked": null,
+      "liked": null,
+      "tags": [
+        {
+          "id": 83,
+          "name": "official",
+          "slug": "official"
+        },
+        {
+          "id": 563,
+          "name": "welcome-link-banner",
+          "slug": "welcome-link-banner"
+        }
+      ],
+      "tags_descriptions": {
+        "official": "Themes, theme components, or plugins officially maintained by the Discourse team",
+        "welcome-link-banner": "Topics about the <a href=\"https://meta.discourse.org/t/welcome-link-banner/21..."
+      },
+      "category_id": 120,
+      "has_accepted_answer": false
+    },
+    {
+      "fancy_title": "Welcome page for private sites",
+      "fancy_title_localized": false,
+      "locale": "en",
+      "id": 98591,
+      "title": "Welcome page for private sites",
+      "slug": "welcome-page-for-private-sites",
+      "posts_count": 6,
+      "reply_count": 5,
+      "highest_post_number": 9,
+      "created_at": "2018-10-03T01:36:55.028Z",
+      "last_posted_at": "2024-10-30T16:44:53.487Z",
+      "bumped": true,
+      "bumped_at": "2024-10-30T16:44:53.487Z",
+      "archetype": "regular",
+      "unseen": false,
+      "pinned": false,
+      "unpinned": null,
+      "excerpt": "Repo: GitHub - angusmcleod/discourse-welcome-page · GitHub \nThis theme lets you set a background image and a welcome youtube video for the login / signup page on a private Discourse. \n@Martin_Cole a new member of our met&hellip;",
+      "visible": true,
+      "closed": false,
+      "archived": false,
+      "bookmarked": null,
+      "liked": null,
+      "tags": [
+        {
+          "id": 451,
+          "name": "broken",
+          "slug": "broken"
+        }
+      ],
+      "tags_descriptions": {
+        "broken": "Customizations that are broken and no longer function"
+      },
+      "category_id": 120,
+      "has_accepted_answer": false
+    },
+    {
+      "fancy_title": "Discourse Welcome Modal",
+      "fancy_title_localized": false,
+      "locale": "en",
+      "id": 395095,
+      "title": "Discourse Welcome Modal",
+      "slug": "discourse-welcome-modal",
+      "posts_count": 8,
+      "reply_count": 2,
+      "highest_post_number": 8,
+      "created_at": "2026-02-03T23:48:20.699Z",
+      "last_posted_at": "2026-02-06T15:00:13.060Z",
+      "bumped": true,
+      "bumped_at": "2026-02-06T15:00:13.060Z",
+      "archetype": "regular",
+      "unseen": false,
+      "pinned": false,
+      "unpinned": null,
+      "excerpt": ":information_source:\nSummary\nA welcome modal to help new or returning community members with actionable ways to begin exploring/engaging in a forum\n\n\n:eyeglasses:\nPreview\nTheme Creator (Requires being logged i&hellip;",
+      "visible": true,
+      "closed": false,
+      "archived": false,
+      "bookmarked": null,
+      "liked": null,
+      "tags": [],
+      "tags_descriptions": {},
+      "category_id": 120,
+      "has_accepted_answer": false
+    },
+    {
+      "fancy_title": "Show Welcome Link Banner for specific Categories",
+      "fancy_title_localized": false,
+      "locale": "en",
+      "id": 309234,
+      "title": "Show Welcome Link Banner for specific Categories",
+      "slug": "show-welcome-link-banner-for-specific-categories",
+      "posts_count": 7,
+      "reply_count": 4,
+      "highest_post_number": 8,
+      "created_at": "2024-04-23T23:35:55.538Z",
+      "last_posted_at": "2024-05-25T10:42:03.772Z",
+      "bumped": true,
+      "bumped_at": "2024-05-25T10:42:03.772Z",
+      "archetype": "regular",
+      "unseen": false,
+      "pinned": false,
+      "unpinned": null,
+      "excerpt": "Hello, \nI want to hide the Welcome Banner in the Category Pages (/c/xxx or /c/yyy). Is there any way to set this as a parameter?",
+      "visible": true,
+      "closed": false,
+      "archived": false,
+      "bookmarked": null,
+      "liked": null,
+      "tags": [
+        {
+          "id": 436,
+          "name": "css",
+          "slug": "css"
+        },
+        {
+          "id": 563,
+          "name": "welcome-link-banner",
+          "slug": "welcome-link-banner"
+        }
+      ],
+      "tags_descriptions": {
+        "welcome-link-banner": "Topics about the <a href=\"https://meta.discourse.org/t/welcome-link-banner/21..."
+      },
+      "category_id": 2,
+      "has_accepted_answer": false
+    },
+    {
+      "fancy_title": "How to add separator lines to the Welcome Banner sections?",
+      "fancy_title_localized": false,
+      "locale": "en",
+      "id": 278903,
+      "title": "How to add separator lines to the Welcome Banner sections?",
+      "slug": "how-to-add-separator-lines-to-the-welcome-banner-sections",
+      "posts_count": 5,
+      "reply_count": 0,
+      "highest_post_number": 5,
+      "created_at": "2023-09-07T13:01:30.752Z",
+      "last_posted_at": "2023-09-13T15:35:44.436Z",
+      "bumped": true,
+      "bumped_at": "2023-09-13T15:35:44.436Z",
+      "archetype": "regular",
+      "unseen": false,
+      "pinned": false,
+      "unpinned": null,
+      "excerpt": "Okay, np :slight_smile: \nBy the way, can you tell me the CSS to add the separator lines?",
+      "visible": true,
+      "closed": false,
+      "archived": false,
+      "bookmarked": null,
+      "liked": null,
+      "tags": [
+        {
+          "id": 563,
+          "name": "welcome-link-banner",
+          "slug": "welcome-link-banner"
+        }
+      ],
+      "tags_descriptions": {
+        "welcome-link-banner": "Topics about the <a href=\"https://meta.discourse.org/t/welcome-link-banner/21..."
+      },
+      "category_id": 7,
+      "has_accepted_answer": false
+    }
+  ],
+  "posts": [
+    {
+      "id": 1062181,
+      "name": null,
+      "username": "Discourse",
+      "avatar_template": "/user_avatar/meta.discourse.org/discourse/{size}/580155_2.png",
+      "created_at": "2022-02-18T22:21:48.121Z",
+      "like_count": 79,
+      "blurb": ":discourse2: Summary Welcome Link Banner is a simple banner that allows you to add custom text and 1-4 links. :eyeglasses: Preview https://discourse.theme-creator.io/theme/Discou...",
+      "post_number": 1,
+      "topic_id": 218743
+    },
+    {
+      "id": 479771,
+      "name": "Angus McLeod",
+      "username": "angus",
+      "avatar_template": "/user_avatar/meta.discourse.org/angus/{size}/341715_2.png",
+      "created_at": "2018-10-03T01:36:55.107Z",
+      "like_count": 34,
+      "blurb": "Repo: https://github.com/angusmcleod/discourse-welcome-page GitHub - angusmcleod/discourse-welcome-page This theme lets you set a background image and a welcome youtube video for the login / signup page o...",
+      "post_number": 1,
+      "topic_id": 98591
+    },
+    {
+      "id": 1931577,
+      "name": "Noah Lovell",
+      "username": "noahl",
+      "avatar_template": "/user_avatar/meta.discourse.org/noahl/{size}/552343_2.png",
+      "created_at": "2026-02-03T23:48:20.816Z",
+      "like_count": 21,
+      "blurb": ":information_source: Summary A welcome modal to help new or returning community members with actionable ways to begin exploring/engaging in a forum :eyeglasses: Preview https://discourse.t...",
+      "post_number": 1,
+      "topic_id": 395095
+    }
+  ],
+  "users": []
+}
