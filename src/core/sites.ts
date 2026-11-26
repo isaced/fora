@@ -1,0 +1,119 @@
+/**
+ * Site resolution: merges the three sources of sites — user config,
+ * the bundled directory, and built-in presets — with the precedence from
+ * SPEC §5.1 (user config overrides the directory on a name clash).
+ */
+
+import type { ForaConfig, SiteConfig } from "./config.ts";
+import { loadDirectory, type DirectorySite } from "./directory.ts";
+import { UsageError } from "./errors.ts";
+
+export type SiteSource = "config" | "directory" | "preset";
+
+export interface Site {
+  name: string;
+  engine: string;
+  base_url?: string;
+  site_url?: string;
+  include_nodes?: string[];
+  include_categories?: string[];
+  tags?: string[];
+  source: SiteSource;
+}
+
+export const PRESETS: Site[] = [
+  { name: "v2ex", engine: "v2ex", base_url: "https://www.v2ex.com", source: "preset" },
+  { name: "linuxdo", engine: "discourse", base_url: "https://linux.do", source: "preset" },
+  { name: "hn", engine: "hn", base_url: "https://news.ycombinator.com", source: "preset" },
+];
+
+/** Build the merged site universe. Precedence: config > directory > preset. */
+export function buildSites(config: ForaConfig, directory: DirectorySite[] = loadDirectory()): Site[] {
+  const byName = new Map<string, Site>();
+
+  for (const preset of PRESETS) byName.set(preset.name, { ...preset });
+
+  for (const entry of directory) {
+    byName.set(entry.name, {
+      name: entry.name,
+      engine: entry.engine,
+      base_url: entry.url,
+      tags: entry.tags,
+      source: "directory",
+    });
+  }
+
+  for (const site of config.sites) {
+    byName.set(site.name, configToSite(site));
+  }
+
+  return [...byName.values()].sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function configToSite(site: SiteConfig): Site {
+  return {
+    name: site.name,
+    engine: site.engine,
+    base_url: site.base_url,
+    site_url: site.site_url,
+    include_nodes: site.include_nodes,
+    include_categories: site.include_categories,
+    source: "config",
+  };
+}
+
+export function findSite(sites: Site[], name: string): Site | undefined {
+  return sites.find((site) => site.name === name);
+}
+
+export function requireSite(sites: Site[], name: string): Site {
+  const site = findSite(sites, name);
+  if (site) return site;
+
+  const known = sites.map((s) => s.name);
+  const sample = known.slice(0, 12).join(", ");
+  const more = known.length > 12 ? `, … (+${known.length - 12} more)` : "";
+  throw new UsageError(
+    `unknown site "${name}". Known sites: ${sample}${more}.\n` +
+      `Add a site with: fora sites add <url>`,
+  );
+}
+
+/** Default site when no flag/positional/env is given. */
+export function defaultSiteName(config: ForaConfig): string {
+  return config.default_site?.trim() || "v2ex";
+}
+
+/** Sites included in `fora digest` (the follow list). */
+export function followSiteNames(config: ForaConfig): string[] {
+  return config.follow && config.follow.length > 0 ? config.follow : [defaultSiteName(config)];
+}
+
+export interface SiteSelector {
+  /** "all" → every configured site; "a,b" → an ad-hoc subset. */
+  all: boolean;
+  names: string[];
+}
+
+export function parseSiteSelector(raw: string): SiteSelector {
+  const value = raw.trim();
+  if (value === "all") return { all: true, names: [] };
+  const names = value
+    .split(",")
+    .map((name) => name.trim())
+    .filter(Boolean);
+  return { all: false, names };
+}
+
+/**
+ * Sites for `--site all`: user-configured sites when present, otherwise the
+ * built-in presets (so a zero-config machine still has something to query).
+ */
+export function sitesForAll(config: ForaConfig, sites: Site[]): Site[] {
+  if (config.sites.length > 0) {
+    return config.sites
+      .map((site) => findSite(sites, site.name))
+      .filter((site): site is Site => site !== undefined);
+  }
+  return sites.filter((site) => site.source === "preset");
+}

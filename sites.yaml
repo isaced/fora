@@ -1,0 +1,157 @@
+# fora official site directory
+#
+# Every entry is data only: name, url, engine, and optional discovery tags.
+# Adding a forum is a one-line change. User config overrides an entry on a
+# name clash. See SPEC.md §5.1.
+#
+# Engines: discourse, v2ex, hn, flarum, nodebb, rss
+
+- name: swift-forums
+  url: https://forums.swift.org
+  engine: discourse
+  tags: [swift, apple, en]
+
+- name: rust-users
+  url: https://users.rust-lang.org
+  engine: discourse
+  tags: [rust, en]
+
+- name: rust-internals
+  url: https://internals.rust-lang.org
+  engine: discourse
+  tags: [rust, en]
+
+- name: go-forum
+  url: https://forum.golangbridge.org
+  engine: discourse
+  tags: [go, en]
+
+- name: discourse-meta
+  url: https://meta.discourse.org
+  engine: discourse
+  tags: [discourse, en]
+
+- name: linuxdo
+  url: https://linux.do
+  engine: discourse
+  tags: [linux, zh]
+
+- name: python-discuss
+  url: https://discuss.python.org
+  engine: discourse
+  tags: [python, en]
+
+- name: docker-forums
+  url: https://forums.docker.com
+  engine: discourse
+  tags: [docker, en]
+
+- name: home-assistant
+  url: https://community.home-assistant.io
+  engine: discourse
+  tags: [home-automation, en]
+
+- name: grafana-community
+  url: https://community.grafana.com
+  engine: discourse
+  tags: [grafana, observability, en]
+
+- name: letsencrypt-community
+  url: https://community.letsencrypt.org
+  engine: discourse
+  tags: [security, tls, en]
+
+- name: gitlab-forum
+  url: https://forum.gitlab.com
+  engine: discourse
+  tags: [gitlab, en]
+
+- name: nixos-discourse
+  url: https://discourse.nixos.org
+  engine: discourse
+  tags: [nix, linux, en]
+
+- name: fedora-discussion
+  url: https://discussion.fedoraproject.org
+  engine: discourse
+  tags: [fedora, linux, en]
+
+- name: ubuntu-discourse
+  url: https://discourse.ubuntu.com
+  engine: discourse
+  tags: [ubuntu, linux, en]
+
+- name: kubernetes-forum
+  url: https://discuss.kubernetes.io
+  engine: discourse
+  tags: [kubernetes, en]
+
+- name: huggingface-discuss
+  url: https://discuss.huggingface.co
+  engine: discourse
+  tags: [ai, ml, en]
+
+- name: openwrt-forum
+  url: https://forum.openwrt.org
+  engine: discourse
+  tags: [openwrt, networking, en]
+
+- name: cloudflare-community
+  url: https://community.cloudflare.com
+  engine: discourse
+  tags: [cloudflare, networking, en]
+
+- name: unity-discussions
+  url: https://discussions.unity.com
+  engine: discourse
+  tags: [unity, gamedev, en]
+
+- name: blender-devtalk
+  url: https://devtalk.blender.org
+  engine: discourse
+  tags: [blender, gamedev, en]
+
+- name: godot-forum
+  url: https://forum.godotengine.org
+  engine: discourse
+  tags: [godot, gamedev, en]
+
+- name: julia-discourse
+  url: https://discourse.julialang.org
+  engine: discourse
+  tags: [julia, en]
+
+- name: elixir-forum
+  url: https://elixirforum.com
+  engine: discourse
+  tags: [elixir, en]
+
+- name: pytorch-discuss
+  url: https://discuss.pytorch.org
+  engine: discourse
+  tags: [pytorch, ai, en]
+
+- name: openai-community
+  url: https://community.openai.com
+  engine: discourse
+  tags: [openai, ai, en]
+
+- name: flarum-community
+  url: https://discuss.flarum.org
+  engine: flarum
+  tags: [flarum, en]
+
+- name: vivaldi-forum
+  url: https://forum.vivaldi.net
+  engine: nodebb
+  tags: [vivaldi, browser, en]
+
+- name: rust-blog
+  url: https://blog.rust-lang.org/feed.xml
+  engine: rss
+  tags: [rust, blog, en]
+
+- name: github-blog
+  url: https://github.blog/feed/
+  engine: rss
+  tags: [github, blog, en]
