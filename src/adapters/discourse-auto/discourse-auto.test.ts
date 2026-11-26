@@ -46,11 +46,11 @@ function stub(overrides: Partial<Adapter> = {}): Adapter {
 }
 
 describe("discourse auto adapter", () => {
-  it("falls back to RSS on a Cloudflare challenge and records degradation", async () => {
+  it("falls back to RSS on any HTTP 403 and records degradation", async () => {
     const store: DegradationStore = new Map();
     const json = stub({
       async hot() {
-        throw new RateLimitError("GET https://linux.do/top.json was blocked by an anti-bot page (HTTP 403)");
+        throw new RateLimitError("GET https://linux.do/top.json failed with HTTP 403");
       },
     });
     const rss = stub({

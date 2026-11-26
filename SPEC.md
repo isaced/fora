@@ -413,13 +413,12 @@ fixtures and docs:
 - Categories = `GET /categories.json`; site info = `GET /site.json`
 - Embedded `users` array in list responses maps poster ids to usernames.
 - Every `discourse` site uses a JSON-first auto adapter: on an HTTP 403
-  anti-bot response it retries via §7.1a and reports the downgrade in output.
+  HTTP 403 it retries via §7.1a and reports the downgrade in output.
 
-### 7.1a Discourse RSS (engine; Cloudflare-challenged Discourse sites)
+### 7.1a Discourse RSS (engine; feed-backed Discourse sites)
 
 Some Discourse instances (notably linux.do) answer `/latest.json` and
-`/top.json` with a Cloudflare Turnstile challenge while leaving their feeds
-readable. This engine keeps the same Topic mapping as §7.1 but reads feeds:
+`/top.json` with an HTTP 403 while leaving their feeds readable. This engine keeps the same Topic mapping as §7.1 but reads feeds:
 
 - Hot = `GET /top.rss?period=<daily|weekly|monthly>` (`all` omits `period`; default `daily`)
 - Latest = `GET /latest.rss`
@@ -474,7 +473,7 @@ readable. This engine keeps the same Topic mapping as §7.1 but reads feeds:
 
 ### 7.5a Generic browser fallback
 
-Any adapter using `HttpClient` retries an anti-bot HTTP 403 once through
+Any adapter using `HttpClient` retries any HTTP 403 on a public read once through
 `agent-browser --headed`, reusing one named session per origin. The request URL
 is unchanged, so mappings stay identical; the downgrade is recorded as
 `http → browser` with limitations (`requires agent-browser`, `slower`,

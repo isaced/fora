@@ -26,8 +26,8 @@ well an agent can discover, call and afford it.
   Examples (`fora help <command>`).
 - **Efficiency**: one call replaces agent-side loops — `digest` returns every
   followed site's briefing in a single payload; fetches use a bounded global
-  pool while keeping each host's request pacing. Anti-bot 403s retry once via
-  a reusable agent-browser session when available.
+  pool while keeping each host's request pacing. HTTP 403s on public reads
+  retry once via a reusable agent-browser session when available.
 - **Cost awareness**: `--fields` projection, excerpts by default, top-N replies,
   declared truncation, and a token estimate in every JSON envelope so agents can
   budget before reading the full payload.
