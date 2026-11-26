@@ -1,0 +1,54 @@
+{
+  "name": "fora-cli",
+  "version": "0.1.0",
+  "description": "One read-only CLI for many forums — for humans and AI agents",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "fora": "./src/cli.ts"
+  },
+  "module": "./src/cli.ts",
+  "files": [
+    "src",
+    "sites.yaml",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "dev": "bun run src/cli.ts",
+    "start": "bun run src/cli.ts",
+    "test": "bun test",
+    "test:coverage": "bun test --coverage",
+    "typecheck": "tsc --noEmit",
+    "build": "bun build ./src/cli.ts --compile --outfile dist/fora",
+    "build:js": "bun build ./src/cli.ts --target bun --outdir dist"
+  },
+  "keywords": [
+    "forum",
+    "cli",
+    "discourse",
+    "v2ex",
+    "hacker-news",
+    "flarum",
+    "nodebb",
+    "rss",
+    "agent"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/isaced/fora"
+  },
+  "engines": {
+    "bun": ">=1.1.0"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.9.0",
+    "citty": "^0.2.2",
+    "fast-xml-parser": "^5.12.1",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.5",
+    "typescript": "^7.0.2"
+  }
+}
