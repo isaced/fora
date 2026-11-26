@@ -84,7 +84,9 @@ function mapTopic(topic: V2exTopic, site: Site, base: string): Topic {
     title: topic.title,
     url: absoluteUrl(topic.url, base) ?? `${base}/t/${topic.id}`,
     author: authorFrom(topic.member),
-    category: topic.node ? { id: String(topic.node.id), name: topic.node.title ?? topic.node.name } : undefined,
+    category: topic.node
+      ? { id: String(topic.node.id), name: topic.node.title ?? topic.node.name, slug: topic.node.name }
+      : undefined,
     reply_count: topic.replies,
     created_at: created,
     last_activity_at: lastActivity,

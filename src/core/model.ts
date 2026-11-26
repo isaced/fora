@@ -15,6 +15,7 @@ export interface Author {
 export interface TopicCategory {
   id: string;
   name?: string;
+  slug?: string;
 }
 
 /** A thread in a list view. */

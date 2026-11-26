@@ -213,6 +213,11 @@ Built-in presets work with zero config; pass `--site` (or set `default_site`)
 to choose one. `fora sites add <url>` probes a forum URL, detects its engine,
 and appends it to your config (use `--yes` in scripts).
 
+`digest` applies `include_nodes` and `include_categories` before fetching
+topic details. Entries match section IDs (quote them in YAML), slugs, or
+names exactly; configured allowlists exclude topics whose section cannot be
+matched.
+
 ### Official site directory
 
 `sites.yaml` at the package root is a bundled directory of known forums. Its
