@@ -144,7 +144,11 @@ export function renderTopicDetail(detail: TopicDetail, options: RenderOptions = 
 
   if (detail.truncated) {
     const omitted = detail.omitted_replies ?? 0;
-    lines.push(color.yellow(`… ${omitted} repl${omitted === 1 ? "y" : "ies"} omitted (truncated)`));
+    const fetched =
+      detail.fetched_replies !== undefined && detail.total_replies !== undefined && detail.fetched_replies < detail.total_replies
+        ? `, ${detail.fetched_replies} of ${detail.total_replies} fetched`
+        : "";
+    lines.push(color.yellow(`… ${omitted} repl${omitted === 1 ? "y" : "ies"} omitted (truncated${fetched})`));
   }
 
   return lines.join("\n").trimEnd();
@@ -209,6 +213,8 @@ export function renderEngines(infos: AdapterInfo[]): string {
 
 export interface DigestTopic extends Topic {
   top_replies?: Post[];
+  total_replies?: number;
+  fetched_replies?: number;
   omitted_replies?: number;
 }
 
@@ -249,7 +255,12 @@ export function renderDigest(groups: DigestGroup[], options: RenderOptions = {})
         const text = (reply.content_text ?? "").replace(/\s+/g, " ").slice(0, 180);
         lines.push(`      ${color.dim(`↳ ${who}:`)} ${text}`);
       }
-      if (topic.omitted_replies) lines.push(color.dim(`      … ${topic.omitted_replies} more repl${topic.omitted_replies === 1 ? "y" : "ies"}`));
+      if (topic.omitted_replies) {
+        const fetched = topic.fetched_replies !== undefined && topic.total_replies !== undefined && topic.fetched_replies < topic.total_replies
+          ? ` (${topic.fetched_replies} fetched)`
+          : "";
+        lines.push(color.dim(`      … ${topic.omitted_replies} more repl${topic.omitted_replies === 1 ? "y" : "ies"}${fetched}`));
+      }
     }
   }
 

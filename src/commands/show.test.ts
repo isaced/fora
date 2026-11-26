@@ -113,6 +113,19 @@ describe("shapeTopicDetail", () => {
     expect(shaped.excerpt).toContain("OP body");
   });
 
+  it("measures omitted replies against the thread total, not the fetched window", () => {
+    const long = detail();
+    long.post_count = 1001;
+    long.total_replies = 1000;
+    long.fetched_replies = 3;
+
+    const shaped = shapeTopicDetail(long, 1);
+
+    expect(shaped.fetched_replies).toBe(3);
+    expect(shaped.omitted_replies).toBe(999);
+    expect(shaped.truncated).toBe(true);
+  });
+
   it("keeps every reply when no limit is given", () => {
     const shaped = shapeTopicDetail(detail());
     expect(shaped.posts).toHaveLength(4);

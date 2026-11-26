@@ -142,14 +142,10 @@ export function createHnAdapter(http: HttpClient = new HttpClient({ minIntervalM
       }
 
       let floor = 2;
-      let omitted = 0;
 
       const walk = async (ids: number[]): Promise<void> => {
         for (const id of ids) {
-          if (posts.length >= COMMENT_CAP) {
-            omitted += 1;
-            continue;
-          }
+          if (posts.length >= COMMENT_CAP) continue;
           const comment = await fetchItem(id);
           if (!comment || comment.deleted) continue;
           posts.push(mapComment(comment, String(item.id), floor));
@@ -160,14 +156,17 @@ export function createHnAdapter(http: HttpClient = new HttpClient({ minIntervalM
 
       await walk(item.kids ?? []);
 
-      const descendantCount = item.descendants ?? Math.max(0, posts.length - 1);
-      const truncated = posts.length >= COMMENT_CAP;
-      if (truncated) omitted = Math.max(omitted, descendantCount - (posts.length - 1));
+      const fetchedReplies = Math.max(0, posts.length - 1);
+      const totalReplies = item.descendants ?? fetchedReplies;
+      const omitted = Math.max(0, totalReplies - fetchedReplies);
+      const truncated = omitted > 0;
 
       return {
         ...mapItem(item, site),
         posts,
-        post_count: descendantCount + 1,
+        post_count: totalReplies + 1,
+        total_replies: totalReplies,
+        fetched_replies: fetchedReplies,
         page,
         pages: 1,
         truncated: truncated || undefined,

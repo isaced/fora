@@ -46,11 +46,14 @@ function finishDigestTopic(
   excerpt: string | undefined,
   topReplies: Post[],
   omitted: number,
+  counts: { total: number; fetched: number },
 ): DigestTopic {
   return {
     ...topic,
     excerpt: excerpt ?? topic.excerpt,
     top_replies: topReplies,
+    total_replies: counts.total,
+    fetched_replies: counts.fetched,
     omitted_replies: omitted > 0 ? omitted : undefined,
   };
 }
@@ -66,8 +69,10 @@ async function fetchDigestTopic(
     const detail = await adapter.topic(site, topic.id, 1);
     const replies = detail.posts.filter((post) => post.floor > 1);
     const top = [...replies].sort((a, b) => (b.like_count ?? 0) - (a.like_count ?? 0)).slice(0, topReplies);
-    const omitted = Math.max(0, replies.length - top.length);
-    return finishDigestTopic(topic, detail.excerpt, top, omitted);
+    const total = detail.total_replies ?? Math.max(0, detail.post_count - 1);
+    const fetched = detail.fetched_replies ?? replies.length;
+    const omitted = Math.max(0, total - top.length);
+    return finishDigestTopic(topic, detail.excerpt, top, omitted, { total, fetched });
   } catch {
     return { ...topic };
   }
