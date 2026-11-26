@@ -10,6 +10,8 @@
 import { renderUsage, runCommand, type CommandDef } from "citty";
 import { renderGuide } from "./commands/help.ts";
 import { main } from "./commands/index.ts";
+import { closeBrowserFetches } from "./core/browser-fetch.ts";
+import { closeProxyBridge } from "./core/proxy-fetch.ts";
 import { formatCliError, type ErrorSection } from "./core/error-format.ts";
 import { ForaError, exitCodeOf, messageOf } from "./core/errors.ts";
 import { VERSION } from "./core/version.ts";
@@ -388,6 +390,9 @@ async function mainEntry(): Promise<void> {
     await runCommand(main, { rawArgs });
   } catch (error) {
     handleError(error, rawArgs);
+  } finally {
+    await closeBrowserFetches();
+    closeProxyBridge();
   }
 }
 

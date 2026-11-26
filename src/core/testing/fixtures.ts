@@ -14,6 +14,7 @@ import { createFlarumAdapter } from "../../adapters/flarum/index.ts";
 import { createNodebbAdapter } from "../../adapters/nodebb/index.ts";
 import { createRssAdapter } from "../../adapters/rss/index.ts";
 import { createDiscourseRssAdapter } from "../../adapters/discourse-rss/index.ts";
+import { createRubyChinaAdapter } from "../../adapters/ruby-china/index.ts";
 
 export interface FixtureRoute {
   test: (url: string) => boolean;
@@ -153,6 +154,15 @@ export function nodebbFixtureHttp(): HttpClient {
   ]);
 }
 
+export function rubyChinaFixtureHttp(): HttpClient {
+  return fixtureHttp([
+    { test: (url) => /\/api\/v3\/topics\/\d+\/replies\.json/.test(url), body: fixtureFile(`${D}/ruby-china/fixtures/replies.json`) },
+    { test: (url) => /\/api\/v3\/topics\/\d+\.json/.test(url), body: fixtureFile(`${D}/ruby-china/fixtures/topic.json`) },
+    { test: (url) => url.includes("/api/v3/topics.json"), body: fixtureFile(`${D}/ruby-china/fixtures/topics.json`) },
+    { test: (url) => url.includes("/api/v3/nodes.json"), body: fixtureFile(`${D}/ruby-china/fixtures/nodes.json`) },
+  ]);
+}
+
 export function rssFixtureHttp(kind: "rss" | "atom" = "rss"): HttpClient {
   const file = kind === "rss" ? `${D}/rss/fixtures/rss.xml` : `${D}/rss/fixtures/atom.xml`;
   return fixtureHttp([
@@ -197,6 +207,11 @@ export function buildFixtureAdapters(): FixtureCase[] {
       label: "discourse-rss",
       adapter: createDiscourseRssAdapter(discourseRssFixtureHttp()),
       site: { name: "linuxdo", engine: "discourse-rss", base_url: "https://linux.do", source: "preset" },
+    },
+    {
+      label: "ruby-china",
+      adapter: createRubyChinaAdapter(rubyChinaFixtureHttp()),
+      site: { name: "ruby-china", engine: "ruby-china", base_url: "https://ruby-china.org", source: "directory" },
     },
     {
       label: "rss",

@@ -259,7 +259,7 @@ export function renderDigest(groups: DigestGroup[], options: RenderOptions = {})
 export interface DoctorSiteReport {
   name: string;
   engine: string;
-  route?: "json" | "rss";
+  route?: "http" | "browser" | "rss";
   reachable: boolean | "unknown";
   error?: string;
 }

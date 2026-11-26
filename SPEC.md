@@ -472,6 +472,16 @@ readable. This engine keeps the same Topic mapping as §7.1 but reads feeds:
 - Search = `GET /api/search?term=`
 - Categories = `GET /api/categories`
 
+### 7.5a Generic browser fallback
+
+Any adapter using `HttpClient` retries an anti-bot HTTP 403 once through
+`agent-browser --headed`, reusing one named session per origin. The request URL
+is unchanged, so mappings stay identical; the downgrade is recorded as
+`http → browser` with limitations (`requires agent-browser`, `slower`,
+`needs headed browser`). Disable with `FORA_BROWSER_FALLBACK=0`. If the browser
+transport fails or is unavailable, the original 403 is returned to the adapter,
+which may then apply its own endpoint fallback (e.g. §7.1a).
+
 ### 7.6 RSS fallback (any forum with a feed)
 
 - Input: a feed URL configured as a site (`engine: rss`, `base_url` = feed URL,
@@ -482,6 +492,17 @@ readable. This engine keeps the same Topic mapping as §7.1 but reads feeds:
   present, else unsupported.
 - Support RSS 2.0 and Atom. This adapter is the documented long-tail net for
   phpBB / Discuz! / SMF forums that expose feeds.
+
+### 7.7 Ruby China (Homeland v3 API)
+
+- Hot = `GET /api/v3/topics.json?type=popular&limit=<n>`
+- Latest = `GET /api/v3/topics.json?type=recent&limit=<n>`
+- Topic = `GET /api/v3/topics/:id.json` plus
+  `GET /api/v3/topics/:id/replies.json?offset=&limit=50`
+- Categories = nodes: `GET /api/v3/nodes.json`
+- Search: no documented public endpoint ⇒ unsupported (exit 3).
+- `--period` on hot: no time-window endpoint ⇒ unsupported.
+- `excellent` is exposed as `tags: ["excellent"]`, never as `pinned`.
 
 ## 8. Explicitly out of scope for v1
 
