@@ -1,37 +1,89 @@
-# fora
+<h1 align="center">fora</h1>
 
-An agent-first, read-only command-line client for many forums, through a single
-unified interface. Humans get readable defaults; agents get clean, structured
-data.
+<p align="center">
+  Agent-first, read-only CLI for many forums.<br>
+  One normalised interface for humans and AI agents — clean JSON by default when piped.
+</p>
 
-```
-fora hot --site v2ex            # ranked topics on V2EX
-fora hot --site linuxdo          # any Discourse instance
-fora show https://www.v2ex.com/t/1259639
-fora digest --since 24h --json   # one scheduled-briefing payload
+<p align="center">
+  <a href="#why-fora"><strong>Why</strong></a> ·
+  <a href="#token-economy"><strong>Token economy</strong></a> ·
+  <a href="#supported-engines"><strong>Engines</strong></a> ·
+  <a href="#install"><strong>Install</strong></a> ·
+  <a href="#commands"><strong>Commands</strong></a> ·
+  <a href="#json-contract"><strong>JSON contract</strong></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/isaced/fora/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/isaced/fora/ci.yml?branch=main&label=CI&logo=github" alt="CI status"></a>
+  <a href="https://www.npmjs.com/package/fora-cli"><img src="https://img.shields.io/npm/v/fora-cli?label=npm&logo=npm" alt="npm version"></a>
+  <a href="https://github.com/isaced/fora/releases"><img src="https://img.shields.io/github/v/release/isaced/fora?label=release" alt="latest release"></a>
+  <img src="https://img.shields.io/badge/runtime-Bun%201.1%2B-black?logo=bun" alt="Bun 1.1+">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT license"></a>
+</p>
+
+```sh
+fora hot --site v2ex                    # ranked topics on V2EX
+fora hot --site linuxdo                 # Discourse, with automatic fallbacks
+fora show 1 3 5 --excerpt --replies 3   # batch, token-shaped follow-up reads
+fora digest --since 24h --budget 8000   # one scheduled-briefing payload
 ```
 
 fora is not a generic web fetcher. Its value is **semantic normalisation**:
 knowing which field is the title, which is the reply count, and who the author
-is, across every supported forum — so agents can consume forums without
-scraping HTML.
+is across forums — so agents can consume forums without scraping HTML or
+driving a browser.
 
-## Design philosophy
+## Why fora
 
-fora is built **agent-first**; every command, flag and output is judged by how
-well an agent can discover, call and afford it.
+fora is built **agent-first**. Every command, flag and output is judged by how
+well an agent can discover it, call it and afford it.
 
-- **Accessibility**: piped output is JSON by default, `--human` forces a table, structured errors with actionable
-  next steps, meaningful exit codes, no TTY-only prompts, and help with concrete
-  Examples (`fora help <command>`). Agent can also bootstrap from the CLI with
-  `fora skills get core` and `fora schema`.
-- **Efficiency**: one call replaces agent-side loops — `digest` returns every
-  followed site's briefing in a single payload; fetches use a bounded global
-  pool while keeping each host's request pacing. HTTP 403s on public reads
-  retry once via a reusable agent-browser session when available.
-- **Cost awareness**: `--fields` projection, excerpts by default, top-N replies,
-  declared truncation, per-site token accounting, and `digest --budget <tokens>`
-  so agents can cap context cost before reading the payload.
+- **Accessible** — piped output is JSON by default; `--human` forces a table.
+  Errors are structured with actionable next steps, exit codes are meaningful,
+  and help ships concrete Examples (`fora help <command>`). Agents can bootstrap
+  from the CLI with `fora skills get core` and `fora schema`.
+- **Efficient** — one call replaces agent-side loops. `digest` returns every
+  followed site's briefing in a single payload, using a bounded global fetch
+  pool while keeping each host's request pacing.
+- **Resilient** — public read requests that get HTTP 403 retry once through a
+  reusable agent-browser session; Discourse can then fall back to RSS. JSON
+  output declares which transport was used and which capabilities were lost.
+- **Cost-aware** — `--fields`, excerpts, top-N replies, declared truncation,
+  per-site token accounting and `digest --budget` keep context spend predictable.
+
+## Token economy
+
+Agents pay for every byte they read. Raw forum APIs return rendered HTML and
+complete reply trees; fora returns excerpts and top replies, with truncation
+declared in every envelope (`meta.approx_tokens`).
+
+**Measured 2026-11-26: reading the hot lists and top 5 threads of V2EX and
+HN costs ~546k tokens through raw APIs — fora does it in ~11k, about 49×
+less (≈2%).**
+
+```text
+V2EX  Raw API  ████████████████████                 ~199,000
+      fora     ▌                                      4,371
+
+HN    Raw API  ███████████████████████████████████  ~346,000
+      fora     ▋                                      6,874
+
+(1 █ ≈ 10,000 tokens)
+```
+
+Same ~4 chars/token estimator on both sides — the one fora uses for
+`meta.approx_tokens`:
+
+|                                   |  Raw API |  fora |
+| --------------------------------- | -------: | ----: |
+| V2EX hot list (10)                |  ~12,300 | 1,313 |
+| V2EX top 5 threads (677 replies)  | ~187,000 | 3,058 |
+| HN front page (10)                |   ~5,400 |   874 |
+| HN top 5 threads (2,409 comments) | ~341,000 | 6,000 |
+
+Via HN's official Firebase API the same five threads require 2,409 separate
+requests (~192k tokens); fora does it in one call.
 
 ## Supported engines
 
@@ -40,7 +92,7 @@ Adapters are written per **engine**, not per site. A site is just
 
 | Engine | Sites it serves | Notes |
 |---|---|---|
-| `discourse` | all Discourse instances | JSON API first, automatic RSS fallback on HTTP 403; hot / latest / topic / search / categories |
+| `discourse` | all Discourse instances | JSON API first, automatic RSS/browser fallback on HTTP 403; full capability set |
 | `discourse-rss` | fallback transport used by `discourse` | hot / latest / topic via feeds; no search/categories or engagement metrics |
 | `v2ex` | v2ex.com | hot / latest / topic / categories (no search, no period) |
 | `hn` | Hacker News | hot / latest / topic / search (Firebase + Algolia) |
@@ -56,14 +108,16 @@ which capabilities were lost.
 
 ## Install
 
-Requires [Bun](https://bun.sh) 1.1+ at runtime.
+The npm package requires [Bun](https://bun.sh) 1.1+ at runtime:
 
 ```sh
 bunx fora-cli hot
-npm install -g fora-cli
+npm install -g fora-cli    # note: fora-cli, not fora
 ```
 
-Single-file binaries are published on GitHub Releases. To build one locally:
+Note: the unscoped `fora` package on npm is an unrelated legacy framework.
+
+Single-file binaries can be built locally:
 
 ```sh
 bun run build        # -> dist/fora
@@ -71,9 +125,11 @@ bun run build        # -> dist/fora
 
 ## Commands
 
-```
-fora                             # prints help (use fora hot for the default site)
+```text
+fora                             # print help
 fora help <command>              # full help + examples (same as <command> --help)
+fora skills get core             # version-matched agent guide
+fora schema                      # machine-readable command/field contract
 fora digest  [--since 24h] [--per-site 10] [--top-replies 3] [--budget N]
 fora hot     [site] [--site <name|all|a,b>] [--period day|week|month|all] [-n 20]
 fora latest  [site] [--site <name|all|a,b>] [-n 20]
@@ -86,9 +142,11 @@ fora doctor [--all]              # per-site reachability pre-flight
 fora create-adapter <engine>     # scaffold an external adapter package
 ```
 
-Global flags: `--json`, `--limit/-n`, `--site`. Site resolution order is
-`--site` → positional → `FORA_SITE` → `default_site` in config. If no site is
-given and no `default_site` is set, fora exits 2 and lists the known sites.
+Global flags: `--json`, `--human`, `--limit/-n`, `--site`. Site resolution order
+is `--site` → positional → `FORA_SITE` → `default_site` in config. If no site is
+given and no `default_site` is set, fora exits 2 and lists known sites.
+
+Piped data commands emit JSON by default; use `--human` to force a table.
 
 ### Addressable results
 
@@ -131,9 +189,9 @@ sites:
     base_url: https://example.com/feed.xml
 ```
 
-Built-in presets are available with zero config; pass `--site` (or set
-`default_site`) to choose one. `fora sites add <url>` probes a forum URL,
-detects its engine, and appends it to your config (use `--yes` in scripts).
+Built-in presets work with zero config; pass `--site` (or set `default_site`)
+to choose one. `fora sites add <url>` probes a forum URL, detects its engine,
+and appends it to your config (use `--yes` in scripts).
 
 ### Official site directory
 
@@ -148,58 +206,26 @@ fora sites search rust
 User config overrides the directory on a name clash. Adding a forum is a
 one-line PR.
 
-## JSON for agents
+## JSON contract
 
-Every command accepts `--json`, and all payloads share a stable envelope:
+Every data command shares one envelope:
 
 ```json
 { "schema": "fora/v1", "data": …, "meta": { "approx_tokens": 1234 } }
 ```
 
-Agent-specific provisions:
+Agent-facing guarantees:
 
-- `fora digest --json` returns every followed site's hot topics with OP
-  excerpts and the top replies by likes — one call for a scheduled briefing.
+- `meta.approx_tokens` estimates the payload cost before deeper reading.
+- `meta.degraded_sites` declares transport downgrades and lost capabilities.
+- `digest` reports `per_site_tokens`, `budget`, `omitted_sites` and
+  `omitted_topics`.
+- `show` declares `total_replies`, `fetched_replies` and `omitted_replies` so a
+  fetch window cannot masquerade as the whole thread.
 - `--since 24h` restricts lists/digests to topics created or active inside the
-  window, using only timestamps the APIs already return. No state files, no
-  seen-store.
-- `--fields title,url` returns only the named model fields (plus `site`).
-- Truncation is always declared (`truncated`, `omitted_replies`), never silent.
-- `fora engines list --json` and `fora doctor --json` are machine-readable
-  capability/pre-flight checks.
-
-## Token economy
-
-Agents pay for every byte they read. Raw forum APIs return rendered HTML and
-complete reply trees; fora returns excerpts and top replies, with truncation
-declared in every envelope (`meta.approx_tokens`).
-
-**Measured 2026-11-26: reading the hot lists and top 5 threads of V2EX and
-HN costs ~546k tokens through raw APIs — fora does it in ~11k, about 49×
-less (≈2%).**
-
-```
-V2EX  Raw API  ████████████████████                 ~199,000
-      fora     ▌                                      4,371
-
-HN    Raw API  ███████████████████████████████████  ~346,000
-      fora     ▋                                      6,874
-
-(1 █ ≈ 10,000 tokens)
-```
-
-Same ~4 chars/token estimator on both sides (the one fora uses for
-`meta.approx_tokens`):
-
-|                                   |  Raw API |  fora |
-| --------------------------------- | -------: | ----: |
-| V2EX hot list (10)                |  ~12,300 | 1,313 |
-| V2EX top 5 threads (677 replies)  | ~187,000 | 3,058 |
-| HN front page (10)                |   ~5,400 |   874 |
-| HN top 5 threads (2,409 comments) | ~341,000 | 6,000 |
-
-Via HN's official Firebase API the same five threads cost 2,409 separate
-requests (~192k tokens) — fora does it in one call.
+  window, using only timestamps the APIs already return. No seen-store.
+- `fora schema` and `fora help <command> --json` expose the full contract
+  without parsing human help.
 
 ## Development
 
