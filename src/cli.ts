@@ -10,6 +10,7 @@
 import { renderUsage, runCommand, type CommandDef } from "citty";
 import { renderGuide } from "./commands/help.ts";
 import { main } from "./commands/index.ts";
+import { buildForaSchema, selectCommandSchema } from "./commands/schema.ts";
 import { closeBrowserFetches } from "./core/browser-fetch.ts";
 import { closeProxyBridge } from "./core/proxy-fetch.ts";
 import { formatCliError, type ErrorSection } from "./core/error-format.ts";
@@ -334,6 +335,13 @@ function usageParent(parent: AnyCommand | undefined, guidePath: string): AnyComm
   return { meta: { name: `fora ${ancestor}` } } as AnyCommand;
 }
 
+async function printSchema(guidePath: string): Promise<void> {
+  const meta = typeof main.meta === "function" ? await main.meta() : await main.meta;
+  const schema = await buildForaSchema(main, meta?.version ?? VERSION);
+  const selected = selectCommandSchema(schema, guidePath);
+  process.stdout.write(`${JSON.stringify(selected ?? schema, null, 2)}\n`);
+}
+
 async function printUsage(cmd: AnyCommand, parent: AnyCommand | undefined, guidePath: string): Promise<void> {
   let text = await renderUsage(cmd, usageParent(parent, guidePath));
   if (!process.stdout.isTTY || process.env.NO_COLOR) text = stripAnsi(text);
@@ -352,8 +360,13 @@ async function mainEntry(): Promise<void> {
       process.exitCode = 2;
       return;
     }
+    const guidePath = guidePathOf(targetArgs);
+    if (rawArgs.includes("--json")) {
+      await printSchema(guidePath);
+      return;
+    }
     const [cmd, parent] = resolveHelpTarget(targetArgs);
-    await printUsage(cmd, parent, guidePathOf(targetArgs));
+    await printUsage(cmd, parent, guidePath);
     return;
   }
   if (rawArgs.includes("--help") || rawArgs.includes("-h")) {
@@ -363,8 +376,13 @@ async function mainEntry(): Promise<void> {
       process.exitCode = 2;
       return;
     }
+    const guidePath = guidePathOf(rawArgs);
+    if (rawArgs.includes("--json")) {
+      await printSchema(guidePath);
+      return;
+    }
     const [cmd, parent] = resolveHelpTarget(rawArgs);
-    await printUsage(cmd, parent, guidePathOf(rawArgs));
+    await printUsage(cmd, parent, guidePath);
     return;
   }
   if (rawArgs.length === 1 && (rawArgs[0] === "--version" || rawArgs[0] === "-v")) {

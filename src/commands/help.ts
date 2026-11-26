@@ -186,6 +186,43 @@ export const COMMAND_GUIDES: Record<string, CommandGuide> = {
       "fora doctor --all --json",
     ],
   },
+  schema: {
+    about: [
+      "Print the machine-readable contract: commands, flags, topic fields, exit codes and degradation semantics.",
+    ],
+    examples: [
+      "fora schema",
+      "fora schema sites add",
+      "fora help hot --json            # schema for one command",
+    ],
+  },
+  skills: {
+    about: [
+      "Bundled, version-matched usage guides for agents. No network or repository access needed.",
+    ],
+    examples: [
+      "fora skills get core",
+      "fora skills list --json",
+    ],
+  },
+  "skills get": {
+    about: [
+      "Print a bundled skill as markdown, or as JSON with --json.",
+    ],
+    examples: [
+      "fora skills get core",
+      "fora skills get core --json",
+    ],
+  },
+  "skills list": {
+    about: [
+      "List the skill names bundled with this fora version.",
+    ],
+    examples: [
+      "fora skills list",
+      "fora skills list --json",
+    ],
+  },
   "create-adapter": {
     about: [
       "Generated files go to `fora-adapter-<engine>` in cwd, or under `--dir`.",

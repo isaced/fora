@@ -98,6 +98,29 @@ describe("agent-friendly help", () => {
     expect(out).toContain("USAGE fora hot");
   });
 
+  it("ships a bundled core skill for agents", async () => {
+    const { out, code } = await run("skills", "get", "core");
+    expect(code).toBe(0);
+    expect(out).toContain("# fora core skill");
+    expect(out).toContain("fora schema");
+    expect(out).toContain("meta.degraded_sites");
+  });
+
+  it("exposes a machine-readable schema", async () => {
+    const { out, code } = await run("schema");
+    expect(code).toBe(0);
+    const schema = JSON.parse(out);
+    expect(schema.schema).toBe("fora/v1-schema");
+    expect(schema.commands.map((command: { name: string }) => command.name)).toContain("hot");
+    expect(schema.topic_fields).toContain("reply_count");
+  });
+
+  it("returns command schema from help --json", async () => {
+    const { out, code } = await run("help", "hot", "--json");
+    expect(code).toBe(0);
+    expect(JSON.parse(out).name).toBe("hot");
+  });
+
   it("keeps every help page free of duplicated lines and hints", async () => {
     const paths: string[][] = [
       [],
@@ -116,6 +139,10 @@ describe("agent-friendly help", () => {
       ["engines", "list"],
       ["doctor"],
       ["create-adapter"],
+      ["schema"],
+      ["skills"],
+      ["skills", "get"],
+      ["skills", "list"],
     ];
 
     for (const path of paths) {
