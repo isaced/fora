@@ -8,14 +8,48 @@
  */
 
 import { renderUsage, runCommand, type CommandDef } from "citty";
+import { renderGuide } from "./commands/help.ts";
 import { main } from "./commands/index.ts";
+import { formatCliError, type ErrorSection } from "./core/error-format.ts";
 import { ForaError, exitCodeOf, messageOf } from "./core/errors.ts";
 import { VERSION } from "./core/version.ts";
 import { writeErrorJson } from "./output/json.ts";
 
 type AnyCommand = CommandDef<any>;
 
-const VALUE_FLAGS = new Set(["site", "limit", "n", "since", "fields", "period", "page", "per-site", "top-replies", "dir"]);
+const VALUE_FLAGS = new Set([
+  "site",
+  "limit",
+  "n",
+  "since",
+  "fields",
+  "period",
+  "page",
+  "per-site",
+  "perSite",
+  "top-replies",
+  "topReplies",
+  "dir",
+]);
+
+const FLAG_EXAMPLES: Record<string, string> = {
+  site: "fora hot --site v2ex",
+  limit: "fora hot --limit 20",
+  n: "fora hot -n 20",
+  since: "fora hot --since 24h",
+  fields: "fora hot --fields title,url",
+  period: "fora hot --period week",
+  page: "fora show linuxdo:12345 --page 2",
+  "per-site": "fora digest --per-site 5",
+  perSite: "fora digest --per-site 5",
+  "top-replies": "fora digest --top-replies 3",
+  topReplies: "fora digest --top-replies 3",
+  dir: "fora create-adapter my-forum --dir ./packages",
+};
+
+function flagName(token: string): string {
+  return token.replace(/^-+/, "").split("=")[0]!;
+}
 
 function stripAnsi(text: string): string {
   return text.replace(/\u001b\[[0-9;]*m/g, "");
@@ -32,7 +66,7 @@ function resolveHelpTarget(rawArgs: string[]): readonly [AnyCommand, AnyCommand 
       continue;
     }
     if (token.startsWith("-")) {
-      expectValue = VALUE_FLAGS.has(token.replace(/^-+/, ""));
+      expectValue = !token.includes("=") && VALUE_FLAGS.has(flagName(token));
       continue;
     }
     const subCommands = cmd.subCommands as Record<string, AnyCommand> | undefined;
@@ -44,6 +78,83 @@ function resolveHelpTarget(rawArgs: string[]): readonly [AnyCommand, AnyCommand 
     break;
   }
   return [cmd, parent] as const;
+}
+
+function commandPath(rawArgs: string[]): string {
+  let cmd: AnyCommand = main;
+  const path: string[] = [];
+  let expectValue = false;
+  for (const token of rawArgs) {
+    if (expectValue) {
+      expectValue = false;
+      continue;
+    }
+    if (token.startsWith("-")) {
+      expectValue = !token.includes("=") && VALUE_FLAGS.has(flagName(token));
+      continue;
+    }
+    const subCommands = cmd.subCommands as Record<string, AnyCommand> | undefined;
+    if (subCommands && token in subCommands) {
+      cmd = subCommands[token]!;
+      path.push(token);
+      continue;
+    }
+    break;
+  }
+  return path.join(" ") || "<command>";
+}
+
+function missingFlagValue(rawArgs: string[]): string | undefined {
+  for (let index = 0; index < rawArgs.length; index += 1) {
+    const token = rawArgs[index]!;
+    if (!token.startsWith("-") || token.includes("=")) continue;
+    const name = flagName(token);
+    if (!VALUE_FLAGS.has(name)) continue;
+    const next = rawArgs[index + 1];
+    if (next === undefined || (next.startsWith("-") && !/^-\d/.test(next))) return name;
+  }
+  return undefined;
+}
+
+function displayFlag(name: string): string {
+  if (name === "n") return "-n";
+  return `--${name.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)}`;
+}
+
+function writeMissingFlagError(name: string, json: boolean): void {
+  const message = formatCliError(`${displayFlag(name)} requires a value`, [
+    { heading: "Example:", lines: [FLAG_EXAMPLES[name] ?? `fora <command> ${displayFlag(name)} <value>`] },
+  ]);
+  if (json) writeErrorJson("usage", message);
+  else process.stderr.write(`fora: ${message}\n`);
+  process.exitCode = 2;
+}
+
+/** `fora sites` / `fora engines` should show help instead of a terse subcommand error. */
+function bareParentCommand(
+  rawArgs: string[],
+): readonly [AnyCommand, AnyCommand | undefined, string] | undefined {
+  let cmd: AnyCommand = main;
+  let parent: AnyCommand | undefined;
+  const path: string[] = [];
+  let expectValue = false;
+
+  for (const token of rawArgs) {
+    if (expectValue) {
+      expectValue = false;
+      continue;
+    }
+    if (token.startsWith("-")) {
+      expectValue = !token.includes("=") && VALUE_FLAGS.has(flagName(token));
+      continue;
+    }
+    const subCommands = cmd.subCommands as Record<string, AnyCommand> | undefined;
+    if (!subCommands || !(token in subCommands)) return undefined;
+    parent = cmd;
+    cmd = subCommands[token]!;
+    path.push(token);
+  }
+  return cmd.subCommands ? [cmd, parent, path.join(" ")] : undefined;
 }
 
 function levenshtein(a: string, b: string): number {
@@ -58,8 +169,7 @@ function levenshtein(a: string, b: string): number {
   return rows[a.length]![b.length]!;
 }
 
-function didYouMean(token: string): string | undefined {
-  const names = Object.keys((main.subCommands ?? {}) as Record<string, AnyCommand>);
+function didYouMean(token: string, names = Object.keys((main.subCommands ?? {}) as Record<string, AnyCommand>)): string | undefined {
   let best: string | undefined;
   let bestDistance = Infinity;
   for (const name of names) {
@@ -72,30 +182,117 @@ function didYouMean(token: string): string | undefined {
   return best && bestDistance <= 3 ? best : undefined;
 }
 
+interface UnknownCommand {
+  token: string;
+  parentPath: string;
+  names: string[];
+}
+
+/** Find the first token that is not a subcommand of the current command level. */
+function findUnknownCommand(rawArgs: string[]): UnknownCommand | undefined {
+  let cmd: AnyCommand = main;
+  const path: string[] = [];
+  let expectValue = false;
+
+  for (const token of rawArgs) {
+    if (expectValue) {
+      expectValue = false;
+      continue;
+    }
+    if (token.startsWith("-")) {
+      expectValue = !token.includes("=") && VALUE_FLAGS.has(flagName(token));
+      continue;
+    }
+    const subCommands = cmd.subCommands as Record<string, AnyCommand> | undefined;
+    if (!subCommands) return undefined;
+    if (token in subCommands) {
+      cmd = subCommands[token]!;
+      path.push(token);
+      continue;
+    }
+    return { token, parentPath: path.join(" "), names: Object.keys(subCommands) };
+  }
+  return undefined;
+}
+
+function unknownCommandMessage(info: UnknownCommand): string {
+  const sections: ErrorSection[] = [
+    { heading: "List commands:", lines: [info.parentPath ? `fora ${info.parentPath} --help` : "fora --help"] },
+  ];
+  const suggestion = didYouMean(info.token, info.names);
+  if (suggestion) {
+    const command = [info.parentPath, suggestion].filter(Boolean).join(" ");
+    sections.unshift({ heading: "Did you mean:", lines: [`fora ${command}`] });
+  }
+  return formatCliError(`unknown command "${info.token}"`, sections);
+}
+
 function isCittyError(error: unknown): error is Error & { code?: string } {
   return error instanceof Error && (error.name === "CLIError" || /^E[A-Z_]*$/.test((error as { code?: string }).code ?? ""));
+}
+
+/** Add a short, code-specific next step to errors that do not have one yet. */
+function foraErrorMessage(error: ForaError, rawArgs: string[]): string {
+  if (error.message.includes("\n")) return error.message;
+
+  const sections: ErrorSection[] = [];
+  switch (error.code) {
+    case "usage":
+      sections.push({ heading: "See usage:", lines: [`fora ${commandPath(rawArgs)} --help`] });
+      break;
+    case "unsupported":
+      sections.push({ heading: "Check engine capabilities:", lines: ["fora engines list"] });
+      break;
+    case "config":
+      sections.push({ heading: "Inspect config:", lines: ["fora sites list", "fora doctor"] });
+      break;
+    case "network":
+    case "upstream":
+    case "rate_limited":
+      sections.push({ heading: "Check reachability:", lines: ["fora doctor"] });
+      break;
+    case "not_found":
+      sections.push({ heading: "Pick a topic from a fresh list:", lines: ["fora hot --site <name>"] });
+      break;
+    case "generic":
+      break;
+  }
+  return sections.length > 0 ? formatCliError(error.message, sections) : error.message;
 }
 
 function handleError(error: unknown, rawArgs: string[]): void {
   const json = rawArgs.includes("--json");
 
   if (error instanceof ForaError) {
-    if (json) writeErrorJson(error.code, error.message);
-    else process.stderr.write(`fora: ${error.message}\n`);
+    const message = foraErrorMessage(error, rawArgs);
+    if (json) writeErrorJson(error.code, message);
+    else process.stderr.write(`fora: ${message}\n`);
     process.exitCode = error.exitCode;
     return;
   }
 
   if (isCittyError(error)) {
     let message = stripAnsi(messageOf(error));
-    const unknown = message.match(/Unknown command (\S+)/);
-    if (unknown) {
-      const suggestion = didYouMean(unknown[1]!);
-      if (suggestion) message += `\nDid you mean "${suggestion}"?`;
+    const sections: ErrorSection[] = [];
+    const unknownInfo = findUnknownCommand(rawArgs);
+    if (unknownInfo) {
+      message = unknownCommandMessage(unknownInfo);
+    } else {
+      const unknown = message.match(/Unknown command (\S+)/);
+      if (unknown) {
+        const parentPath = guidePathOf(rawArgs);
+        const suggestion = didYouMean(unknown[1]!);
+        if (suggestion) {
+          const command = [parentPath, suggestion].filter(Boolean).join(" ");
+          sections.push({ heading: "Did you mean:", lines: [`fora ${command}`] });
+        }
+      }
     }
     if (/Missing required/.test(message)) {
-      message += "\nRun `fora <command> --help` for usage.";
+      const command = commandPath(rawArgs);
+      sections.push({ heading: "See usage:", lines: [`fora ${command} --help`] });
     }
+    if (sections.length > 0) message = formatCliError(message, sections);
     if (json) writeErrorJson("usage", message);
     else process.stderr.write(`fora: ${message}\n`);
     process.exitCode = 2;
@@ -115,7 +312,7 @@ function firstNonFlagToken(rawArgs: string[]): string | undefined {
       continue;
     }
     if (token.startsWith("-")) {
-      expectValue = VALUE_FLAGS.has(token.replace(/^-+/, ""));
+      expectValue = !token.includes("=") && VALUE_FLAGS.has(flagName(token));
       continue;
     }
     return token;
@@ -123,17 +320,49 @@ function firstNonFlagToken(rawArgs: string[]): string | undefined {
   return undefined;
 }
 
-async function printUsage(cmd: AnyCommand, parent?: AnyCommand): Promise<void> {
-  let text = await renderUsage(cmd, parent);
+function guidePathOf(rawArgs: string[]): string {
+  const path = commandPath(rawArgs);
+  return path === "<command>" ? "" : path;
+}
+
+/** citty only knows one parent level; rebuild the full `fora …` prefix. */
+function usageParent(parent: AnyCommand | undefined, guidePath: string): AnyCommand | undefined {
+  if (!parent || !guidePath.includes(" ")) return parent;
+  const ancestor = guidePath.slice(0, guidePath.lastIndexOf(" "));
+  return { meta: { name: `fora ${ancestor}` } } as AnyCommand;
+}
+
+async function printUsage(cmd: AnyCommand, parent: AnyCommand | undefined, guidePath: string): Promise<void> {
+  let text = await renderUsage(cmd, usageParent(parent, guidePath));
   if (!process.stdout.isTTY || process.env.NO_COLOR) text = stripAnsi(text);
-  process.stdout.write(`${text}\n`);
+  const guide = renderGuide(guidePath);
+  process.stdout.write(`${text.trimEnd()}${guide ? `\n\n${guide}` : ""}\n`);
 }
 
 async function mainEntry(): Promise<void> {
   const rawArgs = process.argv.slice(2);
 
+  if (rawArgs[0] === "help") {
+    const targetArgs = rawArgs.slice(1);
+    const unknown = findUnknownCommand(targetArgs);
+    if (unknown) {
+      process.stderr.write(`${unknownCommandMessage(unknown)}\n`);
+      process.exitCode = 2;
+      return;
+    }
+    const [cmd, parent] = resolveHelpTarget(targetArgs);
+    await printUsage(cmd, parent, guidePathOf(targetArgs));
+    return;
+  }
   if (rawArgs.includes("--help") || rawArgs.includes("-h")) {
-    await printUsage(...resolveHelpTarget(rawArgs));
+    const unknown = findUnknownCommand(rawArgs);
+    if (unknown) {
+      process.stderr.write(`${unknownCommandMessage(unknown)}\n`);
+      process.exitCode = 2;
+      return;
+    }
+    const [cmd, parent] = resolveHelpTarget(rawArgs);
+    await printUsage(cmd, parent, guidePathOf(rawArgs));
     return;
   }
   if (rawArgs.length === 1 && (rawArgs[0] === "--version" || rawArgs[0] === "-v")) {
@@ -141,7 +370,17 @@ async function mainEntry(): Promise<void> {
     return;
   }
   if (firstNonFlagToken(rawArgs) === undefined) {
-    await printUsage(main);
+    await printUsage(main, undefined, "");
+    return;
+  }
+  const bareParent = bareParentCommand(rawArgs);
+  if (bareParent) {
+    await printUsage(...bareParent);
+    return;
+  }
+  const missingFlag = missingFlagValue(rawArgs);
+  if (missingFlag) {
+    writeMissingFlagError(missingFlag, rawArgs.includes("--json"));
     return;
   }
 

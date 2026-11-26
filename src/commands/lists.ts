@@ -1,7 +1,7 @@
 /** `fora hot` and `fora latest` — the two list verbs. */
 
 import { defineCommand, type CommandDef } from "citty";
-import { errorMessage } from "../core/error-format.ts";
+import { errorMessage, formatCliError } from "../core/error-format.ts";
 import { UnsupportedError } from "../core/errors.ts";
 import type { Period } from "../core/adapter.ts";
 import type { Topic } from "../core/model.ts";
@@ -34,7 +34,7 @@ async function runList(kind: ListKind, args: Record<string, unknown>): Promise<v
   const json = Boolean(args.json);
   const period = kind === "hot" ? (args.period as Period | undefined) : undefined;
 
-  const selectorRaw = pickSiteName(args.site, args.target, ctx.config, ctx.sites);
+  const selectorRaw = pickSiteName(args.site, args.target, ctx.config, ctx.sites, kind);
   const selector = parseSiteSelector(selectorRaw);
 
   if (selector.all || selector.names.length > 1) {
@@ -53,10 +53,14 @@ async function runList(kind: ListKind, args: Record<string, unknown>): Promise<v
       }
     }
 
-    if (collected.length === 0 && failures.length > 0) {
-      throw new Error(`all sites failed:\n${failures.join("\n")}`);
+    if (failures.length > 0) {
+      const report = formatCliError(
+        collected.length === 0 ? `all ${targets.length} site(s) failed` : "some sites failed",
+        [{ heading: "Failures:", lines: failures }],
+      );
+      if (collected.length === 0) throw new Error(report);
+      process.stderr.write(`fora: ${report}\n`);
     }
-    for (const failure of failures) process.stderr.write(`fora: ${failure}\n`);
 
     await finishList(ctx, {
       topics: filterSince(collected, sinceMs),

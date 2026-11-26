@@ -392,7 +392,7 @@ fixtures and docs:
 
 
 
-### 7.1 Discourse (engine; serves linux.do and all Discourse sites)
+### 7.1 Discourse (engine; serves most Discourse sites)
 
 - Hot = `GET /top.json?period=<period>` (default period `daily`)
 - Latest = `GET /latest.json`
@@ -402,6 +402,20 @@ fixtures and docs:
 - Search = `GET /search.json?q=`
 - Categories = `GET /categories.json`; site info = `GET /site.json`
 - Embedded `users` array in list responses maps poster ids to usernames.
+
+### 7.1a Discourse RSS (engine; Cloudflare-challenged Discourse sites)
+
+Some Discourse instances (notably linux.do) answer `/latest.json` and
+`/top.json` with a Cloudflare Turnstile challenge while leaving their feeds
+readable. This engine keeps the same Topic mapping as §7.1 but reads feeds:
+
+- Hot = `GET /top.rss?period=<daily|weekly|monthly>` (`all` omits `period`; default `daily`)
+- Latest = `GET /latest.rss`
+- Topic = find the item in the recent feeds and return `content:encoded` as one post
+- Search/Categories: unsupported (exit 3)
+- Engagement metrics are omitted because Discourse feeds do not carry them.
+- Detection: `/site.json` identifies Discourse; a challenged `/latest.json`
+  selects this engine instead of the JSON one.
 
 ### 7.2 V2EX (single-site engine)
 

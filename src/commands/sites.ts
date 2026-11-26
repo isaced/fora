@@ -3,6 +3,7 @@
 import { confirm, isCancel } from "@clack/prompts";
 import { defineCommand } from "citty";
 import { envelope } from "../core/envelope.ts";
+import { formatCliError } from "../core/error-format.ts";
 import { UsageError } from "../core/errors.ts";
 import { buildSites, type Site } from "../core/sites.ts";
 import { renderSites } from "../output/human.ts";
@@ -10,7 +11,7 @@ import { writeJson } from "../output/json.ts";
 import { createContext } from "./context.ts";
 import { jsonArg, yesArg } from "./common.ts";
 
-const DETECT_ORDER = ["hn", "v2ex", "discourse", "flarum", "nodebb"];
+const DETECT_ORDER = ["hn", "v2ex", "discourse-rss", "discourse", "flarum", "nodebb"];
 
 function siteRecord(site: Site) {
   return {
@@ -45,7 +46,11 @@ async function detectEngine(ctx: Awaited<ReturnType<typeof createContext>>, url:
 async function askConfirmation(message: string, skip: boolean): Promise<boolean> {
   if (skip) return true;
   if (!process.stdin.isTTY) {
-    throw new UsageError("refusing to change config in non-interactive mode; pass --yes");
+    throw new UsageError(
+      formatCliError("refusing to change config in non-interactive mode", [
+        { heading: "Re-run with confirmation skipped:", lines: ["fora sites add <url> --yes"] },
+      ]),
+    );
   }
   const answer = await confirm({ message });
   if (isCancel(answer) || answer !== true) return false;
@@ -87,7 +92,11 @@ const searchCommand = defineCommand({
       return;
     }
     if (sites.length === 0) {
-      process.stdout.write(`no sites match "${keyword}"\n`);
+      process.stdout.write(
+        `${formatCliError(`no sites match "${keyword}"`, [
+          { heading: "Browse all sites:", lines: ["fora sites list"] },
+        ])}\n`,
+      );
       return;
     }
     process.stdout.write(`${renderSites(sites)}\n`);
@@ -106,14 +115,24 @@ const addCommand = defineCommand({
     try {
       url = new URL(raw);
     } catch {
-      throw new UsageError(`"${raw}" is not a valid URL`);
+      throw new UsageError(
+        formatCliError(`"${raw}" is not a valid URL`, [
+          { heading: "Include the scheme:", lines: ["fora sites add https://example.com"] },
+        ]),
+      );
     }
 
     const ctx = await createContext();
     const engine = await detectEngine(ctx, url.origin);
     if (!engine) {
       throw new UsageError(
-        `could not detect an engine for ${url.host}. Supported engines: hn, v2ex, discourse, flarum, nodebb.`,
+        formatCliError(`could not detect an engine for ${url.host}`, [
+          {
+            heading: "Built-in engines:",
+            lines: ["hn, v2ex, discourse, discourse-rss, flarum, nodebb, rss"],
+          },
+          { heading: "Debug with:", lines: ["fora doctor", "fora engines list"] },
+        ]),
       );
     }
 
@@ -125,8 +144,11 @@ const addCommand = defineCommand({
     }
 
     await ctx.configStore.addSite({ name, engine, base_url: url.origin });
-    process.stdout.write(`Added "${name}" (${engine}) at ${url.origin}.\n`);
-    process.stdout.write(`Try: fora hot --site ${name}\n`);
+    process.stdout.write(
+      `${formatCliError(`Added "${name}" (${engine}) at ${url.origin}.`, [
+        { heading: "Try:", lines: [`fora hot --site ${name}`] },
+      ])}\n`,
+    );
   },
 });
 
@@ -143,10 +165,18 @@ const removeCommand = defineCommand({
     if (!inConfig) {
       const known = ctx.sites.some((site) => site.name === name);
       if (known) {
-        process.stdout.write(`"${name}" is a preset/directory site, not in your config; nothing to remove.\n`);
+        process.stdout.write(
+          `${formatCliError(`"${name}" is a preset/directory site, not in your config`, [
+            { heading: "Nothing to remove; see configured sites:", lines: ["fora sites list"] },
+          ])}\n`,
+        );
         return;
       }
-      throw new UsageError(`no configured site named "${name}"`);
+      throw new UsageError(
+        formatCliError(`no configured site named "${name}"`, [
+          { heading: "See configured sites:", lines: ["fora sites list"] },
+        ]),
+      );
     }
 
     const confirmed = await askConfirmation(`Remove site "${name}" from your config?`, Boolean(args.yes));

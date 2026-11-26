@@ -5,6 +5,7 @@
  */
 
 import { NetworkError, NotFoundError, RateLimitError, UpstreamError } from "./errors.ts";
+import { createFetch } from "./proxy-fetch.ts";
 import { USER_AGENT } from "./version.ts";
 
 export interface HttpClientOptions {
@@ -60,7 +61,7 @@ export class HttpClient {
     this.minIntervalMs = options.minIntervalMs ?? 300;
     this.timeoutMs = options.timeoutMs ?? 15_000;
     this.maxRetries = options.maxRetries ?? 2;
-    this.fetchImpl = options.fetchImpl ?? fetch;
+    this.fetchImpl = options.fetchImpl ?? createFetch();
     this.sleepImpl = options.sleepImpl ?? defaultSleep;
   }
 

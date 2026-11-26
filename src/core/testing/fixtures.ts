@@ -13,11 +13,13 @@ import { createHnAdapter } from "../../adapters/hn/index.ts";
 import { createFlarumAdapter } from "../../adapters/flarum/index.ts";
 import { createNodebbAdapter } from "../../adapters/nodebb/index.ts";
 import { createRssAdapter } from "../../adapters/rss/index.ts";
+import { createDiscourseRssAdapter } from "../../adapters/discourse-rss/index.ts";
 
 export interface FixtureRoute {
   test: (url: string) => boolean;
   body: () => string | Promise<string>;
   contentType?: string;
+  status?: number;
 }
 
 function fixtureFile(relative: string): () => Promise<string> {
@@ -31,7 +33,7 @@ export function fetchFromRoutes(routes: FixtureRoute[]): typeof fetch {
     for (const route of routes) {
       if (!route.test(url)) continue;
       return new Response(await route.body(), {
-        status: 200,
+        status: route.status ?? 200,
         headers: { "content-type": route.contentType ?? "application/json" },
       });
     }
@@ -54,6 +56,23 @@ export function discourseFixtureHttp(): HttpClient {
     { test: (url) => url.includes("/search.json"), body: fixtureFile(`${D}/discourse/fixtures/search.json`) },
     { test: (url) => url.includes("/categories.json"), body: fixtureFile(`${D}/discourse/fixtures/categories.json`) },
     { test: (url) => /\/t\/\d+\.json/.test(url), body: fixtureFile(`${D}/discourse/fixtures/topic.json`) },
+  ]);
+}
+
+export function discourseRssFixtureHttp(): HttpClient {
+  const challenge = '<html><head><title>Just a moment...</title></head><body>cf-challenge</body></html>';
+  const top = fixtureFile(`${D}/discourse-rss/fixtures/top.xml`);
+  return fixtureHttp([
+    { test: (url) => url.includes("/site.json"), body: fixtureFile(`${D}/discourse/fixtures/site.json`) },
+    {
+      test: (url) => url.includes("/latest.json"),
+      body: () => challenge,
+      contentType: "text/html",
+      status: 403,
+    },
+    { test: (url) => url.includes("/latest.rss"), body: fixtureFile(`${D}/discourse-rss/fixtures/latest.xml`), contentType: "application/rss+xml" },
+    { test: (url) => url.includes("/hot.rss"), body: top, contentType: "application/rss+xml" },
+    { test: (url) => url.includes("/top.rss"), body: top, contentType: "application/rss+xml" },
   ]);
 }
 
@@ -173,6 +192,11 @@ export function buildFixtureAdapters(): FixtureCase[] {
       label: "nodebb",
       adapter: createNodebbAdapter(nodebbFixtureHttp()),
       site: { name: "vivaldi-forum", engine: "nodebb", base_url: "https://forum.vivaldi.net", source: "directory" },
+    },
+    {
+      label: "discourse-rss",
+      adapter: createDiscourseRssAdapter(discourseRssFixtureHttp()),
+      site: { name: "linuxdo", engine: "discourse-rss", base_url: "https://linux.do", source: "preset" },
     },
     {
       label: "rss",

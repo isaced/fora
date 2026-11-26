@@ -8,6 +8,7 @@
 import { mkdir } from "node:fs/promises";
 import { join } from "node:path";
 import { cacheDir } from "./config.ts";
+import { formatCliError } from "./error-format.ts";
 import { UsageError } from "./errors.ts";
 import type { Topic } from "./model.ts";
 
@@ -51,18 +52,32 @@ export class ListCache {
   /** Resolve a 1-based index against the last list. */
   async resolve(index: number): Promise<Topic> {
     if (!Number.isInteger(index) || index < 1) {
-      throw new UsageError(`expected a positive result number, got "${index}"`);
+      throw new UsageError(
+        formatCliError(`expected a positive result number, got "${index}"`, [
+          { heading: "Example:", lines: ["fora show 3"] },
+        ]),
+      );
     }
     const list = await this.read();
     if (!list) {
       throw new UsageError(
-        "there is no last list yet. Run a list command (e.g. `fora hot`) first, then use `fora show <number>`.",
+        formatCliError("there is no last list yet", [
+          {
+            heading: "Run a list first, then pick a result:",
+            lines: ["fora hot --site <name>", "fora show 3"],
+          },
+        ]),
       );
     }
     const topic = list.topics[index - 1];
     if (!topic) {
       throw new UsageError(
-        `result ${index} is out of range; the last list has ${list.topics.length} item(s).`,
+        formatCliError(`result ${index} is out of range (last list has ${list.topics.length} item(s))`, [
+          {
+            heading: "Refresh the list or pick a smaller number:",
+            lines: ["fora hot --site <name>", `fora show <1-${list.topics.length}>`],
+          },
+        ]),
       );
     }
     return topic;

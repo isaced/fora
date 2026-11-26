@@ -41,10 +41,18 @@ describe("parseDuration", () => {
     expect(parseDuration("1h30m")).toBe(90 * 60_000);
   });
 
-  it("rejects bare numbers and junk", () => {
+  it("rejects bare numbers and junk with readable examples", () => {
     expect(() => parseDuration("24")).toThrow(UsageError);
     expect(() => parseDuration("soon")).toThrow(UsageError);
     expect(() => parseDuration("")).toThrow(UsageError);
+    let message = "";
+    try {
+      parseDuration("soon");
+    } catch (error) {
+      message = (error as Error).message;
+    }
+    expect(message.split("\n")[0]).toBe('invalid duration "soon"');
+    expect(message).toContain("30m, 24h, 7d, 1w, 1h30m");
   });
 });
 

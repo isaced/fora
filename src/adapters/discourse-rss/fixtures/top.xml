@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>LINUX DO - 热门话题</title>
+    <link>https://linux.do</link>
+    <description>Ranked topics on LINUX DO</description>
+    <item>
+      <title>Wayland 迁移踩坑记录</title>
+      <link>https://linux.do/t/wayland/12345</link>
+      <guid>https://linux.do/t/wayland/12345</guid>
+      <dc:creator>alice</dc:creator>
+      <category>开发调优</category>
+      <pubDate>Thu, 26 Nov 2026 08:00:00 GMT</pubDate>
+      <description><![CDATA[<p>从 X11 迁到 Wayland 后遇到的输入法和截图问题。</p>]]></description>
+      <content:encoded><![CDATA[<p>从 X11 迁到 Wayland 后遇到的输入法和截图问题。</p><p>这里记录完整的排查过程和最终配置。</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>我的家庭 NAS 备份方案</title>
+      <link>https://linux.do/t/nas-backup/12346</link>
+      <guid>https://linux.do/t/nas-backup/12346</guid>
+      <dc:creator>bob</dc:creator>
+      <category>资源荟萃</category>
+      <pubDate>Wed, 25 Nov 2026 12:30:00 GMT</pubDate>
+      <description><![CDATA[<p>用 restic 加对象存储做 3-2-1 备份。</p>]]></description>
+      <content:encoded><![CDATA[<p>用 restic 加对象存储做 3-2-1 备份，附自动化脚本。</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>哪个内核版本最适合日常桌面？</title>
+      <link>https://linux.do/t/kernel/12347</link>
+      <guid>https://linux.do/t/kernel/12347</guid>
+      <dc:creator>carol</dc:creator>
+      <category>问与答</category>
+      <pubDate>Tue, 24 Nov 2026 09:15:00 GMT</pubDate>
+      <description><![CDATA[<p>LTS 和最新 stable 之间应该怎么选？</p>]]></description>
+      <content:encoded><![CDATA[<p>LTS 和最新 stable 之间应该怎么选？大家的升级策略是什么？</p>]]></content:encoded>
+    </item>
+  </channel>
+</rss>

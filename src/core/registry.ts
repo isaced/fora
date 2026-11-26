@@ -4,6 +4,7 @@
  */
 
 import { isAdapter, type Adapter, type Capabilities } from "./adapter.ts";
+import { formatCliError, wrapValues } from "./error-format.ts";
 import { ConfigError } from "./errors.ts";
 import { builtinAdapters } from "./builtin.ts";
 
@@ -31,7 +32,17 @@ export class AdapterRegistry {
 
   register(adapter: Adapter, source: AdapterSource = "external"): void {
     if (!isAdapter(adapter)) {
-      throw new ConfigError(`adapter "${(adapter as { engine?: string })?.engine ?? "?"}" does not implement the Adapter contract`);
+      throw new ConfigError(
+        formatCliError(`adapter "${(adapter as { engine?: string })?.engine ?? "?"}" does not implement the Adapter contract`, [
+          {
+            heading: "An adapter needs:",
+            lines: [
+              "engine, capabilities, and detect/hot/latest/topic/search/categories methods",
+              "See docs/writing-an-adapter.md",
+            ],
+          },
+        ]),
+      );
     }
     this.entries.set(adapter.engine, { adapter, source });
   }
@@ -43,8 +54,15 @@ export class AdapterRegistry {
   require(engine: string): Adapter {
     const entry = this.entries.get(engine);
     if (!entry) {
-      const known = [...this.entries.keys()].sort().join(", ");
-      throw new ConfigError(`unknown engine "${engine}". Loaded engines: ${known}`);
+      throw new ConfigError(
+        formatCliError(`unknown engine "${engine}"`, [
+          {
+            heading: "Loaded engines:",
+            lines: wrapValues([...this.entries.keys()].sort()),
+          },
+          { heading: "See details:", lines: ["fora engines list"] },
+        ]),
+      );
     }
     return entry.adapter;
   }

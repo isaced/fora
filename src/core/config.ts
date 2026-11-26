@@ -8,6 +8,7 @@ import { mkdir } from "node:fs/promises";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
 import { parse as parseYaml, stringify as stringifyYaml } from "yaml";
+import { formatCliError } from "./error-format.ts";
 import { ConfigError } from "./errors.ts";
 
 export interface SiteConfig {
@@ -54,19 +55,33 @@ export class ConfigStore {
     try {
       raw = await file.text();
     } catch (error) {
-      throw new ConfigError(`could not read ${this.path}: ${errorText(error)}`);
+      throw new ConfigError(
+        formatCliError(`could not read ${this.path}`, [
+          { heading: "Reason:", lines: [errorText(error)] },
+          { heading: "Check file permissions, or regenerate it:", lines: ["fora sites list"] },
+        ]),
+      );
     }
 
     let parsed: unknown;
     try {
       parsed = parseYaml(raw);
     } catch (error) {
-      throw new ConfigError(`invalid YAML in ${this.path}: ${errorText(error)}`);
+      throw new ConfigError(
+        formatCliError(`invalid YAML in ${this.path}`, [
+          { heading: "Reason:", lines: [errorText(error)] },
+          { heading: "Fix the file above, then verify with:", lines: ["fora doctor"] },
+        ]),
+      );
     }
 
     if (parsed === null || parsed === undefined) return defaultConfig();
     if (typeof parsed !== "object" || Array.isArray(parsed)) {
-      throw new ConfigError(`${this.path} must contain a YAML mapping`);
+      throw new ConfigError(
+        formatCliError(`${this.path} must contain a YAML mapping`, [
+          { heading: "Example:", lines: ["default_site: v2ex", "sites: []"] },
+        ]),
+      );
     }
 
     const obj = parsed as Record<string, unknown>;

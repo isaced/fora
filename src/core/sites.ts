@@ -6,6 +6,7 @@
 
 import type { ForaConfig, SiteConfig } from "./config.ts";
 import { loadDirectory, type DirectorySite } from "./directory.ts";
+import { formatCliError, knownSitesSection } from "./error-format.ts";
 import { UsageError } from "./errors.ts";
 
 export type SiteSource = "config" | "directory" | "preset";
@@ -23,7 +24,7 @@ export interface Site {
 
 export const PRESETS: Site[] = [
   { name: "v2ex", engine: "v2ex", base_url: "https://www.v2ex.com", source: "preset" },
-  { name: "linuxdo", engine: "discourse", base_url: "https://linux.do", source: "preset" },
+  { name: "linuxdo", engine: "discourse-rss", base_url: "https://linux.do", source: "preset" },
   { name: "hn", engine: "hn", base_url: "https://news.ycombinator.com", source: "preset" },
 ];
 
@@ -69,13 +70,16 @@ export function findSite(sites: Site[], name: string): Site | undefined {
 export function requireSite(sites: Site[], name: string): Site {
   const site = findSite(sites, name);
   if (site) return site;
+  throw unknownSiteError(name, sites);
+}
 
-  const known = sites.map((s) => s.name);
-  const sample = known.slice(0, 12).join(", ");
-  const more = known.length > 12 ? `, … (+${known.length - 12} more)` : "";
-  throw new UsageError(
-    `unknown site "${name}". Known sites: ${sample}${more}.\n` +
-      `Add a site with: fora sites add <url>`,
+/** Build the shared, readable error for an unknown site name. */
+export function unknownSiteError(name: string, sites: Site[]): UsageError {
+  return new UsageError(
+    formatCliError(`unknown site "${name}"`, [
+      knownSitesSection(sites.map((site) => site.name)),
+      { heading: "Add a custom site:", lines: ["fora sites add <url>"] },
+    ]),
   );
 }
 
@@ -90,7 +94,13 @@ export function followSiteNames(config: ForaConfig): string[] {
   const fallback = defaultSiteName(config);
   if (!fallback) {
     throw new UsageError(
-      "no followed sites. Set `follow:` (or `default_site:`) in config, or add a site with: fora sites add <url>",
+      formatCliError("no followed sites", [
+        {
+          heading: "Set a follow list in config:",
+          lines: ["follow: [v2ex, linuxdo]", "# or: default_site: v2ex"],
+        },
+        { heading: "Add a custom site:", lines: ["fora sites add <url>"] },
+      ]),
     );
   }
   return [fallback];

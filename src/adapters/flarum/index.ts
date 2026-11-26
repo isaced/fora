@@ -4,6 +4,7 @@
  */
 
 import { unsupported, type Adapter, type HotOpts, type ListOpts, type SiteCandidate } from "../../core/adapter.ts";
+import { missingBaseUrlError } from "../../core/error-format.ts";
 import { UsageError } from "../../core/errors.ts";
 import { excerptOf, htmlToText } from "../../core/html.ts";
 import { HttpClient } from "../../core/http.ts";
@@ -27,7 +28,7 @@ interface JsonApiDocument {
 }
 
 function baseUrl(site: Site): string {
-  if (!site.base_url) throw new UsageError(`site "${site.name}" has no base_url`);
+  if (!site.base_url) throw new UsageError(missingBaseUrlError(site.name));
   return site.base_url.replace(/\/+$/, "");
 }
 

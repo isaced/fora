@@ -4,7 +4,7 @@
 # Adding a forum is a one-line change. User config overrides an entry on a
 # name clash. See SPEC.md §5.1.
 #
-# Engines: discourse, v2ex, hn, flarum, nodebb, rss
+# Engines: discourse, discourse-rss, v2ex, hn, flarum, nodebb, rss
 
 - name: swift-forums
   url: https://forums.swift.org
@@ -33,7 +33,7 @@
 
 - name: linuxdo
   url: https://linux.do
-  engine: discourse
+  engine: discourse-rss
   tags: [linux, zh]
 
 - name: python-discuss

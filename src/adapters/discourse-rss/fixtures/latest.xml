@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>LINUX DO - 最新话题</title>
+    <link>https://linux.do</link>
+    <description>Latest topics on LINUX DO</description>
+    <item>
+      <title>Fedora 43 正式版发布</title>
+      <link>https://linux.do/t/fedora-43/12400</link>
+      <guid>https://linux.do/t/fedora-43/12400</guid>
+      <dc:creator>dave</dc:creator>
+      <category>业界新闻</category>
+      <pubDate>Thu, 26 Nov 2026 10:00:00 GMT</pubDate>
+      <description><![CDATA[<p>Fedora 43 带来了哪些值得关注的变化。</p>]]></description>
+      <content:encoded><![CDATA[<p>Fedora 43 带来了哪些值得关注的变化。</p><p>安装体验和默认桌面环境的更新。</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>用 nvim 搭建轻量 C++ 开发环境</title>
+      <link>https://linux.do/t/nvim-cpp/12401</link>
+      <guid>https://linux.do/t/nvim-cpp/12401</guid>
+      <dc:creator>erin</dc:creator>
+      <category>开发调优</category>
+      <pubDate>Thu, 26 Nov 2026 09:00:00 GMT</pubDate>
+      <description><![CDATA[<p>clangd 与 cmake 的极简配置。</p>]]></description>
+      <content:encoded><![CDATA[<p>clangd 与 cmake 的极简配置，支持跳转和自动补全。</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>apt 与 dnf 命令对照表</title>
+      <link>https://linux.do/t/apt-dnf/12402</link>
+      <guid>https://linux.do/t/apt-dnf/12402</guid>
+      <dc:creator>frank</dc:creator>
+      <category>文档共建</category>
+      <pubDate>Wed, 25 Nov 2026 18:00:00 GMT</pubDate>
+      <description><![CDATA[<p>常见包管理操作的跨发行版写法。</p>]]></description>
+      <content:encoded><![CDATA[<p>常见包管理操作的跨发行版写法，持续更新中。</p>]]></content:encoded>
+    </item>
+  </channel>
+</rss>

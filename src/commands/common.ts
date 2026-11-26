@@ -3,9 +3,10 @@
 import type { Adapter, Capabilities } from "../core/adapter.ts";
 import { applyFields, parseFields } from "../core/fields.ts";
 import { envelope } from "../core/envelope.ts";
+import { formatCliError, knownSitesSection, type ErrorSection } from "../core/error-format.ts";
 import { UnsupportedError, UsageError } from "../core/errors.ts";
 import type { Topic } from "../core/model.ts";
-import { defaultSiteName, type Site } from "../core/sites.ts";
+import { defaultSiteName, unknownSiteError, type Site } from "../core/sites.ts";
 import { parseDuration, withinSince } from "../core/time.ts";
 import type { Ctx } from "./context.ts";
 import { renderTopicList } from "../output/human.ts";
@@ -59,7 +60,11 @@ export function intOption(raw: unknown, fallback: number, name: string): number 
   if (raw === undefined || raw === null || raw === "") return fallback;
   const value = Number(raw);
   if (!Number.isInteger(value) || value <= 0) {
-    throw new UsageError(`--${name} must be a positive integer`);
+    throw new UsageError(
+      formatCliError(`--${name} must be a positive integer`, [
+        { heading: "Example:", lines: [`--${name} 20`] },
+      ]),
+    );
   }
   return value;
 }
@@ -70,6 +75,8 @@ export function pickSiteName(
   positional: unknown,
   config: Ctx["config"],
   sites: Site[] = [],
+  command = "hot",
+  positionalSite = true,
 ): string {
   for (const candidate of [flag, positional, process.env.FORA_SITE]) {
     if (typeof candidate === "string" && candidate.trim()) return candidate.trim();
@@ -78,11 +85,23 @@ export function pickSiteName(
   const fallback = defaultSiteName(config);
   if (fallback) return fallback;
 
-  const known = sites.slice(0, 12).map((site) => site.name).join(", ");
-  throw new UsageError(
-    `no site specified. Use --site <name> or a positional site${known ? `. Known sites: ${known}` : ""}.\n` +
-      `Set default_site in config, or add a site with: fora sites add <url>`,
-  );
+  const sections: ErrorSection[] = [
+    {
+      heading: "Pass a site explicitly:",
+      lines: [
+        `fora ${command} --site <name>`,
+        ...(positionalSite ? [`fora ${command} <name>`] : []),
+      ],
+    },
+    {
+      heading: "Or set a default in config:",
+      lines: ["default_site: <name>"],
+    },
+  ];
+  if (sites.length > 0) sections.push(knownSitesSection(sites.map((site) => site.name)));
+  sections.push({ heading: "Add a custom site:", lines: ["fora sites add <url>"] });
+
+  throw new UsageError(formatCliError("no site specified", sections));
 }
 
 export function assertCapability(adapter: Adapter, capability: keyof Capabilities, operation: string): void {
@@ -128,9 +147,6 @@ export async function finishList(ctx: Ctx, params: FinishListParams): Promise<vo
 /** Resolve and validate a site by name from the merged universe. */
 export function siteByName(sites: Site[], name: string): Site {
   const site = sites.find((candidate) => candidate.name === name);
-  if (!site) {
-    const known = sites.slice(0, 12).map((candidate) => candidate.name).join(", ");
-    throw new UsageError(`unknown site "${name}". Known sites: ${known}.\nAdd a site with: fora sites add <url>`);
-  }
+  if (!site) throw unknownSiteError(name, sites);
   return site;
 }

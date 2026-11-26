@@ -9,6 +9,7 @@
 import { defineCommand } from "citty";
 import type { Adapter } from "../core/adapter.ts";
 import { envelope } from "../core/envelope.ts";
+import { formatCliError } from "../core/error-format.ts";
 import { UsageError } from "../core/errors.ts";
 import type { TopicDetail } from "../core/model.ts";
 import { requireSite, type Site } from "../core/sites.ts";
@@ -17,7 +18,7 @@ import { writeJson } from "../output/json.ts";
 import { createContext } from "./context.ts";
 import { assertCapability, intOption, jsonArg } from "./common.ts";
 
-const DETECT_ORDER = ["hn", "v2ex", "discourse", "flarum", "nodebb"];
+const DETECT_ORDER = ["hn", "v2ex", "discourse-rss", "discourse", "flarum", "nodebb"];
 const MAX_ALL_PAGES = 50;
 
 function parseTopicRef(engine: string, rawUrl: string): string | undefined {
@@ -92,7 +93,10 @@ async function resolveShowTarget(
       }
       if (!engine) {
         throw new UsageError(
-          `could not recognise the engine for ${url.host}. Add the site first with: fora sites add ${url.origin}`,
+          formatCliError(`could not recognise the engine for ${url.host}`, [
+            { heading: "Add this site first:", lines: [`fora sites add ${url.origin}`] },
+            { heading: "Or list supported engines:", lines: ["fora engines list"] },
+          ]),
         );
       }
       site = {
@@ -104,7 +108,16 @@ async function resolveShowTarget(
     }
 
     const id = parseTopicRef(site.engine, ref);
-    if (!id) throw new UsageError(`could not parse a topic id from ${ref}`);
+    if (!id) {
+      throw new UsageError(
+        formatCliError(`could not parse a topic id from ${ref}`, [
+          {
+            heading: "Use one of these forms:",
+            lines: ["fora show https://site.example/t/1234", "fora show site:1234", "fora show 3"],
+          },
+        ]),
+      );
+    }
     return { site, id };
   }
 
@@ -115,7 +128,16 @@ async function resolveShowTarget(
   }
 
   throw new UsageError(
-    "show expects a topic URL, site:topic-id (e.g. linuxdo:12345), or a result number from the last list",
+    formatCliError("show expects a topic reference", [
+      {
+        heading: "Accepted forms:",
+        lines: [
+          "fora show https://linux.do/t/12345",
+          "fora show linuxdo:12345",
+          "fora show 3   # item 3 of the last list",
+        ],
+      },
+    ]),
   );
 }
 

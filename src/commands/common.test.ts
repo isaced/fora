@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from "bun:test";
 import { UsageError } from "../core/errors.ts";
 import { followSiteNames } from "../core/sites.ts";
 import type { Site } from "../core/sites.ts";
-import { pickSiteName } from "./common.ts";
+import { pickSiteName, siteByName } from "./common.ts";
 
 const sites: Site[] = [
   { name: "v2ex", engine: "v2ex", source: "preset" },
@@ -28,6 +28,48 @@ describe("pickSiteName", () => {
 
   it("errors instead of guessing when no site is available", () => {
     expect(() => pickSiteName(undefined, undefined, { sites: [] }, sites)).toThrow(UsageError);
+  });
+
+  it("lays out the no-site error in short, readable lines", () => {
+    let message = "";
+    try {
+      pickSiteName(undefined, undefined, { sites: [] }, sites, "hot");
+    } catch (error) {
+      message = (error as Error).message;
+    }
+    const lines = message.split("\n");
+    expect(lines[0]).toBe("no site specified");
+    expect(message).toContain("fora hot --site <name>");
+    expect(message).toContain("fora hot <name>");
+    expect(message).toContain("default_site: <name>");
+    expect(message).toContain("Known sites:");
+    expect(lines.every((line) => line.length <= 80)).toBe(true);
+  });
+
+  it("omits the positional example for site-less commands like search", () => {
+    let message = "";
+    try {
+      pickSiteName(undefined, undefined, { sites: [] }, sites, "search", false);
+    } catch (error) {
+      message = (error as Error).message;
+    }
+    expect(message).toContain("fora search --site <name>");
+    expect(message).not.toContain("fora search <name>");
+  });
+});
+
+describe("siteByName", () => {
+  it("lays out unknown-site errors with wrapped known sites", () => {
+    let message = "";
+    try {
+      siteByName(sites, "nope");
+    } catch (error) {
+      message = (error as Error).message;
+    }
+    expect(message.split("\n")[0]).toBe('unknown site "nope"');
+    expect(message).toContain("Known sites:");
+    expect(message).toContain("fora sites add <url>");
+    expect(message.split("\n").every((line) => line.length <= 80)).toBe(true);
   });
 });
 

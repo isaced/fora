@@ -18,7 +18,8 @@ export const main = defineCommand({
     version: VERSION,
     description: "One read-only CLI for many forums, for humans and AI agents",
   },
-  args: hotCommand.args,
+  // Flags belong to subcommands; the root only dispatches.
+  args: {},
   subCommands: {
     hot: hotCommand,
     latest: latestCommand,

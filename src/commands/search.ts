@@ -42,7 +42,7 @@ export const searchCommand = defineCommand({
     const query = words.join(" ").trim();
     if (!query) throw new UsageError("search needs a query, e.g. fora search rust async");
 
-    const site = requireSite(ctx.sites, pickSiteName(args.site, undefined, ctx.config, ctx.sites));
+    const site = requireSite(ctx.sites, pickSiteName(args.site, undefined, ctx.config, ctx.sites, "search", false));
 
     const adapter = ctx.registry.require(site.engine);
     assertCapability(adapter, "search", "search");

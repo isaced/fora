@@ -23,7 +23,8 @@ Adapters are written per **engine**, not per site. A site is just
 
 | Engine | Sites it serves | Notes |
 |---|---|---|
-| `discourse` | linux.do and every Discourse instance | hot / latest / topic / search / categories |
+| `discourse` | most Discourse instances | hot / latest / topic / search / categories |
+| `discourse-rss` | Discourse sites behind anti-bot walls (e.g. linux.do) | hot / latest / topic via `/top.rss`, `/latest.rss` (no search/categories or engagement metrics) |
 | `v2ex` | v2ex.com | hot / latest / topic / categories (no search, no period) |
 | `hn` | Hacker News | hot / latest / topic / search (Firebase + Algolia) |
 | `flarum` | any Flarum instance | hot (approx.) / latest / topic / search / tags |
@@ -52,6 +53,7 @@ bun run build        # -> dist/fora
 
 ```
 fora                             # prints help (use fora hot for the default site)
+fora help <command>              # full help + examples (same as <command> --help)
 fora digest  [--since 24h] [--per-site 10] [--top-replies 3]
 fora hot     [site] [--site <name|all|a,b>] [--period day|week|month|all] [-n 20]
 fora latest  [site] [--site <name|all|a,b>] [-n 20]

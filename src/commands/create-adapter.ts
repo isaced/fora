@@ -3,6 +3,7 @@
 import { mkdir } from "node:fs/promises";
 import { join } from "node:path";
 import { defineCommand } from "citty";
+import { formatCliError } from "../core/error-format.ts";
 import { UsageError } from "../core/errors.ts";
 
 function template(engine: string): string {
@@ -70,14 +71,25 @@ export const createAdapterCommand = defineCommand({
   async run({ args }) {
     const engine = String(args.engine).trim().toLowerCase();
     if (!/^[a-z0-9][a-z0-9-]*$/.test(engine)) {
-      throw new UsageError("engine name must be lowercase letters, digits and dashes");
+      throw new UsageError(
+        formatCliError("engine name must be lowercase letters, digits and dashes", [
+          { heading: "Example:", lines: ["fora create-adapter my-forum"] },
+        ]),
+      );
     }
 
     const baseDir = typeof args.dir === "string" && args.dir.trim() ? args.dir.trim() : process.cwd();
     const packageDir = join(baseDir, `fora-adapter-${engine}`);
 
     if (await Bun.file(join(packageDir, "package.json")).exists()) {
-      throw new UsageError(`${packageDir} already exists`);
+      throw new UsageError(
+        formatCliError(`${packageDir} already exists`, [
+          {
+            heading: "Choose another directory or engine name:",
+            lines: ["fora create-adapter <engine> --dir <path>"],
+          },
+        ]),
+      );
     }
 
     await mkdir(packageDir, { recursive: true });
@@ -99,7 +111,16 @@ export const createAdapterCommand = defineCommand({
     );
     await Bun.write(join(packageDir, "index.ts"), template(engine));
 
-    process.stdout.write(`Created ${packageDir}\n`);
-    process.stdout.write("Next: implement detect/latest in index.ts, then run `fora engines list` to confirm it loads.\n");
+    process.stdout.write(
+      `${formatCliError(`Created ${packageDir}`, [
+        {
+          heading: "Next:",
+          lines: [
+            `implement detect/latest in ${join(packageDir, "index.ts")}`,
+            "fora engines list   # confirm it loads",
+          ],
+        },
+      ])}\n`,
+    );
   },
 });

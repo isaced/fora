@@ -3,6 +3,7 @@
  * times for humans, and parse `--since` durations.
  */
 
+import { formatCliError } from "./error-format.ts";
 import { UsageError } from "./errors.ts";
 
 type TimeInput = string | number | Date | null | undefined;
@@ -75,7 +76,13 @@ const DURATION_UNITS: Record<string, number> = {
  */
 export function parseDuration(input: string): number {
   const raw = input.trim();
-  if (!raw) throw new UsageError("--since requires a duration, e.g. 24h or 7d");
+  if (!raw) {
+    throw new UsageError(
+      formatCliError("--since requires a duration", [
+        { heading: "Examples:", lines: ["30m, 24h, 7d, 1w, 1h30m"] },
+      ]),
+    );
+  }
 
   const pattern = /(\d+(?:\.\d+)?)\s*([smhdw])/gi;
   let total = 0;
@@ -92,7 +99,11 @@ export function parseDuration(input: string): number {
   const normalised = raw.replace(/\s+/g, "").toLowerCase();
   const consumedNormalised = consumed.replace(/\s+/g, "").toLowerCase();
   if (total <= 0 || consumedNormalised !== normalised) {
-    throw new UsageError(`invalid duration "${input}" (use e.g. 30m, 24h, 7d, 1w)`);
+    throw new UsageError(
+      formatCliError(`invalid duration "${input}"`, [
+        { heading: "Use an explicit unit:", lines: ["30m, 24h, 7d, 1w, 1h30m"] },
+      ]),
+    );
   }
   return total;
 }

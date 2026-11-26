@@ -42,8 +42,17 @@ describe("fields", () => {
     expect(projected).toEqual({ id: "1", site: "v2ex", url: "https://example.com/t/1" });
   });
 
-  it("rejects unknown field names", () => {
+  it("rejects unknown field names with a wrapped list of valid fields", () => {
     expect(() => parseFields("title,bogus")).toThrow(UsageError);
+    let message = "";
+    try {
+      parseFields("title,bogus");
+    } catch (error) {
+      message = (error as Error).message;
+    }
+    expect(message.split("\n")[0]).toBe("unknown --fields value(s): bogus");
+    expect(message).toContain("Valid fields:");
+    expect(message.split("\n").every((line) => line.length <= 80)).toBe(true);
     expect(parseFields(undefined)).toBeUndefined();
   });
 });

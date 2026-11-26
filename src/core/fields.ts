@@ -4,6 +4,7 @@
  * multi-site list stays interpretable.
  */
 
+import { formatCliError, wrapValues } from "./error-format.ts";
 import { UsageError } from "./errors.ts";
 import type { Topic } from "./model.ts";
 
@@ -32,12 +33,20 @@ export function parseFields(raw: string | undefined): string[] | undefined {
     .split(",")
     .map((field) => field.trim())
     .filter(Boolean);
-  if (fields.length === 0) throw new UsageError("--fields needs at least one field name");
+  if (fields.length === 0) {
+    throw new UsageError(
+      formatCliError("--fields needs at least one field name", [
+        { heading: "Example:", lines: ["--fields title,url,reply_count"] },
+      ]),
+    );
+  }
 
   const invalid = fields.filter((field) => !(TOPIC_FIELDS as readonly string[]).includes(field));
   if (invalid.length > 0) {
     throw new UsageError(
-      `unknown --fields value(s): ${invalid.join(", ")}. Valid fields: ${TOPIC_FIELDS.join(", ")}`,
+      formatCliError(`unknown --fields value(s): ${invalid.join(", ")}`, [
+        { heading: "Valid fields:", lines: wrapValues([...TOPIC_FIELDS], 70) },
+      ]),
     );
   }
   return fields;
