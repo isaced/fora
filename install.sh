@@ -24,6 +24,7 @@ Environment:
   FORA_VERSION       Install a specific tag, e.g. fora-cli-v0.3.0
   FORA_INSTALL_DIR   Install directory (default: \$HOME/.fora/bin)
   FORA_MODIFY_PATH   Set to 1 to append to \$HOME/.profile
+  FORA_VERIFY_ATTESTATION  Set to 1 to require 'gh attestation verify'
 EOF
 }
 
@@ -110,12 +111,13 @@ curl -fsSL -o "$tmp_dir/$asset.sha256" "$base_url/$asset.sha256"
   fi
 )
 
-if command -v gh >/dev/null 2>&1; then
-  if gh attestation verify "$tmp_dir/$asset" -R "$REPO" >/dev/null 2>&1; then
-    echo "Build attestation verified"
-  else
-    echo "Warning: could not verify GitHub attestation (checksum still verified)" >&2
-  fi
+if [ "${FORA_VERIFY_ATTESTATION:-0}" = "1" ]; then
+  command -v gh >/dev/null 2>&1 || {
+    echo "error: FORA_VERIFY_ATTESTATION=1 requires gh" >&2
+    exit 1
+  }
+  gh attestation verify "$tmp_dir/$asset" -R "$REPO"
+  echo "Build attestation verified"
 fi
 
 mkdir -p "$INSTALL_DIR"

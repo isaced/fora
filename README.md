@@ -124,8 +124,8 @@ curl -fsSL https://raw.githubusercontent.com/isaced/fora/main/install.sh | sh
 ```
 
 The script detects your OS/arch, downloads the matching release asset and
-`.sha256`, verifies the checksum, checks the GitHub attestation when `gh` is
-available, and installs to `$HOME/.fora/bin`. Pin a version or change the
+`.sha256`, verifies the checksum, and installs to `$HOME/.fora/bin`. Set
+`FORA_VERIFY_ATTESTATION=1` to additionally require `gh attestation verify`. Pin a version or change the
 install directory with environment variables:
 
 ```sh
