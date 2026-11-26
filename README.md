@@ -30,8 +30,8 @@ well an agent can discover, call and afford it.
   pool while keeping each host's request pacing. HTTP 403s on public reads
   retry once via a reusable agent-browser session when available.
 - **Cost awareness**: `--fields` projection, excerpts by default, top-N replies,
-  declared truncation, and a token estimate in every JSON envelope so agents can
-  budget before reading the full payload.
+  declared truncation, per-site token accounting, and `digest --budget <tokens>`
+  so agents can cap context cost before reading the payload.
 
 ## Supported engines
 
@@ -74,7 +74,7 @@ bun run build        # -> dist/fora
 ```
 fora                             # prints help (use fora hot for the default site)
 fora help <command>              # full help + examples (same as <command> --help)
-fora digest  [--since 24h] [--per-site 10] [--top-replies 3]
+fora digest  [--since 24h] [--per-site 10] [--top-replies 3] [--budget N]
 fora hot     [site] [--site <name|all|a,b>] [--period day|week|month|all] [-n 20]
 fora latest  [site] [--site <name|all|a,b>] [-n 20]
 fora show    <topic-ref...> [--page N] [--all-pages] [--replies N] [--excerpt]

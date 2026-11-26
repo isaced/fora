@@ -1,9 +1,10 @@
 import { describe, expect, it } from "bun:test";
 import type { Adapter } from "../core/adapter.ts";
+import { approxTokens } from "../core/envelope.ts";
 import type { Topic, TopicDetail } from "../core/model.ts";
 import type { Site } from "../core/sites.ts";
 import type { Ctx } from "./context.ts";
-import { fetchDigestGroups } from "./digest.ts";
+import { applyDigestBudget, fetchDigestGroups } from "./digest.ts";
 
 function topic(id: string): Topic {
   return {
@@ -101,6 +102,26 @@ function makeCtx(engines: Record<string, Adapter>, siteNames: string[]): Ctx {
     registry: { get: (engine: string) => engines[engine] },
   } as unknown as Ctx;
 }
+
+describe("applyDigestBudget", () => {
+  it("fills sites in order and reports what was omitted", () => {
+    const groups = [
+      { site: "a", topics: [topic("a1"), topic("a2")] },
+      { site: "b", topics: [topic("b1")] },
+    ];
+    const budget = approxTokens([{ site: "a", topics: [groups[0]!.topics[0]] }]);
+
+    const fitted = applyDigestBudget(groups as never, budget);
+
+    expect(fitted.groups.map((group) => group.site)).toEqual(["a"]);
+    expect(fitted.groups[0]!.topics).toHaveLength(1);
+    expect(fitted.meta.budget).toBe(budget);
+    expect(fitted.meta.budget_used).toBeLessThanOrEqual(budget);
+    expect(fitted.meta.per_site_tokens.a).toBeGreaterThan(0);
+    expect(fitted.meta.omitted_sites).toEqual(["b"]);
+    expect(fitted.meta.omitted_topics).toEqual({ a: 1, b: 1 });
+  });
+});
 
 describe("fetchDigestGroups", () => {
   it("uses one bounded global pool and preserves site/topic order", async () => {

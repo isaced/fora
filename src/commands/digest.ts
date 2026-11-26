@@ -10,7 +10,7 @@ import { defineCommand } from "citty";
 import type { Adapter } from "../core/adapter.ts";
 import { mapLimit } from "../core/async.ts";
 import { applyFields } from "../core/fields.ts";
-import { envelope } from "../core/envelope.ts";
+import { approxTokens, envelope } from "../core/envelope.ts";
 import { errorMessage } from "../core/error-format.ts";
 import type { DegradationInfo } from "../core/degradation.ts";
 import type { Post, Topic } from "../core/model.ts";
@@ -140,6 +140,77 @@ export async function fetchDigestGroups(ctx: Ctx, options: DigestFetchOptions): 
   });
 }
 
+export interface DigestBudgetMeta {
+  budget: number;
+  budget_used: number;
+  per_site_tokens: Record<string, number>;
+  omitted_sites: string[];
+  omitted_topics: Record<string, number>;
+  count: number;
+}
+
+/** Fit groups/topics into an approximate token budget in follow-list order. */
+export function applyDigestBudget(
+  groups: DigestGroup[],
+  budget: number,
+  fields?: string[],
+): { groups: DigestGroup[]; meta: DigestBudgetMeta } {
+  const payload = (selected: DigestGroup[]) =>
+    selected.map((group) => ({
+      site: group.site,
+      error: group.error,
+      degraded: group.degraded,
+      topics: applyFields(group.topics, fields),
+    }));
+  const cost = (selected: DigestGroup[]) => approxTokens(payload(selected));
+
+  const selected: DigestGroup[] = [];
+  const perSiteTokens: Record<string, number> = {};
+  const omittedSites: string[] = [];
+  const omittedTopics: Record<string, number> = {};
+  let used = 0;
+
+  for (const group of groups) {
+    const shell: DigestGroup = { ...group, topics: [] };
+    if (cost([...selected, shell]) > budget) {
+      omittedSites.push(group.site);
+      if (group.topics.length > 0) omittedTopics[group.site] = group.topics.length;
+      continue;
+    }
+
+    const topics: DigestTopic[] = [];
+    for (const topic of group.topics) {
+      const trial = [...selected, { ...shell, topics: [...topics, topic] }];
+      if (cost(trial) > budget) break;
+      topics.push(topic);
+    }
+    const kept: DigestGroup = { ...group, topics };
+    selected.push(kept);
+    used = cost(selected);
+    perSiteTokens[group.site] = approxTokens(payload([kept]));
+    const omitted = group.topics.length - topics.length;
+    if (omitted > 0) omittedTopics[group.site] = omitted;
+  }
+
+  return {
+    groups: selected,
+    meta: {
+      budget,
+      budget_used: used,
+      per_site_tokens: perSiteTokens,
+      omitted_sites: omittedSites,
+      omitted_topics: omittedTopics,
+      count: selected.reduce((sum, group) => sum + group.topics.length, 0),
+    },
+  };
+}
+
+export function formatBudgetSummary(meta: DigestBudgetMeta): string {
+  const sites = meta.omitted_sites.length > 0 ? meta.omitted_sites.join(", ") : "none";
+  const topics = Object.values(meta.omitted_topics).reduce((sum, count) => sum + count, 0);
+  return `[budget] ${meta.budget_used}/${meta.budget} tokens · omitted sites: ${sites} · omitted topics: ${topics}`;
+}
+
 export const digestCommand = defineCommand({
   meta: {
     name: "digest",
@@ -158,6 +229,11 @@ export const digestCommand = defineCommand({
       valueHint: "n",
     },
     fields: fieldsArg,
+    budget: {
+      type: "string",
+      description: "Maximum approximate tokens in the digest payload",
+      valueHint: "n",
+    },
     json: jsonArg,
   },
   async run({ args }) {
@@ -171,14 +247,19 @@ export const digestCommand = defineCommand({
     const sinceMs = resolveSince(args.since);
     const fields = parseFieldOption(args.fields);
     const json = Boolean(args.json);
+    const budget = args.budget === undefined ? undefined : intOption(args.budget, 1, "budget");
 
-    const groups = await fetchDigestGroups(ctx, {
+    const fetched = await fetchDigestGroups(ctx, {
       names: followSiteNames(ctx.config),
       perSite,
       topReplies,
       sinceMs,
     });
 
+    const fitted = budget === undefined
+      ? { groups: fetched, meta: undefined }
+      : applyDigestBudget(fetched, budget, fields);
+    const groups = fitted.groups;
     const totalTopics = groups.reduce((sum, group) => sum + group.topics.length, 0);
 
     if (json) {
@@ -194,11 +275,13 @@ export const digestCommand = defineCommand({
           per_site: perSite,
           top_replies: topReplies,
           count: totalTopics,
+          ...(fitted.meta ?? {}),
         }),
       );
       return;
     }
 
     process.stdout.write(`${renderDigest(groups)}\n`);
+    if (fitted.meta) process.stdout.write(`${formatBudgetSummary(fitted.meta)}\n`);
   },
 });

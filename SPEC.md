@@ -311,7 +311,7 @@ and only in a TTY.
 
 ```
 fora                             # prints help (use `fora hot` for the default site)
-fora digest  [--since 24h] [--per-site 10] [--top-replies 3]   # §6.2, the agent flagship
+fora digest  [--since 24h] [--per-site 10] [--top-replies 3] [--budget N]   # §6.2, the agent flagship
 fora hot     [site] [--site <name|all|a,b>] [--period day|week|month|all] [-n 20]
 fora latest  [site] [--site <name|all|a,b>] [-n 20]
 fora show    <topic-ref...> [--page N] [--all-pages] [--replies N] [--excerpt]
@@ -369,7 +369,9 @@ no per-site loops, no per-topic follow-up calls, no dedup homework.
 - **Token economy** — context is the agent's scarce resource:
   - `--fields a,b,c` on list/digest commands (gh-style): return only the
     named model fields.
-  - Excerpts by default; full post text only with `--full`.
+  - `digest --budget <tokens>` caps the approximate payload size in
+    follow-list order; `omitted_sites` and `omitted_topics` declare what
+    was trimmed, and `per_site_tokens` shows where the budget went.
   - Replies are highlights (top by likes), never whole threads, unless
     `show --all-pages` is explicitly requested.
   - **Truncation is always declared** in the payload (`"truncated": true`,
