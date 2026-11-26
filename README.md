@@ -21,7 +21,7 @@ scraping HTML.
 fora is built **agent-first**; every command, flag and output is judged by how
 well an agent can discover, call and afford it.
 
-- **Accessibility**: `--json` on every command, structured errors with actionable
+- **Accessibility**: piped output is JSON by default, `--human` forces a table, structured errors with actionable
   next steps, meaningful exit codes, no TTY-only prompts, and help with concrete
   Examples (`fora help <command>`). Agent can also bootstrap from the CLI with
   `fora skills get core` and `fora schema`.

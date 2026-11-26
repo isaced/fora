@@ -18,8 +18,8 @@ import type { TopicDetail } from "../core/model.ts";
 import { requireSite, type Site } from "../core/sites.ts";
 import { renderTopicDetail } from "../output/human.ts";
 import { writeJson } from "../output/json.ts";
-import { createContext } from "./context.ts";
-import { assertCapability, intOption, jsonArg } from "./common.ts";
+import { createContext, type Ctx } from "./context.ts";
+import { assertCapability, humanArg, intOption, jsonArg } from "./common.ts";
 
 const DETECT_ORDER = ["hn", "v2ex", "discourse-rss", "discourse", "flarum", "nodebb"];
 const MAX_ALL_PAGES = 50;
@@ -197,12 +197,60 @@ export function shapeTopicDetail(detail: TopicDetail, replies?: number, excerptO
   };
 }
 
-interface ShowResult {
+export interface ShowResult {
   ref: string;
   site?: string;
   topic_id?: string;
   detail?: TopicDetail;
   error?: string;
+}
+
+export interface ShowFetchOptions {
+  page: number;
+  replies?: number;
+  excerptOnly?: boolean;
+  allPages?: boolean;
+}
+
+/** Resolve and fetch all refs with one bounded pool; failures stay local. */
+export async function collectShowResults(
+  ctx: Ctx,
+  refs: string[],
+  options: ShowFetchOptions,
+): Promise<{ results: ShowResult[]; firstError?: unknown }> {
+  let firstError: unknown;
+  const results = await mapLimit(refs, SHOW_CONCURRENCY, async (ref): Promise<ShowResult> => {
+    try {
+      const target = await resolveShowTarget(ctx, ref);
+      const adapter: Adapter = ctx.registry.require(target.site.engine);
+      assertCapability(adapter, "topic", "show");
+
+      let detail = await adapter.topic(target.site, target.id, options.page);
+      if (
+        options.allPages &&
+        detail.pages > 1 &&
+        adapter.engine !== "hn" &&
+        adapter.engine !== "rss"
+      ) {
+        const pageCount = Math.min(detail.pages, MAX_ALL_PAGES);
+        const fetched: TopicDetail[] = [];
+        for (let number = 1; number <= pageCount; number += 1) {
+          fetched.push(number === options.page ? detail : await adapter.topic(target.site, target.id, number));
+        }
+        detail = mergePages(fetched);
+      }
+      return {
+        ref,
+        site: target.site.name,
+        topic_id: detail.id,
+        detail: shapeTopicDetail(detail, options.replies, options.excerptOnly),
+      };
+    } catch (error) {
+      firstError ??= error;
+      return { ref, error: errorMessage(error) };
+    }
+  });
+  return { results, firstError };
 }
 
 export const showCommand = defineCommand({
@@ -237,6 +285,7 @@ export const showCommand = defineCommand({
       default: false,
     },
     json: jsonArg,
+    human: humanArg,
   },
   async run({ args }) {
     const ctx = await createContext();
@@ -248,33 +297,11 @@ export const showCommand = defineCommand({
     const excerptOnly = Boolean(args.excerpt);
     const replies = repliesOption(args.replies, excerptOnly);
     const allPages = Boolean(args["all-pages"]) || Boolean((args as Record<string, unknown>).allPages);
-    let firstError: unknown;
-
-    const results = await mapLimit(uniqueRefs, SHOW_CONCURRENCY, async (ref): Promise<ShowResult> => {
-      try {
-        const target = await resolveShowTarget(ctx, ref);
-        const adapter: Adapter = ctx.registry.require(target.site.engine);
-        assertCapability(adapter, "topic", "show");
-
-        let detail = await adapter.topic(target.site, target.id, page);
-        if (allPages && detail.pages > 1 && adapter.engine !== "hn" && adapter.engine !== "rss") {
-          const pageCount = Math.min(detail.pages, MAX_ALL_PAGES);
-          const fetched: TopicDetail[] = [];
-          for (let number = 1; number <= pageCount; number += 1) {
-            fetched.push(number === page ? detail : await adapter.topic(target.site, target.id, number));
-          }
-          detail = mergePages(fetched);
-        }
-        return {
-          ref,
-          site: target.site.name,
-          topic_id: detail.id,
-          detail: shapeTopicDetail(detail, replies, excerptOnly),
-        };
-      } catch (error) {
-        firstError ??= error;
-        return { ref, error: errorMessage(error) };
-      }
+    const { results, firstError } = await collectShowResults(ctx, uniqueRefs, {
+      page,
+      replies,
+      excerptOnly,
+      allPages,
     });
 
     const failed = results.filter((result) => result.error);

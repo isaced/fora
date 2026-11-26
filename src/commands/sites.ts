@@ -9,7 +9,7 @@ import { buildSites, type Site } from "../core/sites.ts";
 import { renderSites } from "../output/human.ts";
 import { writeJson } from "../output/json.ts";
 import { createContext } from "./context.ts";
-import { jsonArg, yesArg } from "./common.ts";
+import { humanArg, jsonArg, yesArg } from "./common.ts";
 
 const DETECT_ORDER = ["hn", "v2ex", "discourse-rss", "discourse", "flarum", "nodebb"];
 
@@ -59,7 +59,7 @@ async function askConfirmation(message: string, skip: boolean): Promise<boolean>
 
 const listCommand = defineCommand({
   meta: { name: "list", description: "List directory, preset and configured sites" },
-  args: { json: jsonArg },
+  args: { json: jsonArg, human: humanArg },
   async run({ args }) {
     const ctx = await createContext();
     const sites = buildSites(ctx.config);
@@ -76,6 +76,7 @@ const searchCommand = defineCommand({
   args: {
     keyword: { type: "positional", required: true, description: "Name or tag keyword" },
     json: jsonArg,
+    human: humanArg,
   },
   async run({ args }) {
     const ctx = await createContext();

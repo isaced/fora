@@ -21,7 +21,7 @@ import type { DigestGroup, DigestTopic } from "../output/human.ts";
 import { renderDigest } from "../output/human.ts";
 import { writeJson } from "../output/json.ts";
 import { createContext, type Ctx } from "./context.ts";
-import { fieldsArg, intOption, jsonArg, parseFieldOption, resolveSince, sinceArg } from "./common.ts";
+import { fieldsArg, intOption, humanArg, jsonArg, parseFieldOption, resolveSince, sinceArg } from "./common.ts";
 
 /** Total in-flight digest requests across all sites and topics. */
 export const DIGEST_CONCURRENCY = 5;
@@ -235,6 +235,7 @@ export const digestCommand = defineCommand({
       valueHint: "n",
     },
     json: jsonArg,
+    human: humanArg,
   },
   async run({ args }) {
     const ctx = await createContext();

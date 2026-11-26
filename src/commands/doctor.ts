@@ -8,7 +8,7 @@ import { findSite, PRESETS, type Site } from "../core/sites.ts";
 import { renderDoctor, type DoctorSiteReport } from "../output/human.ts";
 import { writeJson } from "../output/json.ts";
 import { createContext } from "./context.ts";
-import { jsonArg } from "./common.ts";
+import { humanArg, jsonArg } from "./common.ts";
 
 const PROBE_CONCURRENCY = 4;
 
@@ -24,6 +24,7 @@ export const doctorCommand = defineCommand({
       default: false,
     },
     json: jsonArg,
+    human: humanArg,
   },
   async run({ args }) {
     const ctx = await createContext();

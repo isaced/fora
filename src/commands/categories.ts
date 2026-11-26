@@ -6,7 +6,7 @@ import { requireSite } from "../core/sites.ts";
 import { renderCategories } from "../output/human.ts";
 import { writeJson } from "../output/json.ts";
 import { createContext } from "./context.ts";
-import { assertCapability, jsonArg, pickSiteName, siteFlagArg } from "./common.ts";
+import { assertCapability, humanArg, jsonArg, pickSiteName, siteFlagArg } from "./common.ts";
 
 export const categoriesCommand = defineCommand({
   meta: {
@@ -21,6 +21,7 @@ export const categoriesCommand = defineCommand({
     },
     site: siteFlagArg,
     json: jsonArg,
+    human: humanArg,
   },
   async run({ args }) {
     const ctx = await createContext();

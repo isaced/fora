@@ -10,11 +10,12 @@
 import { renderUsage, runCommand, type CommandDef } from "citty";
 import { renderGuide } from "./commands/help.ts";
 import { main } from "./commands/index.ts";
-import { buildForaSchema, selectCommandSchema } from "./commands/schema.ts";
+import { buildForaSchema, resolveCommandArgs, selectCommandSchema } from "./commands/schema.ts";
 import { closeBrowserFetches } from "./core/browser-fetch.ts";
 import { closeProxyBridge } from "./core/proxy-fetch.ts";
 import { formatCliError, type ErrorSection } from "./core/error-format.ts";
-import { ForaError, exitCodeOf, messageOf } from "./core/errors.ts";
+import { resolveOutputMode } from "./core/output-mode.ts";
+import { ForaError, UsageError, exitCodeOf, messageOf } from "./core/errors.ts";
 import { VERSION } from "./core/version.ts";
 import { writeErrorJson } from "./output/json.ts";
 
@@ -349,6 +350,27 @@ async function printUsage(cmd: AnyCommand, parent: AnyCommand | undefined, guide
   process.stdout.write(`${text.trimEnd()}${guide ? `\n\n${guide}` : ""}\n`);
 }
 
+/** Piped output defaults to JSON for data commands; TTY stays human-readable. */
+async function withDefaultJson(rawArgs: string[]): Promise<string[] | undefined> {
+  const [cmd] = resolveHelpTarget(rawArgs);
+  const args = await resolveCommandArgs(cmd);
+  if (!("json" in args)) return rawArgs;
+
+  const mode = resolveOutputMode({ isTTY: Boolean(process.stdout.isTTY), args: rawArgs, env: process.env });
+  if (mode === "conflict") {
+    handleError(
+      new UsageError(
+        formatCliError("--json and --human cannot be combined", [
+          { heading: "Pick one:", lines: ["--json   # machine-readable", "--human  # table output"] },
+        ]),
+      ),
+      rawArgs,
+    );
+    return undefined;
+  }
+  return mode === "json" && !rawArgs.includes("--json") ? [...rawArgs, "--json"] : rawArgs;
+}
+
 async function mainEntry(): Promise<void> {
   const rawArgs = process.argv.slice(2);
 
@@ -398,16 +420,18 @@ async function mainEntry(): Promise<void> {
     await printUsage(...bareParent);
     return;
   }
-  const missingFlag = missingFlagValue(rawArgs);
+  const effectiveArgs = await withDefaultJson(rawArgs);
+  if (!effectiveArgs) return;
+  const missingFlag = missingFlagValue(effectiveArgs);
   if (missingFlag) {
-    writeMissingFlagError(missingFlag, rawArgs.includes("--json"));
+    writeMissingFlagError(missingFlag, effectiveArgs.includes("--json"));
     return;
   }
 
   try {
-    await runCommand(main, { rawArgs });
+    await runCommand(main, { rawArgs: effectiveArgs });
   } catch (error) {
-    handleError(error, rawArgs);
+    handleError(error, effectiveArgs);
   } finally {
     await closeBrowserFetches();
     closeProxyBridge();
