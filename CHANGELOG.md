@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/isaced/fora/compare/fora-cli-v0.3.0...fora-cli-v0.3.1) (2026-11-26)
+
+
+### Bug Fixes
+
+* **hn:** report thread totals in truncation metadata ([#14](https://github.com/isaced/fora/issues/14)) ([0202141](https://github.com/isaced/fora/commit/0202141e07f1898283af65bca52e05bf8f797d8b))
+
 ## [0.3.0](https://github.com/isaced/fora/compare/fora-cli-v0.2.0...fora-cli-v0.3.0) (2026-11-26)
 
 
