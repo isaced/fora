@@ -1,23 +1,139 @@
 /**
  * `fora digest` — the agent flagship: one call returns every followed site's
  * hot topics with OP excerpts and the top replies by likes (SPEC §6.2).
+ *
+ * Fetches are bounded by one global pool (sites and topics share it), while
+ * HttpClient still enforces the per-host ≥300ms gap.
  */
 
 import { defineCommand } from "citty";
+import type { Adapter } from "../core/adapter.ts";
 import { mapLimit } from "../core/async.ts";
 import { applyFields } from "../core/fields.ts";
 import { envelope } from "../core/envelope.ts";
 import { errorMessage } from "../core/error-format.ts";
 import type { Post, Topic } from "../core/model.ts";
+import type { Site } from "../core/sites.ts";
 import { followSiteNames, requireSite } from "../core/sites.ts";
 import { withinSince } from "../core/time.ts";
 import type { DigestGroup, DigestTopic } from "../output/human.ts";
 import { renderDigest } from "../output/human.ts";
 import { writeJson } from "../output/json.ts";
-import { createContext } from "./context.ts";
+import { createContext, type Ctx } from "./context.ts";
 import { fieldsArg, intOption, jsonArg, parseFieldOption, resolveSince, sinceArg } from "./common.ts";
 
-const TOPIC_CONCURRENCY = 3;
+/** Total in-flight digest requests across all sites and topics. */
+export const DIGEST_CONCURRENCY = 5;
+
+export interface DigestFetchOptions {
+  names: string[];
+  perSite: number;
+  topReplies: number;
+  sinceMs?: number;
+  concurrency?: number;
+}
+
+interface LoadedSite {
+  group: DigestGroup;
+  site?: Site;
+  adapter?: Adapter;
+  topics: Topic[];
+}
+
+function finishDigestTopic(
+  topic: Topic,
+  excerpt: string | undefined,
+  topReplies: Post[],
+  omitted: number,
+): DigestTopic {
+  return {
+    ...topic,
+    excerpt: excerpt ?? topic.excerpt,
+    top_replies: topReplies,
+    omitted_replies: omitted > 0 ? omitted : undefined,
+  };
+}
+
+async function fetchDigestTopic(
+  adapter: Adapter,
+  site: Site,
+  topic: Topic,
+  topReplies: number,
+): Promise<DigestTopic> {
+  if (!adapter.capabilities.topic) return { ...topic };
+  try {
+    const detail = await adapter.topic(site, topic.id, 1);
+    const replies = detail.posts.filter((post) => post.floor > 1);
+    const top = [...replies].sort((a, b) => (b.like_count ?? 0) - (a.like_count ?? 0)).slice(0, topReplies);
+    const omitted = Math.max(0, replies.length - top.length);
+    return finishDigestTopic(topic, detail.excerpt, top, omitted);
+  } catch {
+    return { ...topic };
+  }
+}
+
+/** Resolve sites, fetch hot lists, then fetch topic details with one shared pool. */
+export async function fetchDigestGroups(ctx: Ctx, options: DigestFetchOptions): Promise<DigestGroup[]> {
+  const concurrency = options.concurrency ?? DIGEST_CONCURRENCY;
+
+  const loaded: LoadedSite[] = await mapLimit(options.names, concurrency, async (name): Promise<LoadedSite> => {
+    const group: DigestGroup = { site: name, topics: [] };
+    let site: Site;
+    try {
+      site = requireSite(ctx.sites, name);
+    } catch (error) {
+      group.error = errorMessage(error);
+      return { group, topics: [] };
+    }
+
+    const adapter = ctx.registry.get(site.engine);
+    if (!adapter) {
+      group.error = `unknown engine "${site.engine}"`;
+      return { group, topics: [] };
+    }
+    if (!adapter.capabilities.hot) {
+      group.error = `hot is not supported by ${site.engine}`;
+      return { group, topics: [] };
+    }
+
+    try {
+      const hot = await adapter.hot(site, { limit: options.perSite });
+      const topics = hot.filter((topic) =>
+        withinSince(topic.created_at, topic.last_activity_at, options.sinceMs),
+      );
+      group.topics = new Array<DigestTopic>(topics.length);
+      return { group, site, adapter, topics };
+    } catch (error) {
+      group.error = errorMessage(error);
+      return { group, topics: [] };
+    }
+  });
+
+  const jobs: Array<{
+    siteIndex: number;
+    topicIndex: number;
+    topic: Topic;
+    site: Site;
+    adapter: Adapter;
+  }> = [];
+  loaded.forEach((entry, siteIndex) => {
+    entry.topics.forEach((topic, topicIndex) => {
+      if (!entry.site || !entry.adapter) return;
+      jobs.push({ siteIndex, topicIndex, topic, site: entry.site, adapter: entry.adapter });
+    });
+  });
+
+  await mapLimit(jobs, concurrency, async (job) => {
+    loaded[job.siteIndex]!.group.topics[job.topicIndex] = await fetchDigestTopic(
+      job.adapter,
+      job.site,
+      job.topic,
+      options.topReplies,
+    );
+  });
+
+  return loaded.map((entry) => entry.group);
+}
 
 export const digestCommand = defineCommand({
   meta: {
@@ -51,42 +167,11 @@ export const digestCommand = defineCommand({
     const fields = parseFieldOption(args.fields);
     const json = Boolean(args.json);
 
-    const names = followSiteNames(ctx.config);
-    const groups: DigestGroup[] = await mapLimit(names, TOPIC_CONCURRENCY, async (name) => {
-      let site;
-      try {
-        site = requireSite(ctx.sites, name);
-      } catch (error) {
-        return { site: name, topics: [], error: errorMessage(error) };
-      }
-
-      const adapter = ctx.registry.get(site.engine);
-      if (!adapter) return { site: name, topics: [], error: `unknown engine "${site.engine}"` };
-      if (!adapter.capabilities.hot) {
-        return { site: name, topics: [], error: `hot is not supported by ${site.engine}` };
-      }
-
-      try {
-        const hot = await adapter.hot(site, { limit: perSite });
-        const filtered = hot.filter((topic) => withinSince(topic.created_at, topic.last_activity_at, sinceMs));
-
-        const topics = await mapLimit(filtered, TOPIC_CONCURRENCY, async (topic): Promise<DigestTopic> => {
-          if (!adapter.capabilities.topic) return { ...topic };
-          try {
-            const detail = await adapter.topic(site, topic.id, 1);
-            const replies = detail.posts.filter((post) => post.floor > 1);
-            const top = [...replies].sort((a, b) => (b.like_count ?? 0) - (a.like_count ?? 0)).slice(0, topReplies);
-            const omitted = Math.max(0, replies.length - top.length);
-            return finishDigestTopic(topic, detail.excerpt, top, omitted);
-          } catch {
-            return { ...topic };
-          }
-        });
-
-        return { site: name, topics };
-      } catch (error) {
-        return { site: name, topics: [], error: errorMessage(error) };
-      }
+    const groups = await fetchDigestGroups(ctx, {
+      names: followSiteNames(ctx.config),
+      perSite,
+      topReplies,
+      sinceMs,
     });
 
     const totalTopics = groups.reduce((sum, group) => sum + group.topics.length, 0);
@@ -111,17 +196,3 @@ export const digestCommand = defineCommand({
     process.stdout.write(`${renderDigest(groups)}\n`);
   },
 });
-
-function finishDigestTopic(
-  topic: Topic,
-  excerpt: string | undefined,
-  topReplies: Post[],
-  omitted: number,
-): DigestTopic {
-  return {
-    ...topic,
-    excerpt: excerpt ?? topic.excerpt,
-    top_replies: topReplies,
-    omitted_replies: omitted > 0 ? omitted : undefined,
-  };
-}
