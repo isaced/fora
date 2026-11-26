@@ -263,9 +263,10 @@ sites:
 
 Personalisation lives in config, not in the agent's prompt: the agent runs
 the same `fora digest` every day and the tool applies the human's choices.
-Filters are allowlists over the engine's native section concept (V2EX
-nodes, Discourse categories, Flarum tags); engines without native section
-filtering apply them client-side on the unified `category` field.
+Digest applies allowlists to the engine's native sections (V2EX nodes,
+Discourse categories, Flarum tags) before fetching topic details. Entries
+match IDs, slugs, or names exactly; a topic without a matching section is
+excluded. Filtering applies to the fetched hot window and does not backfill it.
 
 ## 6. Command surface
 

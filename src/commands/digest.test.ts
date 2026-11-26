@@ -127,6 +127,39 @@ describe("applyDigestBudget", () => {
 });
 
 describe("fetchDigestGroups", () => {
+  it("matches category names through the adapter and enriches only allowed topics", async () => {
+    const listed = [
+      { ...topic("keep"), category: { id: "7" } },
+      { ...topic("skip"), category: { id: "9" } },
+      topic("unclassified"),
+    ];
+    const adapter = makeAdapter("e0", listed, { active: 0, max: 0 });
+    adapter.capabilities.categories = true;
+    adapter.categories = async () => [{ id: "7", name: "开发调优", slug: "dev" }];
+    const enriched: string[] = [];
+    const fetchTopic = adapter.topic;
+    adapter.topic = async (site, ref, page) => {
+      enriched.push(ref);
+      return fetchTopic(site, ref, page);
+    };
+    const ctx = makeCtx({ e0: adapter }, ["s1"]);
+    ctx.sites[0]!.include_categories = ["开发调优"];
+    const [group] = await fetchDigestGroups(ctx, { names: ["s1"], perSite: 3, topReplies: 1 });
+    expect(group!.topics.map(({ id }) => id)).toEqual(["keep"]);
+    expect(enriched).toEqual(["keep"]);
+  });
+
+  it("matches a node slug without another request", async () => {
+    const listed = [{ ...topic("keep"), category: { id: "7", name: "技术", slug: "tech" } }];
+    const adapter = makeAdapter("e0", listed, { active: 0, max: 0 });
+    adapter.capabilities.categories = true;
+    adapter.categories = async () => { throw new Error("unexpected category lookup"); };
+    const ctx = makeCtx({ e0: adapter }, ["s1"]);
+    ctx.sites[0]!.include_nodes = ["tech"];
+    const [group] = await fetchDigestGroups(ctx, { names: ["s1"], perSite: 1, topReplies: 1 });
+    expect(group!.topics.map(({ id }) => id)).toEqual(["keep"]);
+  });
+
   it("uses one bounded global pool and preserves site/topic order", async () => {
     const stats: Stats = { active: 0, max: 0 };
     const engines = {

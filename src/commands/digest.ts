@@ -12,6 +12,7 @@ import { mapLimit } from "../core/async.ts";
 import { applyFields } from "../core/fields.ts";
 import { approxTokens, envelope } from "../core/envelope.ts";
 import type { DegradationInfo } from "../core/degradation.ts";
+import { UnsupportedError } from "../core/errors.ts";
 import type { Post, Topic } from "../core/model.ts";
 import type { Site } from "../core/sites.ts";
 import { followSiteNames, requireSite } from "../core/sites.ts";
@@ -43,6 +44,33 @@ interface LoadedSite {
   site?: Site;
   adapter?: Adapter;
   topics: Topic[];
+}
+
+async function filterAllowedTopics(site: Site, adapter: Adapter, topics: Topic[]): Promise<Topic[]> {
+  const allowed = new Set(
+    [...(site.include_nodes ?? []), ...(site.include_categories ?? [])].map((value) => value.trim()).filter(Boolean),
+  );
+  if (allowed.size === 0 || topics.length === 0) return topics;
+
+  const matches = (value: string | undefined) => value !== undefined && allowed.has(value);
+  const sections = (topic: Topic) => site.engine === "flarum"
+    ? topic.tags ?? []
+    : topic.category ? [topic.category.id, topic.category.name, topic.category.slug] : [];
+  const directMatch = (topic: Topic) => sections(topic).some(matches);
+  if (!adapter.capabilities.categories || !topics.some((topic) =>
+    sections(topic).length > 0 && !directMatch(topic) && (site.engine === "flarum" || !topic.category?.name),
+  )) {
+    return topics.filter(directMatch);
+  }
+
+  try {
+    for (const category of await adapter.categories(site)) {
+      if (matches(category.name) || matches(category.slug)) allowed.add(category.id);
+    }
+  } catch (error) {
+    if (!(error instanceof UnsupportedError)) throw error;
+  }
+  return topics.filter(directMatch);
 }
 
 function finishDigestTopic(
@@ -93,9 +121,10 @@ export async function fetchDigestGroups(ctx: Ctx, options: DigestFetchOptions): 
       const adapter = ctx.registry.require(site.engine);
       assertCapability(adapter, "hot", "hot");
       const hot = await adapter.hot(site, { limit: options.perSite });
-      const topics = hot.filter((topic) =>
+      const recent = hot.filter((topic) =>
         withinSince(topic.created_at, topic.last_activity_at, options.sinceMs),
       );
+      const topics = await filterAllowedTopics(site, adapter, recent);
       group.topics = new Array<DigestTopic>(topics.length);
       return { group, site, adapter, topics };
     } catch (error) {
