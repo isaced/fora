@@ -129,6 +129,9 @@ source does not provide them; adapters must not invent values.
 }
 
 // TopicDetail = Topic + { "posts": [Post], "post_count": n,
+//                         "total_replies": n-1,       // replies that exist
+//                         "fetched_replies": m,       // adapter fetch window
+//                         "omitted_replies": n-1-shown,
 //                         "page": 1, "pages": 3 }
 
 // Category { "id", "name", "slug", "description", "topic_count" }
@@ -375,7 +378,8 @@ no per-site loops, no per-topic follow-up calls, no dedup homework.
   - Replies are highlights (top by likes), never whole threads, unless
     `show --all-pages` is explicitly requested.
   - **Truncation is always declared** in the payload (`"truncated": true`,
-    `"omitted_replies": 41`), never silent.
+    `"total_replies"`, `"fetched_replies"`, `"omitted_replies"` measured
+    against the thread total), never silent.
   - Every JSON payload carries `"meta": {"approx_tokens": n}` so the agent
     can budget before reading further.
 - **Agent-first output default.** Data commands emit the JSON envelope when

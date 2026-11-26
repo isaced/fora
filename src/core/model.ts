@@ -55,7 +55,11 @@ export interface TopicDetail extends Topic {
   pages: number;
   /** Set when the adapter knowingly returns fewer posts than the topic holds. */
   truncated?: boolean;
-  /** How many posts/replies were left out when truncated is true. */
+  /** Total replies on the thread, including ones the adapter never fetched. */
+  total_replies?: number;
+  /** Replies actually fetched by the adapter (may be capped). */
+  fetched_replies?: number;
+  /** How many replies were left out of `posts`, measured against `total_replies`. */
   omitted_replies?: number;
 }
 

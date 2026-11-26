@@ -179,7 +179,9 @@ export function shapeTopicDetail(detail: TopicDetail, replies?: number, excerptO
     replies === undefined
       ? allReplies
       : [...allReplies].sort((a, b) => (b.like_count ?? 0) - (a.like_count ?? 0)).slice(0, replies);
-  const omitted = Math.max(0, allReplies.length - selected.length);
+  const totalReplies = detail.total_replies ?? Math.max(0, detail.post_count - 1);
+  const fetchedReplies = detail.fetched_replies ?? allReplies.length;
+  const omitted = Math.max(0, totalReplies - selected.length);
   const nextPosts = [...(op ? [op] : []), ...selected].sort((a, b) => a.floor - b.floor);
 
   return {
@@ -192,6 +194,8 @@ export function shapeTopicDetail(detail: TopicDetail, replies?: number, excerptO
           content_html: undefined,
         }))
       : nextPosts,
+    total_replies: totalReplies,
+    fetched_replies: fetchedReplies,
     truncated: omitted > 0 ? true : detail.truncated,
     omitted_replies: omitted || detail.omitted_replies,
   };
