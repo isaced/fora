@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.3.2](https://github.com/isaced/fora/compare/fora-cli-v0.3.1...fora-cli-v0.3.2) (2026-11-26)
+
+
+### Bug Fixes
+
+* **cli:** derive value flags from command definitions ([#21](https://github.com/isaced/fora/issues/21)) ([043cea2](https://github.com/isaced/fora/commit/043cea26ad380a200ef504b537cc706efb6aef30))
+* **cli:** report site failures and resolve topic links ([#17](https://github.com/isaced/fora/issues/17)) ([e0f35b6](https://github.com/isaced/fora/commit/e0f35b6f21823a5c053eb921df3f76f50888dd5a))
+* **digest:** enforce configured section allowlists ([#19](https://github.com/isaced/fora/issues/19)) ([cfa48e1](https://github.com/isaced/fora/commit/cfa48e1435c3387559fcb8db2987a85c19baf6f9))
+
+
+### Performance Improvements
+
+* **digest:** skip details outside the token budget ([#20](https://github.com/isaced/fora/issues/20)) ([9c9d5f5](https://github.com/isaced/fora/commit/9c9d5f51b7c52ad8fc7974a21ec4cab569c9fdf0))
+
 ## [0.3.1](https://github.com/isaced/fora/compare/fora-cli-v0.3.0...fora-cli-v0.3.1) (2026-11-26)
 
 
