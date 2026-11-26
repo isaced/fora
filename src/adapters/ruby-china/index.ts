@@ -142,6 +142,7 @@ export function createRubyChinaAdapter(http: HttpClient = new HttpClient()): Ada
 
   return {
     engine,
+    topicRefFromUrl: (url) => url.pathname.match(/\/topics\/(\d+)\/?$/)?.[1],
     capabilities: { hot: true, latest: true, hotPeriods: false, topic: true, search: false, categories: true },
 
     async detect(candidate: SiteCandidate): Promise<boolean> {

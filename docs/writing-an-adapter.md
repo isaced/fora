@@ -18,6 +18,7 @@ export interface Adapter {
   detect(site: SiteCandidate): Promise<boolean>;
   hot(site: Site, opts: HotOpts): Promise<Topic[]>;
   latest(site: Site, opts: ListOpts): Promise<Topic[]>;
+  topicRefFromUrl?(url: URL, site: Site): string | undefined;
   topic(site: Site, ref: string, page: number): Promise<TopicDetail>;
   search(site: Site, query: string, opts: ListOpts): Promise<Topic[]>;
   categories(site: Site): Promise<Category[]>;
@@ -45,6 +46,10 @@ Rules:
 - **Normalise timestamps** to UTC RFC 3339 (`toRfc3339`).
 - **Normalise bodies** to plain text with `htmlToText` / `excerptOf`.
 - **Honour `opts.limit`** where it saves work (e.g. only fetch N items).
+- To support `show <url>`, implement `topicRefFromUrl` to translate a topic
+  URL into an argument accepted by `topic`, or return `undefined` for an
+  unrecognised URL. Existing adapters without this hook retain the numeric
+  URL suffix fallback.
 - Be polite: the shared `HttpClient` paces requests, sets an identifiable
   User-Agent, retries 5xx, and stops on 429 / block pages.
 
@@ -53,6 +58,7 @@ Rules:
 ```ts
 interface Topic {
   id: string; site: string; title: string; url: string;
+  source_url?: string;       // optional link shared by the thread
   author?: { username: string; display_name?: string; avatar_url?: string };
   category?: { id: string; name?: string };
   tags?: string[];

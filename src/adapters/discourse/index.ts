@@ -110,6 +110,11 @@ function topicUrl(base: string, topic: { id: number; slug?: string }): string {
   return topic.slug ? `${base}/t/${topic.slug}/${topic.id}` : `${base}/t/${topic.id}`;
 }
 
+export function discourseTopicRef(url: URL): string | undefined {
+  return url.pathname.match(/\/t\/(\d+)(?=\/|$)/)?.[1] ??
+    url.pathname.match(/\/t\/[^/]+\/(\d+)(?=\/|$)/)?.[1];
+}
+
 function mapTopic(topic: DiscourseTopic, users: Map<number, DiscourseUser>, site: Site, base: string): Topic {
   const posters = topic.posters ?? [];
   const opPoster = posters.find((poster) => /original poster/i.test(poster.description ?? "")) ?? posters[0];
@@ -170,6 +175,7 @@ export function createDiscourseAdapter(http: HttpClient = new HttpClient()): Ada
 
   return {
     engine,
+    topicRefFromUrl: discourseTopicRef,
     capabilities: { hot: true, latest: true, hotPeriods: true, topic: true, search: true, categories: true },
 
     async detect(candidate: SiteCandidate): Promise<boolean> {
@@ -198,7 +204,9 @@ export function createDiscourseAdapter(http: HttpClient = new HttpClient()): Ada
 
     async topic(site: Site, ref: string, page: number): Promise<TopicDetail> {
       const base = baseUrl(site);
-      const response = await http.getJson<DiscourseTopicResponse>(`${base}/t/${encodeURIComponent(ref)}.json?page=${page}`);
+      const url = URL.canParse(ref) ? new URL(ref) : undefined;
+      const id = (url && discourseTopicRef(url)) ?? ref;
+      const response = await http.getJson<DiscourseTopicResponse>(`${base}/t/${encodeURIComponent(id)}.json?page=${page}`);
 
       const posts = (response.post_stream?.posts ?? []).map((post) => mapPost(post, base));
       const postCount = response.posts_count ?? posts.length;

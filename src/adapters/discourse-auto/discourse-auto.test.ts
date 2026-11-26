@@ -3,6 +3,9 @@ import type { Adapter } from "../../core/adapter.ts";
 import type { DegradationStore } from "../../core/degradation.ts";
 import { RateLimitError } from "../../core/errors.ts";
 import type { Site } from "../../core/sites.ts";
+import { discourseRssFixtureHttp } from "../../core/testing/fixtures.ts";
+import { createDiscourseAdapter } from "../discourse/index.ts";
+import { createDiscourseRssAdapter } from "../discourse-rss/index.ts";
 import { createDiscourseAutoAdapter } from "./index.ts";
 
 const site: Site = { name: "linuxdo", engine: "discourse", base_url: "https://linux.do", source: "preset" };
@@ -46,6 +49,17 @@ function stub(overrides: Partial<Adapter> = {}): Adapter {
 }
 
 describe("discourse auto adapter", () => {
+  it("opens an RSS list URL through the same adapter that listed it", async () => {
+    const http = discourseRssFixtureHttp();
+    const json = createDiscourseAdapter(http);
+    json.topic = async () => { throw new RateLimitError("GET failed with HTTP 403"); };
+    const adapter = createDiscourseAutoAdapter(json, createDiscourseRssAdapter(http), new Map());
+    const [listed] = await adapter.latest(site, { limit: 1 });
+    const ref = adapter.topicRefFromUrl?.(new URL(`${listed!.url}/2`), site);
+    expect(ref).toBe("12400");
+    expect((await adapter.topic(site, ref!, 1)).id).toBe(listed!.id);
+  });
+
   it("falls back to RSS on any HTTP 403 and records degradation", async () => {
     const store: DegradationStore = new Map();
     const json = stub({

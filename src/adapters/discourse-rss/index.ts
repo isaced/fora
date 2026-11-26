@@ -12,6 +12,7 @@ import { formatCliError, missingBaseUrlError } from "../../core/error-format.ts"
 import { isHttpForbidden, NotFoundError, RateLimitError, UsageError } from "../../core/errors.ts";
 import { HttpClient } from "../../core/http.ts";
 import type { Site } from "../../core/sites.ts";
+import { discourseTopicRef } from "../discourse/index.ts";
 import { feedEntryToDetail, feedEntryToTopic, parseFeed } from "../rss/index.ts";
 
 const ENGINE = "discourse-rss";
@@ -84,6 +85,7 @@ export function createDiscourseRssAdapter(http: HttpClient = new HttpClient()): 
 
   return {
     engine: ENGINE,
+    topicRefFromUrl: (url) => discourseTopicRef(url) ? url.href : undefined,
     capabilities: { hot: true, latest: true, hotPeriods: true, topic: true, search: false, categories: false },
 
     async detect(candidate: SiteCandidate): Promise<boolean> {
@@ -120,19 +122,25 @@ export function createDiscourseRssAdapter(http: HttpClient = new HttpClient()): 
     },
 
     async topic(site: Site, ref: string, page: number) {
+      const url = URL.canParse(ref) ? new URL(ref) : undefined;
+      const id = url ? discourseTopicRef(url) : ref;
       // A topic can come from any window, so check the feeds a list can use.
-      const paths = ["/latest.rss", topPath("week"), topPath("day"), topPath("month"), "/top.rss"];
+      const paths = ["/latest.rss", topPath("week"), topPath("day"), topPath("month"), "/top.rss", "/hot.rss"];
       let challenged = false;
       for (const path of paths) {
         let entries;
         try {
           entries = await load(site, path);
         } catch (error) {
+          if (error instanceof NotFoundError) continue;
           if (!isHttpForbidden(error)) throw error;
           challenged = true;
           continue;
         }
-        const entry = entries.find((candidate) => candidate.id === ref || candidate.url === ref);
+        const entry = entries.find((candidate) =>
+          candidate.id === ref || candidate.url === ref ||
+          (id !== undefined && URL.canParse(candidate.url) && discourseTopicRef(new URL(candidate.url)) === id),
+        );
         if (entry) return feedEntryToDetail(entry, site, page, ENGINE);
       }
       if (challenged) throw challengedError(site);
