@@ -1,0 +1,1007 @@
+{
+  "data": [
+    {
+      "type": "discussions",
+      "id": "187",
+      "links": {
+        "self": "/discussions/187"
+      },
+      "attributes": {
+        "title": "Word association game",
+        "slug": "187-word-association-game",
+        "commentCount": 7688,
+        "participantCount": 741,
+        "createdAt": "2015-06-19T07:38:25+00:00",
+        "lastPostedAt": "2026-11-24T03:57:05+00:00",
+        "lastPostNumber": 7978,
+        "canReply": false,
+        "canRename": false,
+        "canDelete": false,
+        "canHide": false,
+        "canViewWhoTypes": false,
+        "canTag": false,
+        "isApproved": true,
+        "subscription": null,
+        "canMerge": false,
+        "canSelectBestAnswer": false,
+        "hasBestAnswer": false,
+        "bestAnswerSetAt": null,
+        "canDownloadFiles": false,
+        "hasPoll": false,
+        "canStartPoll": false,
+        "isPrivateDiscussion": false,
+        "canEditRecipients": false,
+        "canEditUserRecipients": false,
+        "canEditGroupRecipients": false,
+        "canMakePublic": false,
+        "isLocked": false,
+        "canLock": false,
+        "isSticky": false,
+        "canSticky": false,
+        "seeVotes": false,
+        "canVote": false,
+        "detectedLang": "en",
+        "canSplit": false,
+        "shareUrl": "https://discuss.flarum.org/d/187",
+        "fof-prevent-necrobumping": null,
+        "isFirstMoved": false,
+        "canMarkUnread": false,
+        "replyTemplate": null,
+        "canManageReplyTemplates": false,
+        "bookmarked": false
+      },
+      "relationships": {
+        "firstPost": {
+          "data": null
+        },
+        "lastPost": {
+          "data": {
+            "type": "posts",
+            "id": "270685"
+          }
+        },
+        "hideUser": {
+          "data": null
+        },
+        "bestAnswerPost": {
+          "data": null
+        },
+        "bestAnswerUser": {
+          "data": null
+        },
+        "seoMeta": {
+          "data": {
+            "type": "seoMeta",
+            "id": "1155"
+          }
+        },
+        "recipientGroups": {
+          "data": []
+        },
+        "recipientUsers": {
+          "data": []
+        },
+        "tags": {
+          "data": [
+            {
+              "type": "tags",
+              "id": "1"
+            },
+            {
+              "type": "tags",
+              "id": "96"
+            }
+          ]
+        },
+        "mostRelevantPost": {
+          "data": null
+        },
+        "lastPostedUser": {
+          "data": {
+            "type": "users",
+            "id": "47376"
+          }
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "1"
+          }
+        }
+      }
+    },
+    {
+      "type": "discussions",
+      "id": "7585",
+      "links": {
+        "self": "/discussions/7585"
+      },
+      "attributes": {
+        "title": "Free Flarum hosting on an expert platform by FreeFlarum.com",
+        "slug": "7585-free-flarum-hosting-on-an-expert-platform-by-freeflarum-com",
+        "commentCount": 4590,
+        "participantCount": 537,
+        "createdAt": "2017-11-30T17:31:01+00:00",
+        "lastPostedAt": "2024-06-25T18:06:56+00:00",
+        "lastPostNumber": 4848,
+        "canReply": false,
+        "canRename": false,
+        "canDelete": false,
+        "canHide": false,
+        "canViewWhoTypes": false,
+        "canTag": false,
+        "isApproved": true,
+        "subscription": null,
+        "canMerge": false,
+        "canSelectBestAnswer": false,
+        "hasBestAnswer": false,
+        "bestAnswerSetAt": null,
+        "canDownloadFiles": false,
+        "canStartPoll": false,
+        "isPrivateDiscussion": false,
+        "canEditRecipients": false,
+        "canEditUserRecipients": false,
+        "canEditGroupRecipients": false,
+        "canMakePublic": false,
+        "isLocked": true,
+        "canLock": false,
+        "isSticky": false,
+        "canSticky": false,
+        "seeVotes": false,
+        "canVote": false,
+        "detectedLang": "en",
+        "canSplit": false,
+        "shareUrl": "https://discuss.flarum.org/d/7585",
+        "fof-prevent-necrobumping": null,
+        "isFirstMoved": false,
+        "canMarkUnread": false,
+        "replyTemplate": null,
+        "canManageReplyTemplates": false,
+        "bookmarked": false,
+        "hasPoll": false
+      },
+      "relationships": {
+        "firstPost": {
+          "data": {
+            "type": "posts",
+            "id": "55137"
+          }
+        },
+        "lastPost": {
+          "data": {
+            "type": "posts",
+            "id": "228293"
+          }
+        },
+        "hideUser": {
+          "data": null
+        },
+        "bestAnswerPost": {
+          "data": null
+        },
+        "bestAnswerUser": {
+          "data": null
+        },
+        "seoMeta": {
+          "data": {
+            "type": "seoMeta",
+            "id": "6"
+          }
+        },
+        "recipientGroups": {
+          "data": []
+        },
+        "recipientUsers": {
+          "data": []
+        },
+        "tags": {
+          "data": [
+            {
+              "type": "tags",
+              "id": "52"
+            }
+          ]
+        },
+        "mostRelevantPost": {
+          "data": null
+        },
+        "lastPostedUser": {
+          "data": {
+            "type": "users",
+            "id": "28427"
+          }
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "28427"
+          }
+        }
+      }
+    },
+    {
+      "type": "discussions",
+      "id": "4154",
+      "links": {
+        "self": "/discussions/4154"
+      },
+      "attributes": {
+        "title": "FriendsOfFlarum upload, the intelligent file attachment extension",
+        "slug": "4154-friendsofflarum-upload-the-intelligent-file-attachment-extension",
+        "commentCount": 2653,
+        "participantCount": 630,
+        "createdAt": "2016-11-03T20:26:40+00:00",
+        "lastPostedAt": "2026-10-31T01:42:42+00:00",
+        "lastPostNumber": 2780,
+        "canReply": false,
+        "canRename": false,
+        "canDelete": false,
+        "canHide": false,
+        "canViewWhoTypes": false,
+        "canTag": false,
+        "isApproved": true,
+        "subscription": null,
+        "canMerge": false,
+        "canSelectBestAnswer": false,
+        "hasBestAnswer": false,
+        "bestAnswerSetAt": null,
+        "canDownloadFiles": false,
+        "canStartPoll": false,
+        "isPrivateDiscussion": false,
+        "canEditRecipients": false,
+        "canEditUserRecipients": false,
+        "canEditGroupRecipients": false,
+        "canMakePublic": false,
+        "isLocked": false,
+        "canLock": false,
+        "isSticky": false,
+        "canSticky": false,
+        "seeVotes": false,
+        "canVote": false,
+        "detectedLang": "en",
+        "canSplit": false,
+        "shareUrl": "https://discuss.flarum.org/d/4154",
+        "fof-prevent-necrobumping": null,
+        "isFirstMoved": false,
+        "canMarkUnread": false,
+        "replyTemplate": null,
+        "canManageReplyTemplates": false,
+        "bookmarked": false,
+        "hasPoll": false
+      },
+      "relationships": {
+        "firstPost": {
+          "data": {
+            "type": "posts",
+            "id": "33035"
+          }
+        },
+        "lastPost": {
+          "data": {
+            "type": "posts",
+            "id": "269014"
+          }
+        },
+        "hideUser": {
+          "data": null
+        },
+        "bestAnswerPost": {
+          "data": null
+        },
+        "bestAnswerUser": {
+          "data": null
+        },
+        "seoMeta": {
+          "data": {
+            "type": "seoMeta",
+            "id": "10"
+          }
+        },
+        "recipientGroups": {
+          "data": []
+        },
+        "recipientUsers": {
+          "data": []
+        },
+        "tags": {
+          "data": [
+            {
+              "type": "tags",
+              "id": "48"
+            },
+            {
+              "type": "tags",
+              "id": "112"
+            },
+            {
+              "type": "tags",
+              "id": "113"
+            }
+          ]
+        },
+        "mostRelevantPost": {
+          "data": null
+        },
+        "lastPostedUser": {
+          "data": {
+            "type": "users",
+            "id": "46637"
+          }
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "35873"
+          }
+        }
+      }
+    },
+    {
+      "type": "discussions",
+      "id": "4762",
+      "links": {
+        "self": "/discussions/4762"
+      },
+      "attributes": {
+        "title": "FriendsOfFlarum Byōbu, well integrated, advanced private discussions",
+        "slug": "4762-friendsofflarum-by-bu-well-integrated-advanced-private-discussions",
+        "commentCount": 1357,
+        "participantCount": 250,
+        "createdAt": "2017-01-27T12:09:55+00:00",
+        "lastPostedAt": "2026-11-23T12:12:28+00:00",
+        "lastPostNumber": 1414,
+        "canReply": false,
+        "canRename": false,
+        "canDelete": false,
+        "canHide": false,
+        "canViewWhoTypes": false,
+        "canTag": false,
+        "isApproved": true,
+        "subscription": null,
+        "canMerge": false,
+        "canSelectBestAnswer": false,
+        "hasBestAnswer": false,
+        "bestAnswerSetAt": null,
+        "canDownloadFiles": false,
+        "canStartPoll": false,
+        "isPrivateDiscussion": false,
+        "canEditRecipients": false,
+        "canEditUserRecipients": false,
+        "canEditGroupRecipients": false,
+        "canMakePublic": false,
+        "isLocked": false,
+        "canLock": false,
+        "isSticky": false,
+        "canSticky": false,
+        "seeVotes": false,
+        "canVote": false,
+        "detectedLang": "en",
+        "canSplit": false,
+        "shareUrl": "https://discuss.flarum.org/d/4762",
+        "fof-prevent-necrobumping": null,
+        "isFirstMoved": false,
+        "canMarkUnread": false,
+        "replyTemplate": null,
+        "canManageReplyTemplates": false,
+        "bookmarked": false,
+        "hasPoll": false
+      },
+      "relationships": {
+        "firstPost": {
+          "data": {
+            "type": "posts",
+            "id": "37019"
+          }
+        },
+        "lastPost": {
+          "data": {
+            "type": "posts",
+            "id": "270608"
+          }
+        },
+        "hideUser": {
+          "data": null
+        },
+        "bestAnswerPost": {
+          "data": null
+        },
+        "bestAnswerUser": {
+          "data": null
+        },
+        "seoMeta": {
+          "data": {
+            "type": "seoMeta",
+            "id": "39"
+          }
+        },
+        "recipientGroups": {
+          "data": []
+        },
+        "recipientUsers": {
+          "data": []
+        },
+        "tags": {
+          "data": [
+            {
+              "type": "tags",
+              "id": "48"
+            },
+            {
+              "type": "tags",
+              "id": "112"
+            },
+            {
+              "type": "tags",
+              "id": "113"
+            }
+          ]
+        },
+        "mostRelevantPost": {
+          "data": null
+        },
+        "lastPostedUser": {
+          "data": {
+            "type": "users",
+            "id": "46637"
+          }
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "35873"
+          }
+        }
+      }
+    },
+    {
+      "type": "discussions",
+      "id": "21666",
+      "links": {
+        "self": "/discussions/21666"
+      },
+      "attributes": {
+        "title": "PHP and WordPress Single Sign On (SSO) with optional JWT Addon",
+        "slug": "21666-php-and-wordpress-single-sign-on-sso-with-optional-jwt-addon",
+        "commentCount": 830,
+        "participantCount": 102,
+        "createdAt": "2019-10-14T13:39:52+00:00",
+        "lastPostedAt": "2026-10-26T09:25:56+00:00",
+        "lastPostNumber": 860,
+        "canReply": false,
+        "canRename": false,
+        "canDelete": false,
+        "canHide": false,
+        "canViewWhoTypes": false,
+        "canTag": false,
+        "isApproved": true,
+        "subscription": null,
+        "canMerge": false,
+        "canSelectBestAnswer": false,
+        "hasBestAnswer": false,
+        "bestAnswerSetAt": null,
+        "canDownloadFiles": false,
+        "canStartPoll": false,
+        "isPrivateDiscussion": false,
+        "canEditRecipients": false,
+        "canEditUserRecipients": false,
+        "canEditGroupRecipients": false,
+        "canMakePublic": false,
+        "isLocked": false,
+        "canLock": false,
+        "isSticky": false,
+        "canSticky": false,
+        "seeVotes": false,
+        "canVote": false,
+        "detectedLang": "en",
+        "canSplit": false,
+        "shareUrl": "https://discuss.flarum.org/d/21666",
+        "fof-prevent-necrobumping": null,
+        "isFirstMoved": false,
+        "canMarkUnread": false,
+        "replyTemplate": null,
+        "canManageReplyTemplates": false,
+        "bookmarked": false,
+        "hasPoll": false
+      },
+      "relationships": {
+        "firstPost": {
+          "data": {
+            "type": "posts",
+            "id": "111229"
+          }
+        },
+        "lastPost": {
+          "data": {
+            "type": "posts",
+            "id": "268601"
+          }
+        },
+        "hideUser": {
+          "data": null
+        },
+        "bestAnswerPost": {
+          "data": null
+        },
+        "bestAnswerUser": {
+          "data": null
+        },
+        "seoMeta": {
+          "data": {
+            "type": "seoMeta",
+            "id": "8"
+          }
+        },
+        "recipientGroups": {
+          "data": []
+        },
+        "recipientUsers": {
+          "data": []
+        },
+        "tags": {
+          "data": [
+            {
+              "type": "tags",
+              "id": "48"
+            },
+            {
+              "type": "tags",
+              "id": "112"
+            },
+            {
+              "type": "tags",
+              "id": "113"
+            }
+          ]
+        },
+        "mostRelevantPost": {
+          "data": null
+        },
+        "lastPostedUser": {
+          "data": {
+            "type": "users",
+            "id": "27853"
+          }
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "20245"
+          }
+        }
+      }
+    }
+  ],
+  "included": [
+    {
+      "type": "users",
+      "id": "27853",
+      "links": {
+        "self": "/users/27853"
+      },
+      "attributes": {
+        "username": "jslirola",
+        "displayName": "jslirola",
+        "avatarUrl": "https://discuss.flarum.org/assets/avatars/fsrGOLww7U1W6ox9.webp",
+        "avatarSrcset": null,
+        "hasUploadedAvatar": true,
+        "slug": "jslirola",
+        "joinTime": "2019-06-10T17:34:34+00:00",
+        "discussionCount": 13,
+        "commentCount": 278,
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 2,
+        "blocksPd": false,
+        "points": 0,
+        "canHaveVotingNotifications": true,
+        "bio": "Back-end developer and passionate about cybersecurity.\n\nhttps://github.com/jslirola",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": false,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 27,
+        "fof-upload-uploadCountAll": 27,
+        "followed": null,
+        "followerCount": 0,
+        "followingCount": 0,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "groups": {
+          "data": [
+            {
+              "type": "groups",
+              "id": "9"
+            }
+          ]
+        },
+        "twoFactor": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "users",
+      "id": "20245",
+      "links": {
+        "self": "/users/20245"
+      },
+      "attributes": {
+        "username": "maicol07",
+        "displayName": "maicol07",
+        "avatarUrl": "https://discuss.flarum.org/assets/avatars/n9bvmfQ1zfUwquGg.webp",
+        "avatarSrcset": null,
+        "hasUploadedAvatar": true,
+        "slug": "maicol07",
+        "joinTime": "2018-07-13T09:07:13+00:00",
+        "discussionCount": 11,
+        "commentCount": 532,
+        "lastSeenAt": "2026-10-26T09:26:49+00:00",
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 0,
+        "blocksPd": false,
+        "points": 0,
+        "canHaveVotingNotifications": true,
+        "bio": "https://maicol07.it",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": false,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 2,
+        "fof-upload-uploadCountAll": 2,
+        "followed": null,
+        "followerCount": 0,
+        "followingCount": 0,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "groups": {
+          "data": []
+        },
+        "twoFactor": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "users",
+      "id": "46637",
+      "links": {
+        "self": "/users/46637"
+      },
+      "attributes": {
+        "username": "FoF-Bot",
+        "displayName": "FoF Bot",
+        "avatarUrl": "https://discuss.flarum.org/assets/avatars/HhqYbMqdxlUnNeUg.webp",
+        "avatarSrcset": null,
+        "hasUploadedAvatar": true,
+        "slug": "FoF-Bot",
+        "joinTime": "2026-02-15T16:37:52+00:00",
+        "discussionCount": 0,
+        "commentCount": 470,
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 0,
+        "blocksPd": true,
+        "points": 0,
+        "canHaveVotingNotifications": true,
+        "bio": "I'm just a simple bot that posts on behalf of the FriendsOfFlarum team",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": false,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 0,
+        "fof-upload-uploadCountAll": 0,
+        "followed": null,
+        "followerCount": 2,
+        "followingCount": 0,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "groups": {
+          "data": [
+            {
+              "type": "groups",
+              "id": "34"
+            }
+          ]
+        },
+        "twoFactor": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "users",
+      "id": "35873",
+      "links": {
+        "self": "/users/35873"
+      },
+      "attributes": {
+        "username": "FriendsOfFlarum",
+        "displayName": "FriendsOfFlarum",
+        "avatarUrl": "https://discuss.flarum.org/assets/avatars/LE2Q8395o2lg3cw0.webp",
+        "avatarSrcset": null,
+        "hasUploadedAvatar": true,
+        "slug": "FriendsOfFlarum",
+        "joinTime": "2021-03-29T16:00:20+00:00",
+        "discussionCount": 103,
+        "commentCount": 120,
+        "lastSeenAt": "2025-12-18T00:31:31+00:00",
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 1,
+        "blocksPd": false,
+        "points": 0,
+        "canHaveVotingNotifications": false,
+        "bio": "Bringing you community extensions for @flarum.\n\nhttps://FriendsOfFlarum.org\nhttps://github.com/FriendsOfFlarum",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": false,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 0,
+        "fof-upload-uploadCountAll": 0,
+        "followed": null,
+        "followerCount": 0,
+        "followingCount": 0,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "groups": {
+          "data": [
+            {
+              "type": "groups",
+              "id": "34"
+            }
+          ]
+        },
+        "twoFactor": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "users",
+      "id": "28427",
+      "links": {
+        "self": "/users/28427"
+      },
+      "attributes": {
+        "username": "SKevo",
+        "displayName": "SKevo",
+        "avatarUrl": "https://discuss.flarum.org/assets/avatars/bFreqBTxgG5w9JcT.webp",
+        "avatarSrcset": null,
+        "hasUploadedAvatar": true,
+        "slug": "SKevo",
+        "joinTime": "2019-07-18T18:50:28+00:00",
+        "discussionCount": 25,
+        "commentCount": 1771,
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 20,
+        "blocksPd": false,
+        "points": 2,
+        "canHaveVotingNotifications": true,
+        "bio": "Maintainer of FreeFlarum",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": false,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 0,
+        "fof-upload-uploadCountAll": 0,
+        "followed": null,
+        "followerCount": 0,
+        "followingCount": 0,
+        "visibleWarningCount": 1
+      },
+      "relationships": {
+        "groups": {
+          "data": [
+            {
+              "type": "groups",
+              "id": "36"
+            }
+          ]
+        },
+        "twoFactor": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "users",
+      "id": "47376",
+      "links": {
+        "self": "/users/47376"
+      },
+      "attributes": {
+        "username": "DevDude437",
+        "displayName": "Developer-Dude 🇨🇦",
+        "avatarUrl": "https://discuss.flarum.org/assets/avatars/Khl3yhERdN5XO5dM.webp",
+        "avatarSrcset": null,
+        "hasUploadedAvatar": true,
+        "slug": "DevDude437",
+        "joinTime": "2026-08-30T23:42:44+00:00",
+        "discussionCount": 5,
+        "commentCount": 92,
+        "lastSeenAt": "2026-11-25T02:10:55+00:00",
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 0,
+        "blocksPd": false,
+        "points": 0,
+        "canHaveVotingNotifications": true,
+        "bio": "GitHub: https://github.com/DevDude437\nhttps://unbounddevices.ca\nI'm Developer Dude. I like Linux, GrapheneOS, and Open Source stuff. And I like Toyotas. I live in Canada. Founder of @UnboundDevices",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": false,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 3,
+        "fof-upload-uploadCountAll": 3,
+        "followed": null,
+        "followerCount": 0,
+        "followingCount": 3,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "groups": {
+          "data": []
+        },
+        "twoFactor": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "users",
+      "id": "1",
+      "links": {
+        "self": "/users/1"
+      },
+      "attributes": {
+        "username": "Toby",
+        "displayName": "Toby",
+        "avatarUrl": "https://discuss.flarum.org/assets/avatars/lwnpBO5jpgtAtK3l.webp",
+        "avatarSrcset": null,
+        "hasUploadedAvatar": true,
+        "slug": "Toby",
+        "joinTime": "2014-11-19T23:47:00+00:00",
+        "discussionCount": 69,
+        "commentCount": 1249,
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 0,
+        "blocksPd": false,
+        "points": 0,
+        "canHaveVotingNotifications": false,
+        "bio": "Flarum founder and ex-lead developer. http://twitter.com/tobyzerner",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": false,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 0,
+        "fof-upload-uploadCountAll": 0,
+        "followed": null,
+        "followerCount": 0,
+        "followingCount": 0,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "groups": {
+          "data": [
+            {
+              "type": "groups",
+              "id": "9"
+            },
+            {
+              "type": "groups",
+              "id": "36"
+            }
+          ]
+        },
+        "twoFactor": {
+          "data": null
+        }
+      }
+    }
+  ]
+}

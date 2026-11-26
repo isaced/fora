@@ -1,0 +1,1220 @@
+{
+  "data": [
+    {
+      "type": "discussions",
+      "id": "27682",
+      "links": {
+        "self": "/discussions/27682"
+      },
+      "attributes": {
+        "title": "Supersticky extension, help on create my fork extension",
+        "slug": "27682-supersticky-extension-help-on-create-my-fork-extension",
+        "commentCount": 13,
+        "participantCount": 4,
+        "createdAt": "2021-06-09T23:12:05+00:00",
+        "lastPostedAt": "2021-06-11T13:21:23+00:00",
+        "lastPostNumber": 13,
+        "canReply": false,
+        "canRename": false,
+        "canDelete": false,
+        "canHide": false,
+        "canViewWhoTypes": false,
+        "canTag": false,
+        "isApproved": true,
+        "subscription": null,
+        "canMerge": false,
+        "canSelectBestAnswer": false,
+        "hasBestAnswer": false,
+        "bestAnswerSetAt": null,
+        "canDownloadFiles": false,
+        "canStartPoll": false,
+        "isPrivateDiscussion": false,
+        "canEditRecipients": false,
+        "canEditUserRecipients": false,
+        "canEditGroupRecipients": false,
+        "canMakePublic": false,
+        "isLocked": false,
+        "canLock": false,
+        "isSticky": false,
+        "canSticky": false,
+        "seeVotes": false,
+        "canVote": false,
+        "detectedLang": "en",
+        "canSplit": false,
+        "shareUrl": "https://discuss.flarum.org/d/27682",
+        "fof-prevent-necrobumping": null,
+        "isFirstMoved": false,
+        "canMarkUnread": false,
+        "replyTemplate": null,
+        "canManageReplyTemplates": false,
+        "bookmarked": false,
+        "hasPoll": false
+      },
+      "relationships": {
+        "firstPost": {
+          "data": {
+            "type": "posts",
+            "id": "168601"
+          }
+        },
+        "lastPost": {
+          "data": {
+            "type": "posts",
+            "id": "168832"
+          }
+        },
+        "hideUser": {
+          "data": null
+        },
+        "bestAnswerPost": {
+          "data": null
+        },
+        "bestAnswerUser": {
+          "data": null
+        },
+        "seoMeta": {
+          "data": {
+            "type": "seoMeta",
+            "id": "14651"
+          }
+        },
+        "recipientGroups": {
+          "data": []
+        },
+        "recipientUsers": {
+          "data": []
+        },
+        "tags": {
+          "data": [
+            {
+              "type": "tags",
+              "id": "4"
+            }
+          ]
+        },
+        "mostRelevantPost": {
+          "data": {
+            "type": "posts",
+            "id": "168647"
+          }
+        },
+        "lastPostedUser": {
+          "data": {
+            "type": "users",
+            "id": "20896"
+          }
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "20896"
+          }
+        }
+      }
+    },
+    {
+      "type": "discussions",
+      "id": "27620",
+      "links": {
+        "self": "/discussions/27620"
+      },
+      "attributes": {
+        "title": "Mercury, the Extiverse extension to understand extension updates",
+        "slug": "27620-mercury-the-extiverse-extension-to-understand-extension-updates",
+        "commentCount": 114,
+        "participantCount": 33,
+        "createdAt": "2021-06-07T15:13:02+00:00",
+        "lastPostedAt": "2023-07-17T14:32:47+00:00",
+        "lastPostNumber": 123,
+        "canReply": false,
+        "canRename": false,
+        "canDelete": false,
+        "canHide": false,
+        "canViewWhoTypes": false,
+        "canTag": false,
+        "isApproved": true,
+        "subscription": null,
+        "canMerge": false,
+        "canSelectBestAnswer": false,
+        "hasBestAnswer": false,
+        "bestAnswerSetAt": null,
+        "canDownloadFiles": false,
+        "canStartPoll": false,
+        "isPrivateDiscussion": false,
+        "canEditRecipients": false,
+        "canEditUserRecipients": false,
+        "canEditGroupRecipients": false,
+        "canMakePublic": false,
+        "isLocked": false,
+        "canLock": false,
+        "isSticky": false,
+        "canSticky": false,
+        "seeVotes": false,
+        "canVote": false,
+        "detectedLang": "en",
+        "canSplit": false,
+        "shareUrl": "https://discuss.flarum.org/d/27620",
+        "fof-prevent-necrobumping": null,
+        "isFirstMoved": false,
+        "canMarkUnread": false,
+        "replyTemplate": null,
+        "canManageReplyTemplates": false,
+        "bookmarked": false,
+        "hasPoll": false
+      },
+      "relationships": {
+        "firstPost": {
+          "data": {
+            "type": "posts",
+            "id": "168003"
+          }
+        },
+        "lastPost": {
+          "data": {
+            "type": "posts",
+            "id": "216806"
+          }
+        },
+        "hideUser": {
+          "data": null
+        },
+        "bestAnswerPost": {
+          "data": null
+        },
+        "bestAnswerUser": {
+          "data": null
+        },
+        "seoMeta": {
+          "data": {
+            "type": "seoMeta",
+            "id": "1662"
+          }
+        },
+        "recipientGroups": {
+          "data": []
+        },
+        "recipientUsers": {
+          "data": []
+        },
+        "tags": {
+          "data": [
+            {
+              "type": "tags",
+              "id": "48"
+            },
+            {
+              "type": "tags",
+              "id": "65"
+            },
+            {
+              "type": "tags",
+              "id": "98"
+            }
+          ]
+        },
+        "mostRelevantPost": {
+          "data": {
+            "type": "posts",
+            "id": "168003"
+          }
+        },
+        "lastPostedUser": {
+          "data": {
+            "type": "users",
+            "id": "29821"
+          }
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "1376"
+          }
+        }
+      }
+    },
+    {
+      "type": "discussions",
+      "id": "2781",
+      "links": {
+        "self": "/discussions/2781"
+      },
+      "attributes": {
+        "title": "Extension has been installed but there is no extension button",
+        "slug": "2781-extension-has-been-installed-but-there-is-no-extension-button",
+        "commentCount": 15,
+        "participantCount": 4,
+        "createdAt": "2016-05-04T19:21:52+00:00",
+        "lastPostedAt": "2016-05-05T18:29:22+00:00",
+        "lastPostNumber": 17,
+        "canReply": false,
+        "canRename": false,
+        "canDelete": false,
+        "canHide": false,
+        "canViewWhoTypes": false,
+        "canTag": false,
+        "isApproved": true,
+        "subscription": null,
+        "canMerge": false,
+        "canSelectBestAnswer": false,
+        "hasBestAnswer": false,
+        "bestAnswerSetAt": null,
+        "canDownloadFiles": false,
+        "canStartPoll": false,
+        "isPrivateDiscussion": false,
+        "canEditRecipients": false,
+        "canEditUserRecipients": false,
+        "canEditGroupRecipients": false,
+        "canMakePublic": false,
+        "isLocked": true,
+        "canLock": false,
+        "isSticky": false,
+        "canSticky": false,
+        "seeVotes": false,
+        "canVote": false,
+        "detectedLang": "en",
+        "canSplit": false,
+        "shareUrl": "https://discuss.flarum.org/d/2781",
+        "fof-prevent-necrobumping": null,
+        "isFirstMoved": false,
+        "canMarkUnread": false,
+        "replyTemplate": null,
+        "canManageReplyTemplates": false,
+        "bookmarked": false,
+        "hasPoll": false
+      },
+      "relationships": {
+        "firstPost": {
+          "data": {
+            "type": "posts",
+            "id": "23812"
+          }
+        },
+        "lastPost": {
+          "data": {
+            "type": "posts",
+            "id": "23875"
+          }
+        },
+        "hideUser": {
+          "data": null
+        },
+        "bestAnswerPost": {
+          "data": null
+        },
+        "bestAnswerUser": {
+          "data": null
+        },
+        "seoMeta": {
+          "data": {
+            "type": "seoMeta",
+            "id": "14200"
+          }
+        },
+        "recipientGroups": {
+          "data": []
+        },
+        "recipientUsers": {
+          "data": []
+        },
+        "tags": {
+          "data": [
+            {
+              "type": "tags",
+              "id": "24"
+            },
+            {
+              "type": "tags",
+              "id": "60"
+            }
+          ]
+        },
+        "mostRelevantPost": {
+          "data": {
+            "type": "posts",
+            "id": "23812"
+          }
+        },
+        "lastPostedUser": {
+          "data": {
+            "type": "users",
+            "id": "4930"
+          }
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "4930"
+          }
+        }
+      }
+    },
+    {
+      "type": "discussions",
+      "id": "36641",
+      "links": {
+        "self": "/discussions/36641"
+      },
+      "attributes": {
+        "title": "How to install new extension in extension manager",
+        "slug": "36641-how-to-install-new-extension-in-extension-manager",
+        "commentCount": 5,
+        "participantCount": 3,
+        "createdAt": "2024-12-13T07:01:11+00:00",
+        "lastPostedAt": "2024-12-13T17:11:49+00:00",
+        "lastPostNumber": 7,
+        "canReply": false,
+        "canRename": false,
+        "canDelete": false,
+        "canHide": false,
+        "canViewWhoTypes": false,
+        "canTag": false,
+        "isApproved": true,
+        "subscription": null,
+        "canMerge": false,
+        "canSelectBestAnswer": false,
+        "hasBestAnswer": false,
+        "bestAnswerSetAt": null,
+        "canDownloadFiles": false,
+        "canStartPoll": false,
+        "isPrivateDiscussion": false,
+        "canEditRecipients": false,
+        "canEditUserRecipients": false,
+        "canEditGroupRecipients": false,
+        "canMakePublic": false,
+        "isLocked": false,
+        "canLock": false,
+        "isSticky": false,
+        "canSticky": false,
+        "seeVotes": false,
+        "canVote": false,
+        "detectedLang": "en",
+        "canSplit": false,
+        "shareUrl": "https://discuss.flarum.org/d/36641",
+        "fof-prevent-necrobumping": null,
+        "isFirstMoved": false,
+        "canMarkUnread": false,
+        "replyTemplate": null,
+        "canManageReplyTemplates": false,
+        "bookmarked": false,
+        "hasPoll": false
+      },
+      "relationships": {
+        "firstPost": {
+          "data": {
+            "type": "posts",
+            "id": "236554"
+          }
+        },
+        "lastPost": {
+          "data": {
+            "type": "posts",
+            "id": "236580"
+          }
+        },
+        "hideUser": {
+          "data": null
+        },
+        "bestAnswerPost": {
+          "data": null
+        },
+        "bestAnswerUser": {
+          "data": null
+        },
+        "seoMeta": {
+          "data": {
+            "type": "seoMeta",
+            "id": "2577"
+          }
+        },
+        "recipientGroups": {
+          "data": []
+        },
+        "recipientUsers": {
+          "data": []
+        },
+        "tags": {
+          "data": [
+            {
+              "type": "tags",
+              "id": "24"
+            }
+          ]
+        },
+        "mostRelevantPost": {
+          "data": {
+            "type": "posts",
+            "id": "236573"
+          }
+        },
+        "lastPostedUser": {
+          "data": {
+            "type": "users",
+            "id": "44815"
+          }
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "44815"
+          }
+        }
+      }
+    },
+    {
+      "type": "discussions",
+      "id": "34187",
+      "links": {
+        "self": "/discussions/34187"
+      },
+      "attributes": {
+        "title": "Http Error 500 - Upon Searching Extension on Extension Manager",
+        "slug": "34187-http-error-500-upon-searching-extension-on-extension-manager",
+        "commentCount": 15,
+        "participantCount": 6,
+        "createdAt": "2024-02-26T05:56:36+00:00",
+        "lastPostedAt": "2024-02-27T03:40:39+00:00",
+        "lastPostNumber": 15,
+        "canReply": false,
+        "canRename": false,
+        "canDelete": false,
+        "canHide": false,
+        "canViewWhoTypes": false,
+        "canTag": false,
+        "isApproved": true,
+        "subscription": null,
+        "canMerge": false,
+        "canSelectBestAnswer": false,
+        "hasBestAnswer": false,
+        "bestAnswerSetAt": null,
+        "canDownloadFiles": false,
+        "canStartPoll": false,
+        "isPrivateDiscussion": false,
+        "canEditRecipients": false,
+        "canEditUserRecipients": false,
+        "canEditGroupRecipients": false,
+        "canMakePublic": false,
+        "isLocked": true,
+        "canLock": false,
+        "isSticky": false,
+        "canSticky": false,
+        "seeVotes": false,
+        "canVote": false,
+        "detectedLang": "en",
+        "canSplit": false,
+        "shareUrl": "https://discuss.flarum.org/d/34187",
+        "fof-prevent-necrobumping": null,
+        "isFirstMoved": false,
+        "canMarkUnread": false,
+        "replyTemplate": null,
+        "canManageReplyTemplates": false,
+        "bookmarked": false,
+        "hasPoll": false
+      },
+      "relationships": {
+        "firstPost": {
+          "data": {
+            "type": "posts",
+            "id": "224768"
+          }
+        },
+        "lastPost": {
+          "data": {
+            "type": "posts",
+            "id": "224806"
+          }
+        },
+        "hideUser": {
+          "data": null
+        },
+        "bestAnswerPost": {
+          "data": null
+        },
+        "bestAnswerUser": {
+          "data": null
+        },
+        "seoMeta": {
+          "data": {
+            "type": "seoMeta",
+            "id": "18507"
+          }
+        },
+        "recipientGroups": {
+          "data": []
+        },
+        "recipientUsers": {
+          "data": []
+        },
+        "tags": {
+          "data": [
+            {
+              "type": "tags",
+              "id": "24"
+            },
+            {
+              "type": "tags",
+              "id": "25"
+            }
+          ]
+        },
+        "mostRelevantPost": {
+          "data": {
+            "type": "posts",
+            "id": "224768"
+          }
+        },
+        "lastPostedUser": {
+          "data": {
+            "type": "users",
+            "id": "41758"
+          }
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "41758"
+          }
+        }
+      }
+    }
+  ],
+  "included": [
+    {
+      "type": "posts",
+      "id": "224768",
+      "links": {
+        "self": "/posts/224768"
+      },
+      "attributes": {
+        "number": 1,
+        "createdAt": "2024-02-26T05:56:36+00:00",
+        "contentType": "comment",
+        "contentHtml": "<p>My site was successfully updated from 1.8.1 to 1.8.5 and then the Installation of Extension Manager was conducted.</p>\n\n<p>In General:<br>\nThe site was working fine without issues. Today, I decided to Activate the Extension Manager and it was activated accordingly and i were able to check for updates for existing extension without any error.</p>\n\n<p>Specifically - When the issue arise:<br>\nI proceeded to search for an extension to be installed, when the search is submitted, A message appears as <code>Please Wait</code> and i waited for a minute and then refreshed the browser [While still at <code>Please Wait</code>], Upon refreshed, It went into an Error <code>500 - mydomain is currently unable to handle this request</code> and when i checked at the Front-End, It seems like the site is not accessible.</p>\n\n<p>As Error <code>500</code> is very general, I decided to explain in detail at above on when this issue exactly appeared. I highly suspect this has something to do with either Accessibility [primarily related to File Permission] where the prompt to fetch an Installation of the Extension had caused the issue OR there is a missing file/module.</p> \n\n<p>Is this a known issue and any mitigation to resolve this?</p>\n\n<p>P/s: I've requested Logs over the issue encountered from my Web Host. Awaiting for a Reply.</p>",
+        "renderFailed": null,
+        "source": null,
+        "sourceName": null,
+        "editedAt": "2024-02-26T06:17:01+00:00",
+        "canEdit": false,
+        "canDelete": false,
+        "canHide": false,
+        "canFlag": false,
+        "isApproved": true,
+        "canApprove": false,
+        "canLike": false,
+        "canSelectAsBestAnswer": false,
+        "canStartPoll": false,
+        "canSeeVotes": false,
+        "canVote": false,
+        "seeVoters": false,
+        "detectedLang": "en",
+        "fof-necrobumping": null,
+        "bookmarked": false,
+        "mentionedByCount": 1,
+        "likesCount": 0
+      },
+      "relationships": {
+        "discussion": {
+          "data": {
+            "type": "discussions",
+            "id": "34187"
+          }
+        },
+        "editedUser": {
+          "data": {
+            "type": "users",
+            "id": "41758"
+          }
+        },
+        "hiddenUser": {
+          "data": null
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "41758"
+          }
+        }
+      }
+    },
+    {
+      "type": "users",
+      "id": "41758",
+      "links": {
+        "self": "/users/41758"
+      },
+      "attributes": {
+        "username": "KARAM_SIDHU",
+        "displayName": "KARAM_SIDHU",
+        "avatarUrl": null,
+        "avatarSrcset": null,
+        "hasUploadedAvatar": false,
+        "slug": "KARAM_SIDHU",
+        "joinTime": "2023-06-07T12:30:09+00:00",
+        "discussionCount": 22,
+        "commentCount": 140,
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 0,
+        "blocksPd": false,
+        "points": 2,
+        "canHaveVotingNotifications": false,
+        "bio": "",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": false,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 0,
+        "fof-upload-uploadCountAll": 0,
+        "followed": null,
+        "followerCount": 0,
+        "followingCount": 0,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "groups": {
+          "data": []
+        },
+        "twoFactor": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "posts",
+      "id": "236573",
+      "links": {
+        "self": "/posts/236573"
+      },
+      "attributes": {
+        "number": 4,
+        "createdAt": "2024-12-13T15:26:24+00:00",
+        "contentType": "comment",
+        "contentHtml": "<p>Hello!</p>\n\n<p>You have to add the package and extension name. You can find a lot of extensions here: <a href=\"https://flarum.org/extensions\" rel=\"noopener ugc nofollow\" target=\"_blank\">https://flarum.org/extensions</a> - Be sure to install someone compatible and updated.</p>\n\n<p>If you, for example, want to install this one: Fof Links - <a href=\"https://flarum.org/extension/fof/links\" rel=\"noopener ugc nofollow\" target=\"_blank\">https://flarum.org/extension/fof/links</a> - That allows you to add links to the navbar, you have to add, in the Extension Manager this:<br>\n<code>fof/links</code></p>\n\n<p>You can find this name in the description of the extension where it says:</p>\n<blockquote class=\"uncited\"><div><p>composer require <strong>fof/links</strong></p></div></blockquote>\n\n<p>You only add the name. 🙂<br>\nRegards,</p>",
+        "renderFailed": null,
+        "source": null,
+        "sourceName": null,
+        "editedAt": null,
+        "canEdit": false,
+        "canDelete": false,
+        "canHide": false,
+        "canFlag": false,
+        "isApproved": true,
+        "canApprove": false,
+        "canLike": false,
+        "canSelectAsBestAnswer": false,
+        "canStartPoll": false,
+        "canSeeVotes": false,
+        "canVote": false,
+        "seeVoters": false,
+        "detectedLang": "en",
+        "fof-necrobumping": null,
+        "bookmarked": false,
+        "mentionedByCount": 1,
+        "likesCount": 1
+      },
+      "relationships": {
+        "discussion": {
+          "data": {
+            "type": "discussions",
+            "id": "36641"
+          }
+        },
+        "editedUser": {
+          "data": null
+        },
+        "hiddenUser": {
+          "data": null
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "44325"
+          }
+        }
+      }
+    },
+    {
+      "type": "users",
+      "id": "44815",
+      "links": {
+        "self": "/users/44815"
+      },
+      "attributes": {
+        "username": "bb17indo",
+        "displayName": "bb17indo",
+        "avatarUrl": null,
+        "avatarSrcset": null,
+        "hasUploadedAvatar": false,
+        "slug": "bb17indo",
+        "joinTime": "2024-12-13T06:54:26+00:00",
+        "discussionCount": 11,
+        "commentCount": 71,
+        "lastSeenAt": "2025-10-09T14:54:40+00:00",
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 0,
+        "blocksPd": false,
+        "points": 0,
+        "canHaveVotingNotifications": false,
+        "bio": "",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": false,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 0,
+        "fof-upload-uploadCountAll": 0,
+        "followed": null,
+        "followerCount": 0,
+        "followingCount": 0,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "groups": {
+          "data": []
+        },
+        "twoFactor": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "posts",
+      "id": "23812",
+      "links": {
+        "self": "/posts/23812"
+      },
+      "attributes": {
+        "number": 1,
+        "createdAt": "2016-05-04T19:21:52+00:00",
+        "contentType": "comment",
+        "contentHtml": "<p>Hello everyone,</p>\n\n<p>I am new to the Flarum community and have been running into a few issues with extensions as of late. I have already installed several extensions so I understand the process (somewhat), however, the last few extensions I have downloaded haven't been working properly and I was hoping someone could tell me what I did wrong.</p> \n\n<p>example extension: Davis social profile</p>\n\n<p>So, I would install an extension and the command would run smoothly with all the dependencies installed. No error message would popup and when I check in the flarum directory for the extension there is a newly generated vendor and composer.lock file. However, if I check installed.json, the extension wouldn't be listed there and when I check my extension list on my site, there would also be no extension listed.</p> \n\n<p>I have tried clearing the cache and performing composer update/install commands.</p> \n\n<p>Has anyone else experienced this issue? I doubt this issue is due to the extension itself since other users have said that it works fine for them.</p> ",
+        "renderFailed": null,
+        "source": null,
+        "sourceName": null,
+        "editedAt": null,
+        "canEdit": false,
+        "canDelete": false,
+        "canHide": false,
+        "canFlag": false,
+        "isApproved": true,
+        "canApprove": false,
+        "canLike": false,
+        "canSelectAsBestAnswer": false,
+        "canStartPoll": false,
+        "canSeeVotes": false,
+        "canVote": false,
+        "seeVoters": false,
+        "detectedLang": "en",
+        "fof-necrobumping": null,
+        "bookmarked": false,
+        "mentionedByCount": 1,
+        "likesCount": 0
+      },
+      "relationships": {
+        "discussion": {
+          "data": {
+            "type": "discussions",
+            "id": "2781"
+          }
+        },
+        "editedUser": {
+          "data": null
+        },
+        "hiddenUser": {
+          "data": null
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "4930"
+          }
+        }
+      }
+    },
+    {
+      "type": "users",
+      "id": "4930",
+      "links": {
+        "self": "/users/4930"
+      },
+      "attributes": {
+        "username": "blai",
+        "displayName": "blai",
+        "avatarUrl": null,
+        "avatarSrcset": null,
+        "hasUploadedAvatar": false,
+        "slug": "blai",
+        "joinTime": "2016-05-03T17:26:28+00:00",
+        "discussionCount": 2,
+        "commentCount": 23,
+        "lastSeenAt": "2016-05-25T23:06:05+00:00",
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 0,
+        "blocksPd": false,
+        "points": 0,
+        "canHaveVotingNotifications": false,
+        "bio": "",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": false,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 0,
+        "fof-upload-uploadCountAll": 0,
+        "followed": null,
+        "followerCount": 0,
+        "followingCount": 0,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "groups": {
+          "data": []
+        },
+        "twoFactor": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "posts",
+      "id": "168003",
+      "links": {
+        "self": "/posts/168003"
+      },
+      "attributes": {
+        "number": 1,
+        "createdAt": "2021-06-07T15:13:02+00:00",
+        "contentType": "comment",
+        "contentHtml": "<h1>Mercury</h1>\n\n<p><img src=\"https://extiverse.com/extension/extiverse/mercury/card.png\" title=\"\" alt=\"\"></p>\n\n<p>The smallest planet in our solar system is a great example that small things can have great meaning. Mercury  stands closest to our sun and orbits the sun in the least days. It is like a satellite constantly watching over the sun.</p>\n\n<p>This extension helps you keep your Flarum community better updated. I have more plans for it and willing to listen to incorporate your suggestions, but right now it:</p>\n\n<ul><li>shows a button in the admin area with the number of available updates to your extensions</li>\n<li>contains an admin page listing all your extensions and whether they have newer versions available</li>\n<li>offers a cronjob/scheduled command that can check for updates in your absence</li>\n<li>can send an email to all admins whenever it finds any updates</li></ul>\n\n<p><img src=\"https://cdn.discordapp.com/attachments/805355246926561330/851479458023735316/unknown.png\" title=\"\" alt=\"\"></p>\n\n<h3>Requirements</h3>\n\n<p>Sorry people, this extension is <strong>only for systems running php 7.4 or higher</strong>. <br>\nNot being able to use all type hints made me go bald.</p>\n\n<h3>Installation</h3>\n\n<pre><code class=\"language-bash\">composer require extiverse/mercury:\"*\"</code><script async=\"\" crossorigin=\"anonymous\" data-hljs-style=\"github\" integrity=\"sha384-ENgSnUL5UgeHebIZiuTpRAT4+a3licJ29eIcCndVuHFJvncvtdJoQL0XIBStbgl9\" src=\"https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.36/loader.min.js\"></script><script>\n                    if(window.hljsLoader && !document.currentScript.parentNode.hasAttribute('data-s9e-livepreview-onupdate')) {\n                        window.hljsLoader.highlightBlocks(document.currentScript.parentNode);\n                    }\n                </script></pre>\n\n<p>Go to your admin area and enable the extension. Follow the link on the Mercury page to retrieve an Extiverse API token. Without a token this extension does not work.</p>\n\n<h3>Command</h3>\n\n<p>Run the command in your ssh/terminal/cli if you want a quick overview of whether extensions have updates:</p>\n\n<pre><code class=\"language-bash\">php flarum mercury:update-check</code><script async=\"\" crossorigin=\"anonymous\" data-hljs-style=\"github\" integrity=\"sha384-ENgSnUL5UgeHebIZiuTpRAT4+a3licJ29eIcCndVuHFJvncvtdJoQL0XIBStbgl9\" src=\"https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.36/loader.min.js\"></script><script>\n                    if(window.hljsLoader && !document.currentScript.parentNode.hasAttribute('data-s9e-livepreview-onupdate')) {\n                        window.hljsLoader.highlightBlocks(document.currentScript.parentNode);\n                    }\n                </script></pre>\n\n<h3>Cronjob</h3>\n\n<p>This extension does not automatically register itself (yet) to the Flarum scheduler. I've chosen against it so that you can configure your own interval; I recommend checking less than once a day.</p>\n\n<p>The command to schedule is:</p>\n\n<pre><code class=\"language-bash\">php flarum mercury:update-check --notify</code><script async=\"\" crossorigin=\"anonymous\" data-hljs-style=\"github\" integrity=\"sha384-ENgSnUL5UgeHebIZiuTpRAT4+a3licJ29eIcCndVuHFJvncvtdJoQL0XIBStbgl9\" src=\"https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.36/loader.min.js\"></script><script>\n                    if(window.hljsLoader && !document.currentScript.parentNode.hasAttribute('data-s9e-livepreview-onupdate')) {\n                        window.hljsLoader.highlightBlocks(document.currentScript.parentNode);\n                    }\n                </script></pre>\n\n<p>If you drop the <code>--notify</code> flag no notifications are send to admins.</p>\n\n<p>This <a href=\"https://discuss.flarum.org/d/24118\" rel=\"ugc\" target=\"_self\" class=\"UrlLink UrlLink--internal\">excellent discussion</a> by Ian Morland will help you set up your cronjob. Instead of using the command <code>schedule:run</code> use <code>mercury:update-check --notify</code>.</p>\n\n<h3>Links</h3>\n\n<ul><li><a href=\"https://github.com/extiverse/mercury\" rel=\"noopener ugc nofollow\" target=\"_blank\">GitHub</a></li>\n<li><a href=\"https://extiverse.com\" rel=\"noopener ugc nofollow\" target=\"_blank\">Extiverse</a></li></ul>\n\n<p><a href=\"https://extiverse.com/extiverse/mercury\" rel=\"noopener ugc nofollow\" target=\"_blank\"><img src=\"https://extiverse.com/extiverse/mercury/open-graph-image\" title=\"\" alt=\"\"></a></p>\n",
+        "renderFailed": null,
+        "source": null,
+        "sourceName": null,
+        "editedAt": "2022-10-15T13:50:27+00:00",
+        "canEdit": false,
+        "canDelete": false,
+        "canHide": false,
+        "canFlag": false,
+        "isApproved": true,
+        "canApprove": false,
+        "canLike": false,
+        "canSelectAsBestAnswer": false,
+        "canStartPoll": false,
+        "canSeeVotes": false,
+        "canVote": false,
+        "seeVoters": false,
+        "detectedLang": "en",
+        "fof-necrobumping": null,
+        "bookmarked": false,
+        "mentionedByCount": 5,
+        "likesCount": 26
+      },
+      "relationships": {
+        "discussion": {
+          "data": {
+            "type": "discussions",
+            "id": "27620"
+          }
+        },
+        "editedUser": {
+          "data": {
+            "type": "users",
+            "id": "1376"
+          }
+        },
+        "hiddenUser": {
+          "data": null
+        },
+        "ipInfo": {
+          "data": {
+            "type": "ip_info",
+            "id": "e54d6b24450763a01802f91da5735f41314b0efebc7d222ee2426f9456018a7c"
+          }
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "1376"
+          }
+        }
+      }
+    },
+    {
+      "type": "users",
+      "id": "29821",
+      "links": {
+        "self": "/users/29821"
+      },
+      "attributes": {
+        "username": "Blind",
+        "displayName": "Blind",
+        "avatarUrl": "https://discuss.flarum.org/assets/avatars/oZ9DTTF5Qsj32mXD.webp",
+        "avatarSrcset": null,
+        "hasUploadedAvatar": true,
+        "slug": "Blind",
+        "joinTime": "2019-11-04T06:29:41+00:00",
+        "discussionCount": 6,
+        "commentCount": 31,
+        "lastSeenAt": "2023-08-30T13:12:43+00:00",
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 0,
+        "blocksPd": false,
+        "points": 2,
+        "canHaveVotingNotifications": false,
+        "bio": "",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": false,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 0,
+        "fof-upload-uploadCountAll": 0,
+        "followed": null,
+        "followerCount": 0,
+        "followingCount": 0,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "groups": {
+          "data": []
+        },
+        "twoFactor": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "users",
+      "id": "1376",
+      "links": {
+        "self": "/users/1376"
+      },
+      "attributes": {
+        "username": "luceos",
+        "displayName": "luceos",
+        "avatarUrl": "https://discuss.flarum.org/assets/avatars/fNVaAawAMvap1S2g.webp",
+        "avatarSrcset": null,
+        "hasUploadedAvatar": true,
+        "slug": "luceos",
+        "joinTime": "2015-08-27T08:12:58+00:00",
+        "discussionCount": 311,
+        "commentCount": 15230,
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 270,
+        "blocksPd": false,
+        "points": 100,
+        "canHaveVotingNotifications": true,
+        "bio": "Former Flarum core team member (2015 to 2025) and project manager (2019 to 2023).\n\nCo-founder of Floxum.\nContact me at daniel@floxum.com.\nhttps://floxum.com - hosting & extension marketplace",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": true,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 17,
+        "fof-upload-uploadCountAll": 17,
+        "followed": null,
+        "followerCount": 0,
+        "followingCount": 0,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "groups": {
+          "data": [
+            {
+              "type": "groups",
+              "id": "36"
+            }
+          ]
+        },
+        "twoFactor": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "posts",
+      "id": "168647",
+      "links": {
+        "self": "/posts/168647"
+      },
+      "attributes": {
+        "number": 8,
+        "createdAt": "2021-06-10T08:30:22+00:00",
+        "contentType": "comment",
+        "contentHtml": "<p><a href=\"https://discuss.flarum.org/d/27682/7\" class=\"PostMention\" data-id=\"168646\"><i class=\"icon fas fa-reply\"></i>luceos</a></p> \n\n<p>there's a conflict with the database</p>\n\n<pre><code>POST http://localhost/flarum/public/api/extensions/peopleinside-supersticky\n\nPDOException: SQLSTATE[42S21]: Column already exists: 1060 Duplicate column name 'is_sticky' in D:\\xampp\\htdocs\\flarum\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\PDOStatement.php:112\nStack trace:\n#0 D:\\xampp\\htdocs\\flarum\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\PDOStatement.php(112): PDOStatement-&gt;execute(NULL)\n#1 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Connection.php(478): Doctrine\\DBAL\\Driver\\PDOStatement-&gt;execute()\n#2 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Connection.php(678): Illuminate\\Database\\Connection-&gt;Illuminate\\Database\\{closure}('alter table `_f...', Array)\n#3 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Connection.php(645): Illuminate\\Database\\Connection-&gt;runQueryCallback('alter table `_f...', Array, Object(Closure))\n#4 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Connection.php(479): Illuminate\\Database\\Connection-&gt;run('alter table `_f...', Array, Object(Closure))\n#5 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Schema\\Blueprint.php(109): Illuminate\\Database\\Connection-&gt;statement('alter table `_f...')\n#6 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Schema\\Builder.php(365): Illuminate\\Database\\Schema\\Blueprint-&gt;build(Object(Illuminate\\Database\\MySqlConnection), Object(Illuminate\\Database\\Schema\\Grammars\\MySqlGrammar))\n#7 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Schema\\Builder.php(212): Illuminate\\Database\\Schema\\Builder-&gt;build(Object(Illuminate\\Database\\Schema\\Blueprint))\n#8 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Database\\Migration.php(67): Illuminate\\Database\\Schema\\Builder-&gt;table('discussions', Object(Closure))\n#9 [internal function]: Flarum\\Database\\Migration::Flarum\\Database\\{closure}(Object(Illuminate\\Database\\Schema\\MySqlBuilder))\n#10 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Database\\Migrator.php(202): call_user_func(Object(Closure), Object(Illuminate\\Database\\Schema\\MySqlBuilder))\n#11 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Database\\Migrator.php(133): Flarum\\Database\\Migrator-&gt;runClosureMigration(Array)\n#12 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Database\\Migrator.php(116): Flarum\\Database\\Migrator-&gt;runUp('D:\\\\xampp\\\\htdocs...', '2015_02_24_0000...', Object(Flarum\\Extension\\Extension))\n#13 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Database\\Migrator.php(90): Flarum\\Database\\Migrator-&gt;runMigrationList('D:\\\\xampp\\\\htdocs...', Array, Object(Flarum\\Extension\\Extension))\n#14 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Extension\\Extension.php(482): Flarum\\Database\\Migrator-&gt;run('D:\\\\xampp\\\\htdocs...', Object(Flarum\\Extension\\Extension))\n#15 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Extension\\ExtensionManager.php(311): Flarum\\Extension\\Extension-&gt;migrate(Object(Flarum\\Database\\Migrator), 'up')\n#16 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Extension\\ExtensionManager.php(182): Flarum\\Extension\\ExtensionManager-&gt;migrate(Object(Flarum\\Extension\\Extension))\n#17 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Api\\Controller\\UpdateExtensionController.php(46): Flarum\\Extension\\ExtensionManager-&gt;enable('peopleinside-su...')\n#18 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\RouteHandlerFactory.php(41): Flarum\\Api\\Controller\\UpdateExtensionController-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#19 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\ExecuteRoute.php(27): Flarum\\Http\\RouteHandlerFactory-&gt;Flarum\\Http\\{closure}(Object(Laminas\\Diactoros\\ServerRequest), Array)\n#20 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\ExecuteRoute-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Closure))\n#21 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Api\\Middleware\\ThrottleApi.php(33): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#22 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Api\\Middleware\\ThrottleApi-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#23 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\CheckCsrfToken.php(44): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#24 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\CheckCsrfToken-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#25 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\ResolveRoute.php(67): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#26 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\ResolveRoute-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#27 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\SetLocale.php(51): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#28 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\SetLocale-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#29 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\AuthenticateWithHeader.php(56): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#30 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\AuthenticateWithHeader-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#31 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\AuthenticateWithSession.php(31): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#32 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\AuthenticateWithSession-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#33 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\RememberFromCookie.php(52): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#34 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\RememberFromCookie-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#35 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\StartSession.php(61): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#36 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\StartSession-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#37 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Api\\Middleware\\FakeHttpMethods.php(29): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#38 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Api\\Middleware\\FakeHttpMethods-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#39 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\ParseJsonBody.php(28): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#40 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\ParseJsonBody-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#41 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\HandleErrors.php(57): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#42 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\HandleErrors-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#43 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\InjectActorReference.php(25): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#44 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\InjectActorReference-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#45 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\MiddlewarePipe.php(84): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#46 D:\\xampp\\htdocs\\flarum\\vendor\\middlewares\\request-handler\\src\\RequestHandler.php(84): Laminas\\Stratigility\\MiddlewarePipe-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#47 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Middlewares\\RequestHandler-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#48 D:\\xampp\\htdocs\\flarum\\vendor\\middlewares\\base-path-router\\src\\BasePathRouter.php(101): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#49 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Middlewares\\BasePathRouter-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#50 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Middleware\\OriginalMessages.php(42): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#51 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Laminas\\Stratigility\\Middleware\\OriginalMessages-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#52 D:\\xampp\\htdocs\\flarum\\vendor\\middlewares\\base-path\\src\\BasePath.php(73): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#53 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Middlewares\\BasePath-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#54 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\ProcessIp.php(24): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#55 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\ProcessIp-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#56 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\MiddlewarePipe.php(84): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#57 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\MiddlewarePipe.php(73): Laminas\\Stratigility\\MiddlewarePipe-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\EmptyPipelineHandler))\n#58 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-httphandlerrunner\\src\\RequestHandlerRunner.php(96): Laminas\\Stratigility\\MiddlewarePipe-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#59 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Server.php(44): Laminas\\HttpHandlerRunner\\RequestHandlerRunner-&gt;run()\n#60 D:\\xampp\\htdocs\\flarum\\public\\index.php(26): Flarum\\Http\\Server-&gt;listen()\n#61 {main}\n\nNext Doctrine\\DBAL\\Driver\\PDO\\Exception: SQLSTATE[42S21]: Column already exists: 1060 Duplicate column name 'is_sticky' in D:\\xampp\\htdocs\\flarum\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\PDO\\Exception.php:18\nStack trace:\n#0 D:\\xampp\\htdocs\\flarum\\vendor\\doctrine\\dbal\\lib\\Doctrine\\DBAL\\Driver\\PDOStatement.php(114): Doctrine\\DBAL\\Driver\\PDO\\Exception::new(Object(PDOException))\n#1 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Connection.php(478): Doctrine\\DBAL\\Driver\\PDOStatement-&gt;execute()\n#2 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Connection.php(678): Illuminate\\Database\\Connection-&gt;Illuminate\\Database\\{closure}('alter table `_f...', Array)\n#3 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Connection.php(645): Illuminate\\Database\\Connection-&gt;runQueryCallback('alter table `_f...', Array, Object(Closure))\n#4 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Connection.php(479): Illuminate\\Database\\Connection-&gt;run('alter table `_f...', Array, Object(Closure))\n#5 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Schema\\Blueprint.php(109): Illuminate\\Database\\Connection-&gt;statement('alter table `_f...')\n#6 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Schema\\Builder.php(365): Illuminate\\Database\\Schema\\Blueprint-&gt;build(Object(Illuminate\\Database\\MySqlConnection), Object(Illuminate\\Database\\Schema\\Grammars\\MySqlGrammar))\n#7 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Schema\\Builder.php(212): Illuminate\\Database\\Schema\\Builder-&gt;build(Object(Illuminate\\Database\\Schema\\Blueprint))\n#8 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Database\\Migration.php(67): Illuminate\\Database\\Schema\\Builder-&gt;table('discussions', Object(Closure))\n#9 [internal function]: Flarum\\Database\\Migration::Flarum\\Database\\{closure}(Object(Illuminate\\Database\\Schema\\MySqlBuilder))\n#10 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Database\\Migrator.php(202): call_user_func(Object(Closure), Object(Illuminate\\Database\\Schema\\MySqlBuilder))\n#11 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Database\\Migrator.php(133): Flarum\\Database\\Migrator-&gt;runClosureMigration(Array)\n#12 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Database\\Migrator.php(116): Flarum\\Database\\Migrator-&gt;runUp('D:\\\\xampp\\\\htdocs...', '2015_02_24_0000...', Object(Flarum\\Extension\\Extension))\n#13 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Database\\Migrator.php(90): Flarum\\Database\\Migrator-&gt;runMigrationList('D:\\\\xampp\\\\htdocs...', Array, Object(Flarum\\Extension\\Extension))\n#14 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Extension\\Extension.php(482): Flarum\\Database\\Migrator-&gt;run('D:\\\\xampp\\\\htdocs...', Object(Flarum\\Extension\\Extension))\n#15 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Extension\\ExtensionManager.php(311): Flarum\\Extension\\Extension-&gt;migrate(Object(Flarum\\Database\\Migrator), 'up')\n#16 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Extension\\ExtensionManager.php(182): Flarum\\Extension\\ExtensionManager-&gt;migrate(Object(Flarum\\Extension\\Extension))\n#17 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Api\\Controller\\UpdateExtensionController.php(46): Flarum\\Extension\\ExtensionManager-&gt;enable('peopleinside-su...')\n#18 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\RouteHandlerFactory.php(41): Flarum\\Api\\Controller\\UpdateExtensionController-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#19 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\ExecuteRoute.php(27): Flarum\\Http\\RouteHandlerFactory-&gt;Flarum\\Http\\{closure}(Object(Laminas\\Diactoros\\ServerRequest), Array)\n#20 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\ExecuteRoute-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Closure))\n#21 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Api\\Middleware\\ThrottleApi.php(33): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#22 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Api\\Middleware\\ThrottleApi-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#23 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\CheckCsrfToken.php(44): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#24 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\CheckCsrfToken-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#25 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\ResolveRoute.php(67): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#26 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\ResolveRoute-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#27 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\SetLocale.php(51): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#28 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\SetLocale-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#29 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\AuthenticateWithHeader.php(56): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#30 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\AuthenticateWithHeader-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#31 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\AuthenticateWithSession.php(31): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#32 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\AuthenticateWithSession-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#33 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\RememberFromCookie.php(52): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#34 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\RememberFromCookie-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#35 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\StartSession.php(61): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#36 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\StartSession-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#37 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Api\\Middleware\\FakeHttpMethods.php(29): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#38 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Api\\Middleware\\FakeHttpMethods-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#39 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\ParseJsonBody.php(28): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#40 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\ParseJsonBody-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#41 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\HandleErrors.php(57): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#42 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\HandleErrors-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#43 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\InjectActorReference.php(25): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#44 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\InjectActorReference-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#45 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\MiddlewarePipe.php(84): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#46 D:\\xampp\\htdocs\\flarum\\vendor\\middlewares\\request-handler\\src\\RequestHandler.php(84): Laminas\\Stratigility\\MiddlewarePipe-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#47 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Middlewares\\RequestHandler-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#48 D:\\xampp\\htdocs\\flarum\\vendor\\middlewares\\base-path-router\\src\\BasePathRouter.php(101): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#49 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Middlewares\\BasePathRouter-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#50 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Middleware\\OriginalMessages.php(42): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#51 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Laminas\\Stratigility\\Middleware\\OriginalMessages-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#52 D:\\xampp\\htdocs\\flarum\\vendor\\middlewares\\base-path\\src\\BasePath.php(73): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#53 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Middlewares\\BasePath-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#54 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\ProcessIp.php(24): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#55 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\ProcessIp-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#56 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\MiddlewarePipe.php(84): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#57 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\MiddlewarePipe.php(73): Laminas\\Stratigility\\MiddlewarePipe-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\EmptyPipelineHandler))\n#58 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-httphandlerrunner\\src\\RequestHandlerRunner.php(96): Laminas\\Stratigility\\MiddlewarePipe-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#59 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Server.php(44): Laminas\\HttpHandlerRunner\\RequestHandlerRunner-&gt;run()\n#60 D:\\xampp\\htdocs\\flarum\\public\\index.php(26): Flarum\\Http\\Server-&gt;listen()\n#61 {main}\n\nNext Illuminate\\Database\\QueryException: SQLSTATE[42S21]: Column already exists: 1060 Duplicate column name 'is_sticky' (SQL: alter table `_fladiscussions` add `is_sticky` tinyint(1) not null default '0') in D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Connection.php:685\nStack trace:\n#0 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Connection.php(645): Illuminate\\Database\\Connection-&gt;runQueryCallback('alter table `_f...', Array, Object(Closure))\n#1 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Connection.php(479): Illuminate\\Database\\Connection-&gt;run('alter table `_f...', Array, Object(Closure))\n#2 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Schema\\Blueprint.php(109): Illuminate\\Database\\Connection-&gt;statement('alter table `_f...')\n#3 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Schema\\Builder.php(365): Illuminate\\Database\\Schema\\Blueprint-&gt;build(Object(Illuminate\\Database\\MySqlConnection), Object(Illuminate\\Database\\Schema\\Grammars\\MySqlGrammar))\n#4 D:\\xampp\\htdocs\\flarum\\vendor\\illuminate\\database\\Schema\\Builder.php(212): Illuminate\\Database\\Schema\\Builder-&gt;build(Object(Illuminate\\Database\\Schema\\Blueprint))\n#5 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Database\\Migration.php(67): Illuminate\\Database\\Schema\\Builder-&gt;table('discussions', Object(Closure))\n#6 [internal function]: Flarum\\Database\\Migration::Flarum\\Database\\{closure}(Object(Illuminate\\Database\\Schema\\MySqlBuilder))\n#7 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Database\\Migrator.php(202): call_user_func(Object(Closure), Object(Illuminate\\Database\\Schema\\MySqlBuilder))\n#8 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Database\\Migrator.php(133): Flarum\\Database\\Migrator-&gt;runClosureMigration(Array)\n#9 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Database\\Migrator.php(116): Flarum\\Database\\Migrator-&gt;runUp('D:\\\\xampp\\\\htdocs...', '2015_02_24_0000...', Object(Flarum\\Extension\\Extension))\n#10 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Database\\Migrator.php(90): Flarum\\Database\\Migrator-&gt;runMigrationList('D:\\\\xampp\\\\htdocs...', Array, Object(Flarum\\Extension\\Extension))\n#11 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Extension\\Extension.php(482): Flarum\\Database\\Migrator-&gt;run('D:\\\\xampp\\\\htdocs...', Object(Flarum\\Extension\\Extension))\n#12 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Extension\\ExtensionManager.php(311): Flarum\\Extension\\Extension-&gt;migrate(Object(Flarum\\Database\\Migrator), 'up')\n#13 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Extension\\ExtensionManager.php(182): Flarum\\Extension\\ExtensionManager-&gt;migrate(Object(Flarum\\Extension\\Extension))\n#14 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Api\\Controller\\UpdateExtensionController.php(46): Flarum\\Extension\\ExtensionManager-&gt;enable('peopleinside-su...')\n#15 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\RouteHandlerFactory.php(41): Flarum\\Api\\Controller\\UpdateExtensionController-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#16 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\ExecuteRoute.php(27): Flarum\\Http\\RouteHandlerFactory-&gt;Flarum\\Http\\{closure}(Object(Laminas\\Diactoros\\ServerRequest), Array)\n#17 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\ExecuteRoute-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Closure))\n#18 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Api\\Middleware\\ThrottleApi.php(33): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#19 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Api\\Middleware\\ThrottleApi-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#20 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\CheckCsrfToken.php(44): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#21 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\CheckCsrfToken-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#22 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\ResolveRoute.php(67): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#23 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\ResolveRoute-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#24 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\SetLocale.php(51): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#25 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\SetLocale-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#26 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\AuthenticateWithHeader.php(56): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#27 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\AuthenticateWithHeader-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#28 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\AuthenticateWithSession.php(31): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#29 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\AuthenticateWithSession-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#30 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\RememberFromCookie.php(52): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#31 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\RememberFromCookie-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#32 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\StartSession.php(61): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#33 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\StartSession-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#34 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Api\\Middleware\\FakeHttpMethods.php(29): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#35 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Api\\Middleware\\FakeHttpMethods-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#36 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\ParseJsonBody.php(28): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#37 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\ParseJsonBody-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#38 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\HandleErrors.php(57): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#39 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\HandleErrors-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#40 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\InjectActorReference.php(25): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#41 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\InjectActorReference-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#42 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\MiddlewarePipe.php(84): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#43 D:\\xampp\\htdocs\\flarum\\vendor\\middlewares\\request-handler\\src\\RequestHandler.php(84): Laminas\\Stratigility\\MiddlewarePipe-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#44 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Middlewares\\RequestHandler-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#45 D:\\xampp\\htdocs\\flarum\\vendor\\middlewares\\base-path-router\\src\\BasePathRouter.php(101): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#46 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Middlewares\\BasePathRouter-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#47 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Middleware\\OriginalMessages.php(42): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#48 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Laminas\\Stratigility\\Middleware\\OriginalMessages-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#49 D:\\xampp\\htdocs\\flarum\\vendor\\middlewares\\base-path\\src\\BasePath.php(73): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#50 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Middlewares\\BasePath-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#51 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Middleware\\ProcessIp.php(24): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#52 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\Next.php(61): Flarum\\Http\\Middleware\\ProcessIp-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\Next))\n#53 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\MiddlewarePipe.php(84): Laminas\\Stratigility\\Next-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#54 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-stratigility\\src\\MiddlewarePipe.php(73): Laminas\\Stratigility\\MiddlewarePipe-&gt;process(Object(Laminas\\Diactoros\\ServerRequest), Object(Laminas\\Stratigility\\EmptyPipelineHandler))\n#55 D:\\xampp\\htdocs\\flarum\\vendor\\laminas\\laminas-httphandlerrunner\\src\\RequestHandlerRunner.php(96): Laminas\\Stratigility\\MiddlewarePipe-&gt;handle(Object(Laminas\\Diactoros\\ServerRequest))\n#56 D:\\xampp\\htdocs\\flarum\\vendor\\flarum\\core\\src\\Http\\Server.php(44): Laminas\\HttpHandlerRunner\\RequestHandlerRunner-&gt;run()\n#57 D:\\xampp\\htdocs\\flarum\\public\\index.php(26): Flarum\\Http\\Server-&gt;listen()\n#58 {main}</code><script async=\"\" crossorigin=\"anonymous\" data-hljs-style=\"github\" integrity=\"sha384-ENgSnUL5UgeHebIZiuTpRAT4+a3licJ29eIcCndVuHFJvncvtdJoQL0XIBStbgl9\" src=\"https://cdn.jsdelivr.net/gh/s9e/hljs-loader@1.0.36/loader.min.js\"></script><script>\n                    if(window.hljsLoader && !document.currentScript.parentNode.hasAttribute('data-s9e-livepreview-onupdate')) {\n                        window.hljsLoader.highlightBlocks(document.currentScript.parentNode);\n                    }\n                </script></pre>",
+        "renderFailed": null,
+        "source": null,
+        "sourceName": null,
+        "editedAt": null,
+        "canEdit": false,
+        "canDelete": false,
+        "canHide": false,
+        "canFlag": false,
+        "isApproved": true,
+        "canApprove": false,
+        "canLike": false,
+        "canSelectAsBestAnswer": false,
+        "canStartPoll": false,
+        "canSeeVotes": false,
+        "canVote": false,
+        "seeVoters": false,
+        "detectedLang": "en",
+        "fof-necrobumping": null,
+        "bookmarked": false,
+        "mentionedByCount": 0,
+        "likesCount": 0
+      },
+      "relationships": {
+        "discussion": {
+          "data": {
+            "type": "discussions",
+            "id": "27682"
+          }
+        },
+        "editedUser": {
+          "data": null
+        },
+        "hiddenUser": {
+          "data": null
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "33989"
+          }
+        }
+      }
+    },
+    {
+      "type": "users",
+      "id": "20896",
+      "links": {
+        "self": "/users/20896"
+      },
+      "attributes": {
+        "username": "peopleinside",
+        "displayName": "peopleinside",
+        "avatarUrl": "https://discuss.flarum.org/assets/avatars/JTkI9onCiJguj6qQ.webp",
+        "avatarSrcset": "https://discuss.flarum.org/assets/avatars/JTkI9onCiJguj6qQ.webp 1x, https://discuss.flarum.org/assets/avatars/JTkI9onCiJguj6qQ@2x.webp 2x, https://discuss.flarum.org/assets/avatars/JTkI9onCiJguj6qQ@3x.webp 3x",
+        "hasUploadedAvatar": true,
+        "slug": "peopleinside",
+        "joinTime": "2018-07-28T08:46:39+00:00",
+        "discussionCount": 161,
+        "commentCount": 1204,
+        "lastSeenAt": "2026-11-23T17:52:44+00:00",
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 14,
+        "blocksPd": false,
+        "points": 48,
+        "canHaveVotingNotifications": true,
+        "bio": "Web , web security, open source, psychology passionate. \nhttps://www.peopleinside.it - https://www.marcoborla.it",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": false,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 18,
+        "fof-upload-uploadCountAll": 19,
+        "followed": null,
+        "followerCount": 0,
+        "followingCount": 0,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "groups": {
+          "data": [
+            {
+              "type": "groups",
+              "id": "9"
+            }
+          ]
+        },
+        "twoFactor": {
+          "data": null
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,620 @@
+{
+  "data": [
+    {
+      "type": "posts",
+      "id": "270785",
+      "links": {
+        "self": "/posts/270785"
+      },
+      "attributes": {
+        "number": 1,
+        "createdAt": "2026-11-25T21:17:08+00:00",
+        "contentType": "comment",
+        "contentHtml": "<p>Its the only thing thats lacking.</p>",
+        "renderFailed": null,
+        "source": null,
+        "sourceName": null,
+        "editedAt": null,
+        "canEdit": false,
+        "canDelete": false,
+        "canHide": false,
+        "canFlag": false,
+        "isApproved": true,
+        "canApprove": false,
+        "canLike": false,
+        "canSelectAsBestAnswer": false,
+        "canStartPoll": false,
+        "canSeeVotes": false,
+        "canVote": false,
+        "seeVoters": false,
+        "detectedLang": "en",
+        "fof-necrobumping": null,
+        "bookmarked": false,
+        "mentionedByCount": 0,
+        "likesCount": 0
+      },
+      "relationships": {
+        "discussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40528"
+          }
+        },
+        "editedUser": {
+          "data": null
+        },
+        "hiddenUser": {
+          "data": null
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "47732"
+          }
+        }
+      }
+    },
+    {
+      "type": "posts",
+      "id": "270787",
+      "links": {
+        "self": "/posts/270787"
+      },
+      "attributes": {
+        "number": 2,
+        "createdAt": "2026-11-25T21:47:18+00:00",
+        "contentType": "comment",
+        "contentHtml": "<p>I googled composer+vendor but the composer install-command doesnt' fix it</p>",
+        "renderFailed": null,
+        "source": null,
+        "sourceName": null,
+        "editedAt": null,
+        "canEdit": false,
+        "canDelete": false,
+        "canHide": false,
+        "canFlag": false,
+        "isApproved": true,
+        "canApprove": false,
+        "canLike": false,
+        "canSelectAsBestAnswer": false,
+        "canStartPoll": false,
+        "canSeeVotes": false,
+        "canVote": false,
+        "seeVoters": false,
+        "detectedLang": "en",
+        "fof-necrobumping": null,
+        "bookmarked": false,
+        "mentionedByCount": 1,
+        "likesCount": 0
+      },
+      "relationships": {
+        "discussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40528"
+          }
+        },
+        "editedUser": {
+          "data": null
+        },
+        "hiddenUser": {
+          "data": null
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "47732"
+          }
+        }
+      }
+    },
+    {
+      "type": "posts",
+      "id": "270790",
+      "links": {
+        "self": "/posts/270790"
+      },
+      "attributes": {
+        "number": 3,
+        "createdAt": "2026-11-25T22:18:23+00:00",
+        "contentType": "comment",
+        "contentHtml": "<p><a href=\"https://discuss.flarum.org/d/40528/2\" class=\"PostMention\" data-id=\"270787\"><i class=\"icon fas fa-reply\"></i>Harlem</a> are you in the right directory? What are you seeing?</p>",
+        "renderFailed": null,
+        "source": null,
+        "sourceName": null,
+        "editedAt": null,
+        "canEdit": false,
+        "canDelete": false,
+        "canHide": false,
+        "canFlag": false,
+        "isApproved": true,
+        "canApprove": false,
+        "canLike": false,
+        "canSelectAsBestAnswer": false,
+        "canStartPoll": false,
+        "canSeeVotes": false,
+        "canVote": false,
+        "seeVoters": false,
+        "detectedLang": "en",
+        "fof-necrobumping": null,
+        "bookmarked": false,
+        "mentionedByCount": 0,
+        "likesCount": 0
+      },
+      "relationships": {
+        "discussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40528"
+          }
+        },
+        "editedUser": {
+          "data": null
+        },
+        "hiddenUser": {
+          "data": null
+        },
+        "ipInfo": {
+          "data": {
+            "type": "ip_info",
+            "id": "e54d6b24450763a01802f91da5735f41314b0efebc7d222ee2426f9456018a7c"
+          }
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "1376"
+          }
+        }
+      }
+    },
+    {
+      "type": "posts",
+      "id": "270791",
+      "links": {
+        "self": "/posts/270791"
+      },
+      "attributes": {
+        "number": 4,
+        "createdAt": "2026-11-25T22:25:29+00:00",
+        "contentType": "comment",
+        "contentHtml": "<p>Im in the forum-directory of my root folder. When I try to install composer in root-folder, it says composer.lock file is missing. I could always cope the folders from there</p>",
+        "renderFailed": null,
+        "source": null,
+        "sourceName": null,
+        "editedAt": null,
+        "canEdit": false,
+        "canDelete": false,
+        "canHide": false,
+        "canFlag": false,
+        "isApproved": true,
+        "canApprove": false,
+        "canLike": false,
+        "canSelectAsBestAnswer": false,
+        "canStartPoll": false,
+        "canSeeVotes": false,
+        "canVote": false,
+        "seeVoters": false,
+        "detectedLang": "en",
+        "fof-necrobumping": null,
+        "bookmarked": false,
+        "mentionedByCount": 0,
+        "likesCount": 0
+      },
+      "relationships": {
+        "discussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40528"
+          }
+        },
+        "editedUser": {
+          "data": null
+        },
+        "hiddenUser": {
+          "data": null
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "47732"
+          }
+        }
+      }
+    },
+    {
+      "type": "posts",
+      "id": "270792",
+      "links": {
+        "self": "/posts/270792"
+      },
+      "attributes": {
+        "number": 5,
+        "createdAt": "2026-11-25T22:28:24+00:00",
+        "contentType": "comment",
+        "contentHtml": "<p>Anyone know where I can get the composer.lock-file?</p>",
+        "renderFailed": null,
+        "source": null,
+        "sourceName": null,
+        "editedAt": null,
+        "canEdit": false,
+        "canDelete": false,
+        "canHide": false,
+        "canFlag": false,
+        "isApproved": true,
+        "canApprove": false,
+        "canLike": false,
+        "canSelectAsBestAnswer": false,
+        "canStartPoll": false,
+        "canSeeVotes": false,
+        "canVote": false,
+        "seeVoters": false,
+        "detectedLang": "en",
+        "fof-necrobumping": null,
+        "bookmarked": false,
+        "mentionedByCount": 0,
+        "likesCount": 0
+      },
+      "relationships": {
+        "discussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40528"
+          }
+        },
+        "editedUser": {
+          "data": null
+        },
+        "hiddenUser": {
+          "data": null
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "47732"
+          }
+        }
+      }
+    },
+    {
+      "type": "posts",
+      "id": "270793",
+      "links": {
+        "self": "/posts/270793"
+      },
+      "attributes": {
+        "number": 6,
+        "createdAt": "2026-11-25T22:50:35+00:00",
+        "contentType": "comment",
+        "contentHtml": "<p>Check whether you see a file called <code>flarum</code> and <code>config.php</code>; if you don't you're in the wrong folder.</p>",
+        "renderFailed": null,
+        "source": null,
+        "sourceName": null,
+        "editedAt": null,
+        "canEdit": false,
+        "canDelete": false,
+        "canHide": false,
+        "canFlag": false,
+        "isApproved": true,
+        "canApprove": false,
+        "canLike": false,
+        "canSelectAsBestAnswer": false,
+        "canStartPoll": false,
+        "canSeeVotes": false,
+        "canVote": false,
+        "seeVoters": false,
+        "detectedLang": "en",
+        "fof-necrobumping": null,
+        "bookmarked": false,
+        "mentionedByCount": 0,
+        "likesCount": 0
+      },
+      "relationships": {
+        "discussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40528"
+          }
+        },
+        "editedUser": {
+          "data": null
+        },
+        "hiddenUser": {
+          "data": null
+        },
+        "ipInfo": {
+          "data": {
+            "type": "ip_info",
+            "id": "e54d6b24450763a01802f91da5735f41314b0efebc7d222ee2426f9456018a7c"
+          }
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "1376"
+          }
+        }
+      }
+    },
+    {
+      "type": "posts",
+      "id": "270798",
+      "links": {
+        "self": "/posts/270798"
+      },
+      "attributes": {
+        "number": 7,
+        "createdAt": "2026-11-26T00:17:54+00:00",
+        "contentType": "comment",
+        "contentHtml": "<p>Im' in the right folder</p>",
+        "renderFailed": null,
+        "source": null,
+        "sourceName": null,
+        "editedAt": null,
+        "canEdit": false,
+        "canDelete": false,
+        "canHide": false,
+        "canFlag": false,
+        "isApproved": true,
+        "canApprove": false,
+        "canLike": false,
+        "canSelectAsBestAnswer": false,
+        "canStartPoll": false,
+        "canSeeVotes": false,
+        "canVote": false,
+        "seeVoters": false,
+        "detectedLang": "en",
+        "fof-necrobumping": null,
+        "bookmarked": false,
+        "mentionedByCount": 1,
+        "likesCount": 0
+      },
+      "relationships": {
+        "discussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40528"
+          }
+        },
+        "editedUser": {
+          "data": null
+        },
+        "hiddenUser": {
+          "data": null
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "47732"
+          }
+        }
+      }
+    },
+    {
+      "type": "posts",
+      "id": "270799",
+      "links": {
+        "self": "/posts/270799"
+      },
+      "attributes": {
+        "number": 8,
+        "createdAt": "2026-11-26T00:20:04+00:00",
+        "contentType": "comment",
+        "contentHtml": "<p><a href=\"https://discuss.flarum.org/d/40528/7\" class=\"PostMention\" data-id=\"270798\"><i class=\"icon fas fa-reply\"></i>Harlem</a> are you on shared hosting?</p> \n",
+        "renderFailed": null,
+        "source": null,
+        "sourceName": null,
+        "editedAt": null,
+        "canEdit": false,
+        "canDelete": false,
+        "canHide": false,
+        "canFlag": false,
+        "isApproved": true,
+        "canApprove": false,
+        "canLike": false,
+        "canSelectAsBestAnswer": false,
+        "canStartPoll": false,
+        "canSeeVotes": false,
+        "canVote": false,
+        "seeVoters": false,
+        "detectedLang": "en",
+        "fof-necrobumping": null,
+        "bookmarked": false,
+        "mentionedByCount": 0,
+        "likesCount": 0
+      },
+      "relationships": {
+        "discussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40528"
+          }
+        },
+        "editedUser": {
+          "data": null
+        },
+        "hiddenUser": {
+          "data": null
+        },
+        "ipInfo": {
+          "data": {
+            "type": "ip_info",
+            "id": "b72686abcc57a32605fead0de845fdca19fc40b26220cde61d9eedc29d6854ef"
+          }
+        },
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "45419"
+          }
+        }
+      }
+    }
+  ],
+  "included": [
+    {
+      "type": "users",
+      "id": "45419",
+      "links": {
+        "self": "/users/45419"
+      },
+      "attributes": {
+        "username": "KBExit",
+        "displayName": "Karl",
+        "avatarUrl": "https://discuss.flarum.org/assets/avatars/mlSl2ApLMieah3BS.webp",
+        "avatarSrcset": null,
+        "hasUploadedAvatar": true,
+        "slug": "KBExit",
+        "joinTime": "2025-04-26T17:51:29+00:00",
+        "discussionCount": 82,
+        "commentCount": 3094,
+        "lastSeenAt": "2026-11-26T00:43:23+00:00",
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 30,
+        "blocksPd": false,
+        "points": 15,
+        "canHaveVotingNotifications": true,
+        "bio": "Korean American, U.S. Marine Corps Veteran, Engineer, Dad, Subaru and Linux Enthusiast, and Entrepreneur. \nhttps://kbexit.vet \nFlarum Specific Uptime Monitoring: https://linkrobins.com",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": true,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 347,
+        "fof-upload-uploadCountAll": 347,
+        "followed": null,
+        "followerCount": 6,
+        "followingCount": 0,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "twoFactor": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "users",
+      "id": "47732",
+      "links": {
+        "self": "/users/47732"
+      },
+      "attributes": {
+        "username": "Harlem",
+        "displayName": "Harlem",
+        "avatarUrl": null,
+        "avatarSrcset": null,
+        "hasUploadedAvatar": false,
+        "slug": "Harlem",
+        "joinTime": "2026-11-25T21:14:54+00:00",
+        "discussionCount": 1,
+        "commentCount": 11,
+        "lastSeenAt": "2026-11-26T00:50:08+00:00",
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 0,
+        "blocksPd": false,
+        "points": 0,
+        "canHaveVotingNotifications": true,
+        "bio": "",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": false,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 0,
+        "fof-upload-uploadCountAll": 0,
+        "followed": null,
+        "followerCount": 0,
+        "followingCount": 0,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "twoFactor": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "users",
+      "id": "1376",
+      "links": {
+        "self": "/users/1376"
+      },
+      "attributes": {
+        "username": "luceos",
+        "displayName": "luceos",
+        "avatarUrl": "https://discuss.flarum.org/assets/avatars/fNVaAawAMvap1S2g.webp",
+        "avatarSrcset": null,
+        "hasUploadedAvatar": true,
+        "slug": "luceos",
+        "joinTime": "2015-08-27T08:12:58+00:00",
+        "discussionCount": 311,
+        "commentCount": 15230,
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 270,
+        "blocksPd": false,
+        "points": 100,
+        "canHaveVotingNotifications": true,
+        "bio": "Former Flarum core team member (2015 to 2025) and project manager (2019 to 2023).\n\nCo-founder of Floxum.\nContact me at daniel@floxum.com.\nhttps://floxum.com - hosting & extension marketplace",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": true,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 17,
+        "fof-upload-uploadCountAll": 17,
+        "followed": null,
+        "followerCount": 0,
+        "followingCount": 0,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "twoFactor": {
+          "data": null
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,412 @@
+{
+  "data": [
+    {
+      "type": "tags",
+      "id": "1",
+      "links": {
+        "self": "/tags/1"
+      },
+      "attributes": {
+        "name": "Chit chat",
+        "description": "Anything and everything that isn't Flarum. Pull up a chair.",
+        "slug": "off-topic",
+        "color": "#6BA539",
+        "icon": "fa-light fa-mug-hot",
+        "iconImageUrl": null,
+        "iconImageSrcset": null,
+        "isHidden": false,
+        "isPrimary": true,
+        "discussionCount": 1096,
+        "position": 4,
+        "defaultSort": null,
+        "isChild": true,
+        "lastPostedAt": "2026-11-24T03:57:05+00:00",
+        "canStartDiscussion": false,
+        "canAddToDiscussion": false,
+        "isQnA": false,
+        "subscription": null,
+        "template": ""
+      },
+      "relationships": {
+        "lastPostedDiscussion": {
+          "data": {
+            "type": "discussions",
+            "id": "187"
+          }
+        },
+        "parent": {
+          "data": {
+            "type": "tags",
+            "id": "96"
+          }
+        }
+      }
+    },
+    {
+      "type": "tags",
+      "id": "3",
+      "links": {
+        "self": "/tags/3"
+      },
+      "attributes": {
+        "name": "Design",
+        "description": "Discussion about Flarum's user interface and design, including layout, behaviour, and language.",
+        "slug": "design",
+        "color": "#9AA3AD",
+        "icon": null,
+        "iconImageUrl": null,
+        "iconImageSrcset": null,
+        "isHidden": false,
+        "isPrimary": true,
+        "discussionCount": 391,
+        "position": 0,
+        "defaultSort": null,
+        "isChild": true,
+        "lastPostedAt": "2025-03-29T22:15:19+00:00",
+        "canStartDiscussion": false,
+        "canAddToDiscussion": false,
+        "isQnA": false,
+        "subscription": null,
+        "template": ""
+      },
+      "relationships": {
+        "lastPostedDiscussion": {
+          "data": {
+            "type": "discussions",
+            "id": "26074"
+          }
+        },
+        "parent": {
+          "data": {
+            "type": "tags",
+            "id": "69"
+          }
+        }
+      }
+    },
+    {
+      "type": "tags",
+      "id": "4",
+      "links": {
+        "self": "/tags/4"
+      },
+      "attributes": {
+        "name": "Dev",
+        "description": "Building with Flarum: extensions, themes, translations and core.",
+        "slug": "dev",
+        "color": "#516780",
+        "icon": "fa-light fa-code",
+        "iconImageUrl": null,
+        "iconImageSrcset": null,
+        "isHidden": false,
+        "isPrimary": true,
+        "discussionCount": 2168,
+        "position": 4,
+        "defaultSort": null,
+        "isChild": false,
+        "lastPostedAt": "2026-11-20T06:51:27+00:00",
+        "canStartDiscussion": false,
+        "canAddToDiscussion": false,
+        "isQnA": true,
+        "subscription": null,
+        "template": ""
+      },
+      "relationships": {
+        "lastPostedDiscussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40473"
+          }
+        },
+        "parent": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "tags",
+      "id": "7",
+      "links": {
+        "self": "/tags/7"
+      },
+      "attributes": {
+        "name": "Blog",
+        "description": "Official release announcements and other updates from the Flarum team.",
+        "slug": "blog",
+        "color": "#E7672E",
+        "icon": "fa-light fa-bullhorn",
+        "iconImageUrl": null,
+        "iconImageSrcset": null,
+        "isHidden": false,
+        "isPrimary": true,
+        "discussionCount": 164,
+        "position": 0,
+        "defaultSort": null,
+        "isChild": true,
+        "lastPostedAt": "2026-11-24T18:35:57+00:00",
+        "canStartDiscussion": false,
+        "canAddToDiscussion": false,
+        "isQnA": false,
+        "subscription": null,
+        "template": ""
+      },
+      "relationships": {
+        "lastPostedDiscussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40448"
+          }
+        },
+        "parent": {
+          "data": {
+            "type": "tags",
+            "id": "16"
+          }
+        }
+      }
+    },
+    {
+      "type": "tags",
+      "id": "14",
+      "links": {
+        "self": "/tags/14"
+      },
+      "attributes": {
+        "name": "Translation",
+        "description": "Translating Flarum and extensions, and building language packs.",
+        "slug": "i18n",
+        "color": "#516780",
+        "icon": "fa-light fa-globe",
+        "iconImageUrl": null,
+        "iconImageSrcset": null,
+        "isHidden": false,
+        "isPrimary": true,
+        "discussionCount": 85,
+        "position": 2,
+        "defaultSort": null,
+        "isChild": true,
+        "lastPostedAt": "2026-10-20T19:16:56+00:00",
+        "canStartDiscussion": false,
+        "canAddToDiscussion": false,
+        "isQnA": true,
+        "subscription": null,
+        "template": ""
+      },
+      "relationships": {
+        "lastPostedDiscussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40134"
+          }
+        },
+        "parent": {
+          "data": {
+            "type": "tags",
+            "id": "4"
+          }
+        }
+      }
+    },
+    {
+      "type": "tags",
+      "id": "16",
+      "links": {
+        "self": "/tags/16"
+      },
+      "attributes": {
+        "name": "Meta",
+        "description": "Discussion about this community: its organisation and how we can improve it.",
+        "slug": "meta",
+        "color": "#E7672E",
+        "icon": "fa-light fa-flag",
+        "iconImageUrl": null,
+        "iconImageSrcset": null,
+        "isHidden": false,
+        "isPrimary": true,
+        "discussionCount": 405,
+        "position": 6,
+        "defaultSort": null,
+        "isChild": false,
+        "lastPostedAt": "2026-11-24T18:35:57+00:00",
+        "canStartDiscussion": false,
+        "canAddToDiscussion": false,
+        "isQnA": false,
+        "subscription": null,
+        "template": ""
+      },
+      "relationships": {
+        "lastPostedDiscussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40448"
+          }
+        },
+        "parent": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "tags",
+      "id": "20",
+      "links": {
+        "self": "/tags/20"
+      },
+      "attributes": {
+        "name": "Test Posting",
+        "description": "Test out Flarum in this tag. Discussions in this tag will be deleted every so often.",
+        "slug": "sandbox",
+        "color": "#B59E8C",
+        "icon": "fa-light fa-vial",
+        "iconImageUrl": null,
+        "iconImageSrcset": null,
+        "isHidden": true,
+        "isPrimary": true,
+        "discussionCount": 2,
+        "position": 10,
+        "defaultSort": null,
+        "isChild": false,
+        "lastPostedAt": "2026-11-13T22:24:12+00:00",
+        "canStartDiscussion": false,
+        "canAddToDiscussion": false,
+        "isQnA": false,
+        "subscription": null,
+        "template": ""
+      },
+      "relationships": {
+        "lastPostedDiscussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40339"
+          }
+        },
+        "parent": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "tags",
+      "id": "24",
+      "links": {
+        "self": "/tags/24"
+      },
+      "attributes": {
+        "name": "Support",
+        "description": "Get help setting up, using, and customising Flarum.",
+        "slug": "support",
+        "color": "#4B93D1",
+        "icon": "fa-light fa-life-ring",
+        "iconImageUrl": null,
+        "iconImageSrcset": null,
+        "isHidden": false,
+        "isPrimary": true,
+        "discussionCount": 11547,
+        "position": 0,
+        "defaultSort": null,
+        "isChild": false,
+        "lastPostedAt": "2026-11-26T00:50:41+00:00",
+        "canStartDiscussion": false,
+        "canAddToDiscussion": false,
+        "isQnA": true,
+        "subscription": null,
+        "template": "### The issue\n\n> Post some information here like what you expected to see, but got instead. If you can find any logs in `/storage/logs` or in your browser console that relate to the issue, add them.\n\n### Flarum information\n\n```\nPost your output of php flarum info here. Without this information providing support will take longer!\n```"
+      },
+      "relationships": {
+        "lastPostedDiscussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40528"
+          }
+        },
+        "parent": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "tags",
+      "id": "25",
+      "links": {
+        "self": "/tags/25"
+      },
+      "attributes": {
+        "name": "Installation",
+        "description": "Problems installing Flarum for the first time.",
+        "slug": "installation",
+        "color": "#4B93D1",
+        "icon": "fa-light fa-download",
+        "iconImageUrl": null,
+        "iconImageSrcset": null,
+        "isHidden": false,
+        "isPrimary": true,
+        "discussionCount": 2113,
+        "position": 0,
+        "defaultSort": null,
+        "isChild": true,
+        "lastPostedAt": "2026-11-24T08:32:06+00:00",
+        "canStartDiscussion": false,
+        "canAddToDiscussion": false,
+        "isQnA": true,
+        "subscription": null,
+        "template": ""
+      },
+      "relationships": {
+        "lastPostedDiscussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40499"
+          }
+        },
+        "parent": {
+          "data": {
+            "type": "tags",
+            "id": "24"
+          }
+        }
+      }
+    },
+    {
+      "type": "tags",
+      "id": "26",
+      "links": {
+        "self": "/tags/26"
+      },
+      "attributes": {
+        "name": "Features (old)",
+        "description": "Talk about Flarum's current and upcoming features, as well as ideas and specs for new ones.",
+        "slug": "features",
+        "color": "#9AA3AD",
+        "icon": null,
+        "iconImageUrl": null,
+        "iconImageSrcset": null,
+        "isHidden": false,
+        "isPrimary": true,
+        "discussionCount": 1233,
+        "position": 1,
+        "defaultSort": null,
+        "isChild": true,
+        "lastPostedAt": "2026-11-03T05:28:46+00:00",
+        "canStartDiscussion": false,
+        "canAddToDiscussion": false,
+        "isQnA": false,
+        "subscription": null,
+        "template": ""
+      },
+      "relationships": {
+        "lastPostedDiscussion": {
+          "data": {
+            "type": "discussions",
+            "id": "23178"
+          }
+        },
+        "parent": {
+          "data": {
+            "type": "tags",
+            "id": "69"
+          }
+        }
+      }
+    }
+  ]
+}

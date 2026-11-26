@@ -1,0 +1,68 @@
+{
+  "categories": [
+    {
+      "cid": 2,
+      "name": "Desktop",
+      "slug": "2/desktop",
+      "description": "The place to discuss Vivaldi on computers.",
+      "topic_count": 2434,
+      "post_count": 21827
+    },
+    {
+      "cid": 54,
+      "name": "Mail, Calendar & Feeds",
+      "slug": "54/mail-calendar-feeds",
+      "description": "Discuss Vivaldi's built-in Mail, Calendar and Feeds clients.",
+      "topic_count": 82,
+      "post_count": 708
+    },
+    {
+      "cid": 48,
+      "name": "Mobile Browser",
+      "slug": "48/mobile-browser",
+      "description": "Vivaldi on phones and tablets can be discussed here.",
+      "topic_count": 117,
+      "post_count": 637
+    },
+    {
+      "cid": 207,
+      "name": "Android Automotive",
+      "slug": "207/android-automotive",
+      "description": "Got Vivaldi in your car? Chat about it here.",
+      "topic_count": 66,
+      "post_count": 290
+    },
+    {
+      "cid": 187,
+      "name": "Community & Services",
+      "slug": "187/community-services",
+      "description": "There's more to Vivaldi than the browser. Discuss the Community and its services here.",
+      "topic_count": 114,
+      "post_count": 795
+    },
+    {
+      "cid": 204,
+      "name": "Let's talk about Vivaldi",
+      "slug": "204/let-s-talk-about-vivaldi",
+      "description": "For topics that aren't necessarily about a specific Vivaldi product.",
+      "topic_count": 312,
+      "post_count": 5002
+    },
+    {
+      "cid": 37,
+      "name": "Everything else",
+      "slug": "37/everything-else",
+      "description": "Hang out with the Community and talk about anything.",
+      "topic_count": 46,
+      "post_count": 298
+    },
+    {
+      "cid": 38,
+      "name": "Local Forum",
+      "slug": "38/local-forum",
+      "description": "Go local and chat about Vivaldi in your language.",
+      "topic_count": 15,
+      "post_count": 32
+    }
+  ]
+}

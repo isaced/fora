@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GitHub Blog</title>
+    <link>https://github.blog/</link>
+    <description>Updates, ideas, and inspiration from GitHub</description>
+    <language>en-US</language>
+    <atom:link href="https://github.blog/feed/" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Art of play in the age of AI</title>
+      <link>https://github.blog/news-insights/company-news/art-of-play-in-the-age-of-ai/</link>
+      <guid isPermaLink="true">https://github.blog/news-insights/company-news/art-of-play-in-the-age-of-ai/</guid>
+      <pubDate>Wed, 25 Nov 2026 16:00:00 +0000</pubDate>
+      <dc:creator><![CDATA[Polly Davidson]]></dc:creator>
+      <description><![CDATA[<p>Now that code ships faster than ever, you have more time to spend on projects just for the fun of it.</p>]]></description>
+      <content:encoded><![CDATA[<p>Now that code ships faster than ever, you have more time to spend on projects just for the fun of it.</p><p>Here is what we can learn through that process of playful building.</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>How to choose the next safe step in application modernization</title>
+      <link>https://github.blog/ai-and-ml/github-copilot/how-to-choose-the-next-safe-step-in-application-modernization/</link>
+      <guid isPermaLink="true">https://github.blog/ai-and-ml/github-copilot/how-to-choose-the-next-safe-step-in-application-modernization/</guid>
+      <pubDate>Wed, 25 Nov 2026 15:00:00 +0000</pubDate>
+      <dc:creator><![CDATA[Sam Quakenbush]]></dc:creator>
+      <description><![CDATA[<p>Learn how to assess a legacy application and choose a bounded modernization step.</p>]]></description>
+      <content:encoded><![CDATA[<p>Learn how to assess a legacy application, choose a bounded modernization step, and reuse the method with a GitHub Copilot agent skill.</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>These are the gifts developers will actually want</title>
+      <link>https://github.blog/news-insights/company-news/these-are-the-gifts-developers-will-actually-want/</link>
+      <guid isPermaLink="true">https://github.blog/news-insights/company-news/these-are-the-gifts-developers-will-actually-want/</guid>
+      <pubDate>Tue, 24 Nov 2026 16:00:00 +0000</pubDate>
+      <dc:creator><![CDATA[Lavinia Sfetcu]]></dc:creator>
+      <description><![CDATA[<p>Check out these gifts, plus our Black Friday discount across all weeks.</p>]]></description>
+      <content:encoded><![CDATA[<p>The developer you are shopping for has not shared their holiday wish list with you yet? Check out these gifts.</p>]]></content:encoded>
+    </item>
+  </channel>
+</rss>

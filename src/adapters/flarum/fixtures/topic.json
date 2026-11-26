@@ -1,0 +1,284 @@
+{
+  "data": {
+    "type": "discussions",
+    "id": "40528",
+    "links": {
+      "self": "/discussions/40528"
+    },
+    "attributes": {
+      "title": "I need help with the vendor-folder",
+      "slug": "40528-i-need-help-with-the-vendor-folder",
+      "commentCount": 18,
+      "participantCount": 3,
+      "createdAt": "2026-11-25T21:17:08+00:00",
+      "lastPostedAt": "2026-11-26T00:50:41+00:00",
+      "lastPostNumber": 18,
+      "canReply": false,
+      "canRename": false,
+      "canDelete": false,
+      "canHide": false,
+      "canViewWhoTypes": false,
+      "canTag": false,
+      "isApproved": true,
+      "subscription": null,
+      "canMerge": false,
+      "canSelectBestAnswer": false,
+      "hasBestAnswer": false,
+      "bestAnswerSetAt": null,
+      "canDownloadFiles": false,
+      "canStartPoll": false,
+      "isPrivateDiscussion": false,
+      "canEditRecipients": false,
+      "canEditUserRecipients": false,
+      "canEditGroupRecipients": false,
+      "canMakePublic": false,
+      "isLocked": false,
+      "canLock": false,
+      "isSticky": false,
+      "canSticky": false,
+      "seeVotes": false,
+      "canVote": false,
+      "detectedLang": "en",
+      "canSplit": false,
+      "shareUrl": "https://discuss.flarum.org/d/40528",
+      "fof-prevent-necrobumping": null,
+      "isFirstMoved": false,
+      "canMarkUnread": false,
+      "replyTemplate": null,
+      "canManageReplyTemplates": false,
+      "bookmarked": false,
+      "hasPoll": false
+    },
+    "relationships": {
+      "lastPostedUser": {
+        "data": {
+          "type": "users",
+          "id": "47732"
+        }
+      },
+      "lastPost": {
+        "data": {
+          "type": "posts",
+          "id": "270811"
+        }
+      },
+      "posts": {
+        "data": [
+          {
+            "type": "posts",
+            "id": "270785"
+          },
+          {
+            "type": "posts",
+            "id": "270787"
+          },
+          {
+            "type": "posts",
+            "id": "270790"
+          },
+          {
+            "type": "posts",
+            "id": "270791"
+          },
+          {
+            "type": "posts",
+            "id": "270792"
+          },
+          {
+            "type": "posts",
+            "id": "270793"
+          },
+          {
+            "type": "posts",
+            "id": "270798"
+          },
+          {
+            "type": "posts",
+            "id": "270799"
+          },
+          {
+            "type": "posts",
+            "id": "270801"
+          },
+          {
+            "type": "posts",
+            "id": "270802"
+          },
+          {
+            "type": "posts",
+            "id": "270803"
+          },
+          {
+            "type": "posts",
+            "id": "270804"
+          },
+          {
+            "type": "posts",
+            "id": "270806"
+          },
+          {
+            "type": "posts",
+            "id": "270807"
+          },
+          {
+            "type": "posts",
+            "id": "270808"
+          },
+          {
+            "type": "posts",
+            "id": "270809"
+          },
+          {
+            "type": "posts",
+            "id": "270810"
+          },
+          {
+            "type": "posts",
+            "id": "270811"
+          }
+        ]
+      },
+      "hideUser": {
+        "data": null
+      },
+      "bestAnswerPost": {
+        "data": null
+      },
+      "bestAnswerUser": {
+        "data": null
+      },
+      "seoMeta": {
+        "data": {
+          "type": "seoMeta",
+          "id": "20523"
+        }
+      },
+      "firstPost": {
+        "data": {
+          "type": "posts",
+          "id": "270785"
+        }
+      },
+      "user": {
+        "data": {
+          "type": "users",
+          "id": "47732"
+        }
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "posts",
+      "id": "270785",
+      "links": {
+        "self": "/posts/270785"
+      },
+      "attributes": {
+        "number": 1,
+        "createdAt": "2026-11-25T21:17:08+00:00",
+        "contentType": "comment",
+        "contentHtml": "<p>Its the only thing thats lacking.</p>",
+        "renderFailed": null,
+        "source": null,
+        "sourceName": null,
+        "editedAt": null,
+        "canEdit": false,
+        "canDelete": false,
+        "canHide": false,
+        "canFlag": false,
+        "isApproved": true,
+        "canApprove": false,
+        "canLike": false,
+        "canSelectAsBestAnswer": false,
+        "canStartPoll": false,
+        "canSeeVotes": false,
+        "canVote": false,
+        "seeVoters": false,
+        "detectedLang": "en",
+        "fof-necrobumping": null,
+        "bookmarked": false,
+        "mentionedByCount": 0,
+        "likesCount": 0
+      },
+      "relationships": {
+        "user": {
+          "data": {
+            "type": "users",
+            "id": "47732"
+          }
+        },
+        "discussion": {
+          "data": {
+            "type": "discussions",
+            "id": "40528"
+          }
+        },
+        "editedUser": {
+          "data": null
+        },
+        "hiddenUser": {
+          "data": null
+        }
+      }
+    },
+    {
+      "type": "users",
+      "id": "47732",
+      "links": {
+        "self": "/users/47732"
+      },
+      "attributes": {
+        "username": "Harlem",
+        "displayName": "Harlem",
+        "avatarUrl": null,
+        "avatarSrcset": null,
+        "hasUploadedAvatar": false,
+        "slug": "Harlem",
+        "joinTime": "2026-11-25T21:14:54+00:00",
+        "discussionCount": 1,
+        "commentCount": 11,
+        "lastSeenAt": "2026-11-26T00:50:08+00:00",
+        "canEdit": false,
+        "canEditAvatar": false,
+        "canEditCredentials": false,
+        "canEditGroups": false,
+        "canDelete": false,
+        "canSuspend": false,
+        "canModerateExports": false,
+        "bestAnswerCount": 0,
+        "blocksPd": false,
+        "points": 0,
+        "canHaveVotingNotifications": true,
+        "bio": "",
+        "bioHtml": null,
+        "canViewBio": true,
+        "canEditBio": false,
+        "canBeFollowed": false,
+        "followUsers": null,
+        "canViewWarnings": false,
+        "canManageWarnings": false,
+        "canDeleteWarnings": false,
+        "ignored": false,
+        "canBeIgnored": false,
+        "showIPCountry": false,
+        "canSpamblock": false,
+        "canEditNickname": false,
+        "fof-upload-uploadCountCurrent": 0,
+        "fof-upload-uploadCountAll": 0,
+        "followed": null,
+        "followerCount": 0,
+        "followingCount": 0,
+        "visibleWarningCount": 0
+      },
+      "relationships": {
+        "twoFactor": {
+          "data": null
+        }
+      }
+    }
+  ],
+  "jsonapi": {
+    "version": "1.1"
+  }
+}
