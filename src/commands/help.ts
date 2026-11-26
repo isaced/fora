@@ -67,10 +67,13 @@ export const COMMAND_GUIDES: Record<string, CommandGuide> = {
     about: [
       "Hosts that are not configured are resolved ephemerally when their engine can be recognised.",
       "Numbers are 1-based indexes into the last list produced by `hot`, `latest`, `search` or `digest`.",
+      "Multiple refs share one bounded fetch pool; --excerpt and --replies shape output before it reaches the agent.",
     ],
     examples: [
       "fora show https://linux.do/t/12345",
       "fora show linuxdo:12345",
+      "fora show 1 3 5 --json                      # batch, one process",
+      "fora show 3 --excerpt --replies 5 --json    # OP + top replies",
       "fora show 3 --json                          # item 3 of the last list",
       "fora show https://news.ycombinator.com/item?id=12345 --all-pages",
     ],

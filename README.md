@@ -77,7 +77,7 @@ fora help <command>              # full help + examples (same as <command> --hel
 fora digest  [--since 24h] [--per-site 10] [--top-replies 3]
 fora hot     [site] [--site <name|all|a,b>] [--period day|week|month|all] [-n 20]
 fora latest  [site] [--site <name|all|a,b>] [-n 20]
-fora show    <topic-url | site:topic-id | last-list-number> [--page N] [--all-pages]
+fora show    <topic-ref...> [--page N] [--all-pages] [--replies N] [--excerpt]
 fora search  <query…> [--site <name>]
 fora categories [site] [--site <name>]
 fora sites   list | add <url> | remove <name> | search <keyword>
@@ -98,6 +98,8 @@ number:
 ```sh
 fora hot --site v2ex
 fora show 3          # opens the 3rd topic of that list
+fora show 1 3 5      # batch, one process and one pacing pool
+fora show 3 --excerpt --replies 5
 ```
 
 The cache lives in `$XDG_CACHE_HOME/fora/last-list.json` and is purely a
