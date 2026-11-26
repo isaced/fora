@@ -11,8 +11,12 @@
 > `github.com/isaced/fora`.
 > License: **MIT** (decided by Ma, 2026-11-26).
 > Language: **TypeScript on Bun**. Distributed two ways: an npm package
-> (`bunx fora-cli` / `npm i -g fora-cli`) and a single-file binary built
-> with `bun build --compile`. Bun APIs (`Bun.file`, `bun:sqlite`, …) may be
+> (`bunx fora-cli` / `npm i -g fora-cli`, requiring Bun) and single-file
+> binaries built with `bun build --compile` and attached to GitHub Releases
+> for macOS, Linux (glibc/musl) and Windows. `install.sh` selects the right
+> asset, verifies SHA256 and an optional GitHub attestation, and installs to
+> `$FORA_INSTALL_DIR` (default `~/.fora/bin`). Release binaries carry GitHub
+> artifact attestations and SHA256 checksums. Bun APIs (`Bun.file`, `bun:sqlite`, …) may be
 > used anywhere they are the better tool — the project targets Bun as its
 > runtime, full stop; Node portability is not a goal.
 

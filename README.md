@@ -117,7 +117,23 @@ npm install -g fora-cli    # note: fora-cli, not fora
 
 Note: the unscoped `fora` package on npm is an unrelated legacy framework.
 
-Single-file binaries can be built locally:
+For a standalone binary with no Bun runtime:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/isaced/fora/main/install.sh | sh
+```
+
+The script detects your OS/arch, downloads the matching release asset and
+`.sha256`, verifies the checksum, checks the GitHub attestation when `gh` is
+available, and installs to `$HOME/.fora/bin`. Pin a version or change the
+install directory with environment variables:
+
+```sh
+FORA_VERSION=fora-cli-v0.3.0 sh install.sh
+FORA_INSTALL_DIR=~/.local/bin sh install.sh --no-modify-path
+```
+
+To build a binary locally:
 
 ```sh
 bun run build        # -> dist/fora
