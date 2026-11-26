@@ -380,9 +380,11 @@ no per-site loops, no per-topic follow-up calls, no dedup homework.
   envelope: `{"schema": "fora/v1", "data": …, "meta": {…}}`, where `data`
   is the §3 model. `fora engines list --json` and `fora sites list --json`
   give a machine-readable capability matrix to plan with — no
-  trial-and-error calls. `fora doctor --json` reports per-site
-  reachability, active route (`json` / `rss`) and loaded engines as a
-  pre-flight check.
+  trial-and-error calls. `fora schema` and `fora help <command> --json`
+  expose commands, flags and fields; `fora skills get core` ships a
+  version-matched one-page guide. `fora doctor --json` reports per-site
+  reachability, active route (`http` / `browser` / `rss`) and loaded
+  engines as a pre-flight check.
 - **CLI-first is deliberate.** Agents with shell access (Muse, pi,
   Claude Code, …) drive CLIs natively — the agent-browser precedent. An
   MCP wrapper may come later (§13) but is not the primary interface.

@@ -1,6 +1,6 @@
 /** The root citty command and all subcommands. */
 
-import { defineCommand } from "citty";
+import { defineCommand, type CommandDef } from "citty";
 import { VERSION } from "../core/version.ts";
 import { categoriesCommand } from "./categories.ts";
 import { createAdapterCommand } from "./create-adapter.ts";
@@ -10,9 +10,11 @@ import { enginesCommand } from "./engines.ts";
 import { hotCommand, latestCommand } from "./lists.ts";
 import { searchCommand } from "./search.ts";
 import { showCommand } from "./show.ts";
+import { buildSchemaCommand } from "./schema.ts";
+import { buildSkillsCommand } from "./skills.ts";
 import { sitesCommand } from "./sites.ts";
 
-export const main = defineCommand({
+export const main: CommandDef<any> = defineCommand({
   meta: {
     name: "fora",
     version: VERSION,
@@ -31,5 +33,7 @@ export const main = defineCommand({
     engines: enginesCommand,
     doctor: doctorCommand,
     "create-adapter": createAdapterCommand,
+    schema: buildSchemaCommand(() => main),
+    skills: buildSkillsCommand(),
   },
 });

@@ -23,7 +23,8 @@ well an agent can discover, call and afford it.
 
 - **Accessibility**: `--json` on every command, structured errors with actionable
   next steps, meaningful exit codes, no TTY-only prompts, and help with concrete
-  Examples (`fora help <command>`).
+  Examples (`fora help <command>`). Agent can also bootstrap from the CLI with
+  `fora skills get core` and `fora schema`.
 - **Efficiency**: one call replaces agent-side loops — `digest` returns every
   followed site's briefing in a single payload; fetches use a bounded global
   pool while keeping each host's request pacing. HTTP 403s on public reads
