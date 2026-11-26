@@ -302,7 +302,7 @@ and only in a TTY.
    interactive terminals only, never a data loss for pipes or agents.
 
 ```
-fora                             # = fora hot on the default site
+fora                             # prints help (use `fora hot` for the default site)
 fora digest  [--since 24h] [--per-site 10] [--top-replies 3]   # §6.2, the agent flagship
 fora hot     [site] [--site <name|all|a,b>] [--period day|week|month|all] [-n 20]
 fora latest  [site] [--site <name|all|a,b>] [-n 20]
@@ -531,7 +531,7 @@ fixtures and docs:
    list (§6.1 rule 1); after a different list runs, the numbers rebind to
    the new list.
 8. `fora hot linuxdo` and `fora hot --site linuxdo` return identical
-   results; bare `fora` behaves as `fora hot` on the default site;
+   results; bare `fora` prints help, and `fora hot` lists the default site;
    `fora hot --site v2ex --period week` exits 3 (unsupported) rather than
    faking a weekly list.
 9. `fora digest --json` in one call returns every followed site's hot

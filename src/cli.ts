@@ -7,7 +7,7 @@
  *   0 ok · 1 generic · 2 usage · 3 unsupported · 4 rate-limited.
  */
 
-import { runCommand, showUsage, type CommandDef } from "citty";
+import { renderUsage, runCommand, type CommandDef } from "citty";
 import { main } from "./commands/index.ts";
 import { ForaError, exitCodeOf, messageOf } from "./core/errors.ts";
 import { VERSION } from "./core/version.ts";
@@ -107,15 +107,41 @@ function handleError(error: unknown, rawArgs: string[]): void {
   process.exitCode = Math.max(1, exitCodeOf(error));
 }
 
+function firstNonFlagToken(rawArgs: string[]): string | undefined {
+  let expectValue = false;
+  for (const token of rawArgs) {
+    if (expectValue) {
+      expectValue = false;
+      continue;
+    }
+    if (token.startsWith("-")) {
+      expectValue = VALUE_FLAGS.has(token.replace(/^-+/, ""));
+      continue;
+    }
+    return token;
+  }
+  return undefined;
+}
+
+async function printUsage(cmd: AnyCommand, parent?: AnyCommand): Promise<void> {
+  let text = await renderUsage(cmd, parent);
+  if (!process.stdout.isTTY || process.env.NO_COLOR) text = stripAnsi(text);
+  process.stdout.write(`${text}\n`);
+}
+
 async function mainEntry(): Promise<void> {
   const rawArgs = process.argv.slice(2);
 
   if (rawArgs.includes("--help") || rawArgs.includes("-h")) {
-    await showUsage(...resolveHelpTarget(rawArgs));
+    await printUsage(...resolveHelpTarget(rawArgs));
     return;
   }
   if (rawArgs.length === 1 && (rawArgs[0] === "--version" || rawArgs[0] === "-v")) {
     process.stdout.write(`${VERSION}\n`);
+    return;
+  }
+  if (firstNonFlagToken(rawArgs) === undefined) {
+    await printUsage(main);
     return;
   }
 

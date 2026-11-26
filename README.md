@@ -51,7 +51,7 @@ bun run build        # -> dist/fora
 ## Commands
 
 ```
-fora                             # = fora hot on the default site
+fora                             # prints help (use fora hot for the default site)
 fora digest  [--since 24h] [--per-site 10] [--top-replies 3]
 fora hot     [site] [--site <name|all|a,b>] [--period day|week|month|all] [-n 20]
 fora latest  [site] [--site <name|all|a,b>] [-n 20]

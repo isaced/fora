@@ -19,7 +19,6 @@ export const main = defineCommand({
     description: "One read-only CLI for many forums, for humans and AI agents",
   },
   args: hotCommand.args,
-  default: "hot",
   subCommands: {
     hot: hotCommand,
     latest: latestCommand,
