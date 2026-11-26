@@ -19,7 +19,7 @@ import { requireSite, type Site } from "../core/sites.ts";
 import { renderTopicDetail } from "../output/human.ts";
 import { writeJson } from "../output/json.ts";
 import { createContext } from "./context.ts";
-import { assertCapability, intOption, jsonArg } from "./common.ts";
+import { assertCapability, humanArg, intOption, jsonArg } from "./common.ts";
 
 const DETECT_ORDER = ["hn", "v2ex", "discourse-rss", "discourse", "flarum", "nodebb"];
 const MAX_ALL_PAGES = 50;
@@ -237,6 +237,7 @@ export const showCommand = defineCommand({
       default: false,
     },
     json: jsonArg,
+    human: humanArg,
   },
   async run({ args }) {
     const ctx = await createContext();

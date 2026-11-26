@@ -18,17 +18,19 @@ export interface CommandGuide {
 export const COMMAND_GUIDES: Record<string, CommandGuide> = {
   "": {
     about: [
-      "Human output is the default; every command accepts --json for a stable fora/v1 envelope.",
+      "TTY output is human-readable; piped output defaults to JSON. Override with --human or --json.",
       "In JSON mode errors go to stderr as {code, message}.",
       "Exit codes: 0=ok, 1=generic, 2=usage, 3=unsupported, 4=rate-limited.",
       "Site resolution order: --site, positional site, FORA_SITE, then default_site. Use `fora sites list` to discover names.",
     ],
     details: [
-      "Agents should prefer explicit --site and --json; positional arguments are shortcuts for humans.",
-      "Common flags: --site <name|all|a,b>, -n/--limit, --since, --fields, --json (see each command's help).",
+      "Agents should prefer explicit --site; piped output is already JSON. --human forces a table.",
+      "Common flags: --site <name|all|a,b>, -n/--limit, --since, --fields, --json, --human (see each command's help).",
     ],
     examples: [
-      "fora hot --site v2ex --json          # one command, machine-readable result",
+      "fora hot --site v2ex                 # piped output is JSON by default",
+      "fora hot --site v2ex --human         # force a table in a pipe",
+      "fora hot --site v2ex --json          # explicit JSON in a TTY",
       "fora sites list --json               # discover site names and engines",
       "fora help hot                        # alternative help entry point",
       "fora doctor --json                   # pre-flight reachability check",

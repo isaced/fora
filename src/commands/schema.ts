@@ -31,10 +31,11 @@ export interface ForaSchema {
   exit_codes: Record<string, string>;
   envelope: Record<string, unknown>;
   site_resolution: string[];
+  output_default: Record<string, unknown>;
   degradation: Record<string, unknown>;
 }
 
-async function resolveArgs(cmd: AnyCommand): Promise<Record<string, any>> {
+export async function resolveCommandArgs(cmd: AnyCommand): Promise<Record<string, any>> {
   const args = typeof cmd.args === "function" ? await cmd.args() : cmd.args;
   return (args ?? {}) as Record<string, any>;
 }
@@ -46,7 +47,7 @@ async function resolveSubCommands(cmd: AnyCommand): Promise<Record<string, AnyCo
 
 export async function buildCommandSchema(cmd: AnyCommand, name: string): Promise<CommandSchema> {
   const meta = typeof cmd.meta === "function" ? await cmd.meta() : await cmd.meta;
-  const args = Object.entries(await resolveArgs(cmd)).map(([argName, raw]) => {
+  const args = Object.entries(await resolveCommandArgs(cmd)).map(([argName, raw]) => {
     const arg = raw ?? {};
     return {
       name: argName,
@@ -98,6 +99,12 @@ export async function buildForaSchema(root: AnyCommand, version: string): Promis
       meta: "approx_tokens plus command-specific fields such as site, count and degraded_sites",
     },
     site_resolution: ["--site", "positional site", "FORA_SITE", "default_site"],
+    output_default: {
+      tty: "human",
+      piped: "json",
+      overrides: ["--json", "--human", "FORA_JSON=1|0"],
+      note: "Data commands with --json support default to JSON when stdout is not a TTY.",
+    },
     degradation: {
       field: "meta.degraded_sites",
       values: ["http", "browser", "rss"],

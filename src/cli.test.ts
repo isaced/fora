@@ -98,6 +98,25 @@ describe("agent-friendly help", () => {
     expect(out).toContain("USAGE fora hot");
   });
 
+  it("defaults data commands to JSON when stdout is piped", async () => {
+    const { err, code } = await run("hot");
+    expect(code).toBe(2);
+    expect(() => JSON.parse(err.trim())).not.toThrow();
+    expect(JSON.parse(err.trim()).code).toBe("usage");
+  });
+
+  it("can force human output with --human", async () => {
+    const { err, code } = await run("hot", "--human");
+    expect(code).toBe(2);
+    expect(err).toContain("fora: no site specified");
+  });
+
+  it("rejects conflicting output flags", async () => {
+    const { err, code } = await run("hot", "--json", "--human");
+    expect(code).toBe(2);
+    expect(JSON.parse(err.trim()).message).toContain("cannot be combined");
+  });
+
   it("ships a bundled core skill for agents", async () => {
     const { out, code } = await run("skills", "get", "core");
     expect(code).toBe(0);

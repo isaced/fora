@@ -15,7 +15,13 @@ import { writeJson } from "../output/json.ts";
 
 export const jsonArg = {
   type: "boolean",
-  description: "Emit the fora/v1 JSON envelope",
+  description: "Emit the fora/v1 JSON envelope (default when stdout is not a TTY)",
+  default: false,
+} as const;
+
+export const humanArg = {
+  type: "boolean",
+  description: "Force human output when stdout is piped",
   default: false,
 } as const;
 

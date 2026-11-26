@@ -378,6 +378,10 @@ no per-site loops, no per-topic follow-up calls, no dedup homework.
     `"omitted_replies": 41`), never silent.
   - Every JSON payload carries `"meta": {"approx_tokens": n}` so the agent
     can budget before reading further.
+- **Agent-first output default.** Data commands emit the JSON envelope when
+  stdout is not a TTY; `--human` forces tables and `--json` forces JSON in a
+  TTY. `FORA_JSON=1|0` overrides the default. Commands without data output
+  (for example `sites add`) keep human text.
 - **A stable, self-describing contract.** All `--json` output uses an
   envelope: `{"schema": "fora/v1", "data": …, "meta": {…}}`, where `data`
   is the §3 model. `fora engines list --json` and `fora sites list --json`
