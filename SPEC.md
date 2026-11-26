@@ -348,7 +348,9 @@ no per-site loops, no per-topic follow-up calls, no dedup homework.
 
 - **`fora digest`** returns, in a single payload, every followed site's
   (§5.2) current hot topics, each with the OP excerpt and the top N replies
-  by likes (`--top-replies`, default 3), grouped by site.
+  by likes (`--top-replies`, default 3), grouped by site. Site and topic
+  detail fetches share one bounded global pool (5 in flight); HttpClient
+  still enforces the ≥300ms gap per host (§9).
 - **Incremental without state.** `--since <duration>` (e.g. `24h`)
   restricts digest/hot/latest to topics created or last active inside the
   window, computed purely from the timestamps the APIs already return —

@@ -97,6 +97,7 @@ export const COMMAND_GUIDES: Record<string, CommandGuide> = {
   digest: {
     about: [
       "The site set comes from `follow:` in config, or `default_site` when `follow` is unset.",
+      "Site and topic fetches share a bounded global pool; each host still keeps its request pacing.",
     ],
     details: [
       "Use `fora sites list` to find names for the follow list.",
