@@ -19,12 +19,13 @@
 ## 1. What this is
 
 A read-only command-line client that reads many different forums through **one
-unified interface**. It is built for two audiences at once:
+unified interface**. It is **agent-first, human-friendly**: the CLI contract is
+designed for programmatic consumption first, and the human-facing output is a
+readable view on top of the same contract.
 
-- **Humans** in a terminal who follow several forums and want one tool instead
-  of N browser tabs.
-- **AI agents** that need clean, structured forum data (`--json` on every
-  command) instead of scraping web pages.
+- **AI agents** need clean, structured forum data (`--json` on every command),
+  predictable errors and low token cost — they are the primary audience.
+- **Humans** in a terminal get readable defaults instead of N browser tabs.
 
 The design follows the yt-dlp lesson: a small core, a **unified data model**,
 and **engine adapters** (plugins) that translate each forum platform's API
@@ -35,18 +36,24 @@ who the author is, across every supported forum.
 
 ### 1.1 Design principles
 
-1. **API-first, never HTML scraping.** Every adapter talks to a documented or
+1. **Agent-first.** Commands, flags, output, errors and help are designed for
+   programmatic access: stable `--json`, structured `{code, message}` errors,
+   meaningful exit codes, no interactive prompts in non-TTY mode, and
+   copy-pasteable Examples in every help page. A single call replaces
+   agent-side loops; humans get readable output for free.
+2. **API-first, never HTML scraping.** Every adapter talks to a documented or
    de-facto-stable JSON API. Forums without an API are served only by the RSS
    fallback adapter (limited capability, clearly flagged).
-2. **Adapters are per *engine*, sites are data.** A Discourse adapter serves
+3. **Adapters are per *engine*, sites are data.** A Discourse adapter serves
    linux.do and every other Discourse instance on earth; a site is just
    `{name, base_url, engine}` in config. Adding a site is usually zero code.
-3. **Read-only in v1.** No posting, replying, liking, or login-walled content.
-4. **Polite by default.** Identifiable User-Agent, request pacing, no
+4. **Read-only in v1.** No posting, replying, liking, or login-walled content.
+5. **Polite by default.** Identifiable User-Agent, request pacing, no
    retry-loops against rate limits (see §9).
-5. **Agent-friendly.** Every command supports `--json`; errors are structured;
-   exit codes are meaningful; no interactive prompts in non-TTY mode.
-6. **Stateless core.** fora keeps no runtime state that affects what its
+6. **Efficient and cost-aware.** `digest` returns a whole briefing in one
+   payload with bounded global concurrency; `--fields`, excerpts, top-N replies
+   and declared truncation keep token spend predictable (§6.2).
+7. **Stateless core.** fora keeps no runtime state that affects what its
    output *means*: same command + same upstream data ⇒ same output, safe to
    run in parallel, in cron, in sandboxes. History and dedup belong to the
    agent layer (agents have their own memory). The only file besides config

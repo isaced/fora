@@ -1,8 +1,8 @@
 # fora
 
-One read-only command-line client for many forums, through a single unified
-interface — built for humans in a terminal and for AI agents that need clean,
-structured data.
+An agent-first, read-only command-line client for many forums, through a single
+unified interface. Humans get readable defaults; agents get clean, structured
+data.
 
 ```
 fora hot --site v2ex            # ranked topics on V2EX
@@ -13,8 +13,23 @@ fora digest --since 24h --json   # one scheduled-briefing payload
 
 fora is not a generic web fetcher. Its value is **semantic normalisation**:
 knowing which field is the title, which is the reply count, and who the author
-is, across every supported forum — so you can follow many sites with one tool
-instead of N browser tabs, and agents can consume forums without scraping HTML.
+is, across every supported forum — so agents can consume forums without
+scraping HTML.
+
+## Design philosophy
+
+fora is built **agent-first**; every command, flag and output is judged by how
+well an agent can discover, call and afford it.
+
+- **Accessibility**: `--json` on every command, structured errors with actionable
+  next steps, meaningful exit codes, no TTY-only prompts, and help with concrete
+  Examples (`fora help <command>`).
+- **Efficiency**: one call replaces agent-side loops — `digest` returns every
+  followed site's briefing in a single payload; fetches use a bounded global
+  pool while keeping each host's request pacing.
+- **Cost awareness**: `--fields` projection, excerpts by default, top-N replies,
+  declared truncation, and a token estimate in every JSON envelope so agents can
+  budget before reading the full payload.
 
 ## Supported engines
 
