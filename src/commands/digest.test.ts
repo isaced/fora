@@ -127,6 +127,33 @@ describe("fetchDigestGroups", () => {
     expect(groups[0]!.topics[0]!.excerpt).toBe("OP excerpt");
   });
 
+  it("exposes degraded sites in the output groups", async () => {
+    const stats: Stats = { active: 0, max: 0 };
+    const ctx = makeCtx({ e0: makeAdapter("e0", [topic("a0")], stats) }, ["s1"]);
+    ctx.degradation = new Map([
+      [
+        "s1",
+        {
+          site: "s1",
+          from: "discourse",
+          to: "discourse-rss",
+          reason: "challenge",
+          limitations: ["no search"],
+        },
+      ],
+    ]);
+
+    const groups = await fetchDigestGroups(ctx, {
+      names: ["s1"],
+      perSite: 1,
+      topReplies: 1,
+      concurrency: 2,
+    });
+
+    expect(groups[0]!.degraded?.to).toBe("discourse-rss");
+    expect(groups[0]!.degraded?.limitations).toContain("no search");
+  });
+
   it("keeps one site's failure from blocking the others", async () => {
     const stats: Stats = { active: 0, max: 0 };
     const ctx = makeCtx({ e0: makeAdapter("e0", [topic("a0")], stats) }, ["s1", "s2", "missing"]);

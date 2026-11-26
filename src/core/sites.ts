@@ -24,7 +24,7 @@ export interface Site {
 
 export const PRESETS: Site[] = [
   { name: "v2ex", engine: "v2ex", base_url: "https://www.v2ex.com", source: "preset" },
-  { name: "linuxdo", engine: "discourse-rss", base_url: "https://linux.do", source: "preset" },
+  { name: "linuxdo", engine: "discourse", base_url: "https://linux.do", source: "preset" },
   { name: "hn", engine: "hn", base_url: "https://news.ycombinator.com", source: "preset" },
 ];
 
