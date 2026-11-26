@@ -174,7 +174,22 @@ Agents pay for every byte they read. Raw forum APIs return rendered HTML and
 complete reply trees; fora returns excerpts and top replies, with truncation
 declared in every envelope (`meta.approx_tokens`).
 
-Measured 2026-11-26, same ~4 chars/token estimator on both sides:
+**Measured 2026-11-26: reading the hot lists and top 5 threads of V2EX and
+HN costs ~546k tokens through raw APIs — fora does it in ~11k, about 49×
+less (≈2%).**
+
+```
+V2EX  Raw API  ████████████████████                 ~199,000
+      fora     ▌                                      4,371
+
+HN    Raw API  ███████████████████████████████████  ~346,000
+      fora     ▋                                      6,874
+
+(1 █ ≈ 10,000 tokens)
+```
+
+Same ~4 chars/token estimator on both sides (the one fora uses for
+`meta.approx_tokens`):
 
 |                                   |  Raw API |  fora |
 | --------------------------------- | -------: | ----: |
