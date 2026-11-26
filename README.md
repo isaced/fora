@@ -248,7 +248,9 @@ Agent-facing guarantees:
   still counts as success. If every site fails, stdout stays empty and the
   JSON error on stderr includes `failed_sites`; the exit code is nonzero.
 - `digest` reports `per_site_tokens`, `budget`, `omitted_sites` and
-  `omitted_topics`.
+  `omitted_topics`. With `--budget`, topics that do not fit in a preliminary
+  list-only payload are not fetched in detail; the final payload is still
+  checked after enrichment.
 - `show` declares `total_replies`, `fetched_replies` and `omitted_replies` so a
   fetch window cannot masquerade as the whole thread.
 - `--since 24h` restricts lists/digests to topics created or active inside the

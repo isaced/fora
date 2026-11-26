@@ -33,6 +33,8 @@ export interface DigestFetchOptions {
   topReplies: number;
   sinceMs?: number;
   concurrency?: number;
+  budget?: number;
+  fields?: string[];
 }
 
 interface FetchedDigestGroup extends DigestGroup {
@@ -43,7 +45,6 @@ interface LoadedSite {
   group: FetchedDigestGroup;
   site?: Site;
   adapter?: Adapter;
-  topics: Topic[];
 }
 
 async function filterAllowedTopics(site: Site, adapter: Adapter, topics: Topic[]): Promise<Topic[]> {
@@ -96,7 +97,6 @@ async function fetchDigestTopic(
   topic: Topic,
   topReplies: number,
 ): Promise<DigestTopic> {
-  if (!adapter.capabilities.topic) return { ...topic };
   try {
     const detail = await adapter.topic(site, topic.id, 1);
     const replies = detail.posts.filter((post) => post.floor > 1);
@@ -125,14 +125,24 @@ export async function fetchDigestGroups(ctx: Ctx, options: DigestFetchOptions): 
         withinSince(topic.created_at, topic.last_activity_at, options.sinceMs),
       );
       const topics = await filterAllowedTopics(site, adapter, recent);
-      group.topics = new Array<DigestTopic>(topics.length);
-      return { group, site, adapter, topics };
+      group.topics = topics;
+      return { group, site, adapter };
     } catch (error) {
       group.failure = siteFailure(name, error);
       group.error = group.failure.message;
-      return { group, topics: [] };
+      return { group };
     }
   });
+
+  for (const entry of loaded) {
+    const degraded = ctx.degradation?.get(entry.group.site);
+    if (degraded) entry.group.degraded = degraded;
+  }
+
+  const preview = options.budget === undefined
+    ? undefined
+    : new Map(applyDigestBudget(loaded.map(({ group }) => group), options.budget, options.fields)
+      .groups.map((group) => [group.site, group.topics.length]));
 
   const jobs: Array<{
     siteIndex: number;
@@ -142,8 +152,9 @@ export async function fetchDigestGroups(ctx: Ctx, options: DigestFetchOptions): 
     adapter: Adapter;
   }> = [];
   loaded.forEach((entry, siteIndex) => {
-    entry.topics.forEach((topic, topicIndex) => {
-      if (!entry.site || !entry.adapter) return;
+    const topicLimit = preview ? preview.get(entry.group.site) ?? 0 : entry.group.topics.length;
+    entry.group.topics.slice(0, topicLimit).forEach((topic, topicIndex) => {
+      if (!entry.site || !entry.adapter?.capabilities.topic) return;
       jobs.push({ siteIndex, topicIndex, topic, site: entry.site, adapter: entry.adapter });
     });
   });
@@ -159,7 +170,7 @@ export async function fetchDigestGroups(ctx: Ctx, options: DigestFetchOptions): 
 
   return loaded.map((entry) => {
     const degraded: DegradationInfo | undefined = ctx.degradation?.get(entry.group.site);
-    if (degraded) entry.group.degraded = degraded;
+    entry.group.degraded = degraded;
     return entry.group;
   });
 }
@@ -279,6 +290,8 @@ export const digestCommand = defineCommand({
       perSite,
       topReplies,
       sinceMs,
+      budget,
+      fields,
     });
     const siteResults = reportSiteResults(fetched);
 

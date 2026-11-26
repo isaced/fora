@@ -127,6 +127,28 @@ describe("applyDigestBudget", () => {
 });
 
 describe("fetchDigestGroups", () => {
+  it("only fetches details for topics whose list rows fit the projected budget", async () => {
+    const listed = [topic("alpha"), topic("bravo"), topic("charlie")];
+    const adapter = makeAdapter("e0", listed, { active: 0, max: 0 });
+    const enriched: string[] = [];
+    const fetchTopic = adapter.topic;
+    adapter.topic = async (site, ref, page) => {
+      enriched.push(ref);
+      return fetchTopic(site, ref, page);
+    };
+    const ctx = makeCtx({ e0: adapter }, ["s1"]);
+    const budget = approxTokens([{ site: "s1", topics: [{ id: "alpha", site: "s1" }] }]);
+    const groups = await fetchDigestGroups(ctx, { names: ["s1"], perSite: 3, topReplies: 1, budget, fields: ["id"] });
+    const fitted = applyDigestBudget(groups, budget, ["id"]);
+    expect(enriched).toEqual(["alpha"]);
+    expect(fitted.groups[0]!.topics.map(({ id }) => id)).toEqual(["alpha"]);
+    expect(fitted.meta.omitted_topics).toEqual({ s1: 2 });
+
+    enriched.length = 0;
+    await fetchDigestGroups(ctx, { names: ["s1"], perSite: 3, topReplies: 1, budget: 1 });
+    expect(enriched).toEqual([]);
+  });
+
   it("matches category names through the adapter and enriches only allowed topics", async () => {
     const listed = [
       { ...topic("keep"), category: { id: "7" } },
