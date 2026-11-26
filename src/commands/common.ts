@@ -65,11 +65,24 @@ export function intOption(raw: unknown, fallback: number, name: string): number 
 }
 
 /** Site resolution order: --site flag → positional → FORA_SITE → default_site. */
-export function pickSiteName(flag: unknown, positional: unknown, config: Ctx["config"]): string {
-  if (typeof flag === "string" && flag.trim()) return flag.trim();
-  if (typeof positional === "string" && positional.trim()) return positional.trim();
-  if (process.env.FORA_SITE?.trim()) return process.env.FORA_SITE.trim();
-  return defaultSiteName(config);
+export function pickSiteName(
+  flag: unknown,
+  positional: unknown,
+  config: Ctx["config"],
+  sites: Site[] = [],
+): string {
+  for (const candidate of [flag, positional, process.env.FORA_SITE]) {
+    if (typeof candidate === "string" && candidate.trim()) return candidate.trim();
+  }
+
+  const fallback = defaultSiteName(config);
+  if (fallback) return fallback;
+
+  const known = sites.slice(0, 12).map((site) => site.name).join(", ");
+  throw new UsageError(
+    `no site specified. Use --site <name> or a positional site${known ? `. Known sites: ${known}` : ""}.\n` +
+      `Set default_site in config, or add a site with: fora sites add <url>`,
+  );
 }
 
 export function assertCapability(adapter: Adapter, capability: keyof Capabilities, operation: string): void {

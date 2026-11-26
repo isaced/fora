@@ -24,7 +24,7 @@ export const categoriesCommand = defineCommand({
   },
   async run({ args }) {
     const ctx = await createContext();
-    const site = requireSite(ctx.sites, pickSiteName(args.site, args.target, ctx.config));
+    const site = requireSite(ctx.sites, pickSiteName(args.site, args.target, ctx.config, ctx.sites));
     const adapter = ctx.registry.require(site.engine);
     assertCapability(adapter, "categories", "categories");
 

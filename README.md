@@ -5,7 +5,7 @@ interface — built for humans in a terminal and for AI agents that need clean,
 structured data.
 
 ```
-fora hot                         # ranked topics on the default site
+fora hot --site v2ex            # ranked topics on V2EX
 fora hot --site linuxdo          # any Discourse instance
 fora show https://www.v2ex.com/t/1259639
 fora digest --since 24h --json   # one scheduled-briefing payload
@@ -65,7 +65,8 @@ fora create-adapter <engine>     # scaffold an external adapter package
 ```
 
 Global flags: `--json`, `--limit/-n`, `--site`. Site resolution order is
-`--site` → positional → `FORA_SITE` → `default_site` in config.
+`--site` → positional → `FORA_SITE` → `default_site` in config. If no site is
+given and no `default_site` is set, fora exits 2 and lists the known sites.
 
 ### Addressable results
 
@@ -106,7 +107,8 @@ sites:
     base_url: https://example.com/feed.xml
 ```
 
-No config is required to start. `fora sites add <url>` probes a forum URL,
+Built-in presets are available with zero config; pass `--site` (or set
+`default_site`) to choose one. `fora sites add <url>` probes a forum URL,
 detects its engine, and appends it to your config (use `--yes` in scripts).
 
 ### Official site directory

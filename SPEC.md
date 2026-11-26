@@ -294,7 +294,8 @@ and only in a TTY.
    *topic*. Humans get the short form; the explicit `--site` flag always
    works too and is the form docs and agents should use. No hidden state:
    site resolution order is flag → positional → `FORA_SITE` env →
-   `default_site` config. Nothing is "sticky" between runs (the last-list
+   `default_site` config. If none of these yields a site, fora exits 2 with
+   the known sites rather than guessing. Nothing is "sticky" between runs (the last-list
    numbers of rule 1 are the one sanctioned exception, and `--json` list
    output always carries the stable `id` alongside the number).
 7. **Piped output is full output.** When stdout is not a TTY: no colour, no
@@ -514,7 +515,8 @@ fixtures and docs:
 
 ## 12. v1 acceptance criteria
 
-1. Fresh machine, zero config: `fora hot` returns V2EX hot topics;
+1. Fresh machine, zero config: `fora hot --site v2ex` returns V2EX hot topics;
+   `fora hot` without a site exits 2 and points at `--site`;
    `fora hot --site linuxdo` and `fora hot --site hn` work.
 2. `fora show <pasted V2EX or linux.do topic URL>` prints the OP and
    replies in readable plain text; `--json` validates against §3.

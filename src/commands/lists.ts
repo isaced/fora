@@ -34,7 +34,7 @@ async function runList(kind: ListKind, args: Record<string, unknown>): Promise<v
   const json = Boolean(args.json);
   const period = kind === "hot" ? (args.period as Period | undefined) : undefined;
 
-  const selectorRaw = pickSiteName(args.site, args.target, ctx.config);
+  const selectorRaw = pickSiteName(args.site, args.target, ctx.config, ctx.sites);
   const selector = parseSiteSelector(selectorRaw);
 
   if (selector.all || selector.names.length > 1) {

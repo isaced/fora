@@ -79,14 +79,21 @@ export function requireSite(sites: Site[], name: string): Site {
   );
 }
 
-/** Default site when no flag/positional/env is given. */
-export function defaultSiteName(config: ForaConfig): string {
-  return config.default_site?.trim() || "v2ex";
+/** Configured default site, or undefined when none is set. */
+export function defaultSiteName(config: ForaConfig): string | undefined {
+  return config.default_site?.trim() || undefined;
 }
 
 /** Sites included in `fora digest` (the follow list). */
 export function followSiteNames(config: ForaConfig): string[] {
-  return config.follow && config.follow.length > 0 ? config.follow : [defaultSiteName(config)];
+  if (config.follow && config.follow.length > 0) return config.follow;
+  const fallback = defaultSiteName(config);
+  if (!fallback) {
+    throw new UsageError(
+      "no followed sites. Set `follow:` (or `default_site:`) in config, or add a site with: fora sites add <url>",
+    );
+  }
+  return [fallback];
 }
 
 export interface SiteSelector {

@@ -12,11 +12,11 @@ import {
   jsonArg,
   limitArg,
   parseFieldOption,
+  pickSiteName,
   resolveSince,
   sinceArg,
   siteFlagArg,
 } from "./common.ts";
-import { defaultSiteName } from "../core/sites.ts";
 import { UsageError } from "../core/errors.ts";
 
 export const searchCommand = defineCommand({
@@ -42,11 +42,7 @@ export const searchCommand = defineCommand({
     const query = words.join(" ").trim();
     if (!query) throw new UsageError("search needs a query, e.g. fora search rust async");
 
-    const siteName =
-      typeof args.site === "string" && args.site.trim()
-        ? args.site.trim()
-        : process.env.FORA_SITE?.trim() || defaultSiteName(ctx.config);
-    const site = requireSite(ctx.sites, siteName);
+    const site = requireSite(ctx.sites, pickSiteName(args.site, undefined, ctx.config, ctx.sites));
 
     const adapter = ctx.registry.require(site.engine);
     assertCapability(adapter, "search", "search");
