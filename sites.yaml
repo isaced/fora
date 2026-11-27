@@ -136,6 +136,61 @@
   engine: discourse
   tags: [openai, ai, en]
 
+- name: cursor-forum
+  url: https://forum.cursor.com
+  engine: discourse
+  tags: [cursor, ai, ide, en]
+
+- name: roblox-devforum
+  url: https://devforum.roblox.com
+  engine: discourse
+  tags: [roblox, gamedev, en]
+
+- name: nvidia-developer
+  url: https://forums.developer.nvidia.com
+  engine: discourse
+  tags: [nvidia, gpu, ai, en]
+
+- name: cfx-forum
+  url: https://forum.cfx.re
+  engine: discourse
+  tags: [fivem, gamedev, en]
+
+- name: mikrotik-forum
+  url: https://forum.mikrotik.com
+  engine: discourse
+  tags: [mikrotik, networking, en]
+
+- name: hackthebox-forum
+  url: https://forum.hackthebox.com
+  engine: discourse
+  tags: [hackthebox, security, en]
+
+- name: threejs-discourse
+  url: https://discourse.threejs.org
+  engine: discourse
+  tags: [threejs, gamedev, en]
+
+- name: shopify-community
+  url: https://community.shopify.com
+  engine: discourse
+  tags: [shopify, ecommerce, en]
+
+- name: brave-community
+  url: https://community.brave.com
+  engine: discourse
+  tags: [brave, browser, en]
+
+- name: asana-community
+  url: https://community.asana.com
+  engine: discourse
+  tags: [asana, productivity, en]
+
+- name: openstreetmap-forum
+  url: https://forum.openstreetmap.org
+  engine: discourse
+  tags: [openstreetmap, maps, en]
+
 - name: flarum-community
   url: https://discuss.flarum.org
   engine: flarum
